@@ -13,7 +13,7 @@ from .config import StrategyConfig
 from .features import build_monthly_candidates
 from .market_calendar import active_formation_date, latest_completed_session, session_number_after
 from .market_data import download_histories, load_price_directory
-from .retest import scan_candidate
+from .retest import candidate_monitor, scan_candidate
 from .storage import read_json, write_json
 from .universe import load_universe
 
@@ -50,6 +50,14 @@ def _new_alert_candidates(
         for signal in signals
         if signal["signal_id"] not in sent_ids and signal.get("event_date") == cutoff_iso
     ]
+
+
+def _cycle_phase(session_after_formation: int, config: StrategyConfig) -> str:
+    if session_after_formation < config.first_retest_day:
+        return "before_retest_window"
+    if session_after_formation <= config.last_retest_day:
+        return "retest_window_open"
+    return "retest_window_closed"
 
 
 def _load_or_build_formation(
@@ -125,15 +133,25 @@ def run_pipeline(
         formation["candidate_download_errors"] = candidate_errors
 
     scans = []
+    candidate_monitors: list[dict[str, Any]] = []
     current_signals: list[dict[str, Any]] = []
     for candidate in candidates:
         ticker = candidate["ticker"]
         raw = prices.get(ticker)
         if raw is None:
-            scans.append({"ticker": ticker, "status": "missing_prices", "signal": None})
+            monitor = candidate_monitor(candidate, config)
+            monitor.update(
+                status="missing_prices",
+                next_step="No se puede evaluar: faltan precios posteriores a la formación",
+            )
+            scans.append(
+                {"ticker": ticker, "status": "missing_prices", "signal": None, "monitor": monitor}
+            )
+            candidate_monitors.append(monitor)
             continue
         result = scan_candidate(candidate, raw, cutoff=cutoff, config=config)
         scans.append(result)
+        candidate_monitors.append(result["monitor"])
         if result.get("signal"):
             current_signals.append(result["signal"])
 
@@ -159,14 +177,20 @@ def run_pipeline(
     for result in scans:
         status = result["status"]
         status_counts[status] = status_counts.get(status, 0) + 1
+    session_after_formation = session_number_after(formation_date, cutoff)
     current_payload = {
         "method_version": config.method_version,
         "generated_at": _iso_now(),
         "cutoff": cutoff.date().isoformat(),
         "formation_date": formation_date.date().isoformat(),
-        "session_after_formation": session_number_after(formation_date, cutoff),
+        "session_after_formation": session_after_formation,
+        "cycle_phase": _cycle_phase(session_after_formation, config),
         "formation_stats": formation["stats"],
         "scan_status": status_counts,
+        "candidates": sorted(
+            candidate_monitors,
+            key=lambda row: (row.get("candidate_rank") is None, row.get("candidate_rank") or 0),
+        ),
         "signals": _sort_signals(current_signals),
         "alert_scope": "signals confirmed on cutoff session only",
         "alert_result": alert_result,

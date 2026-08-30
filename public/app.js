@@ -1,5 +1,39 @@
 const gradeOrder = { "A+": 0, A: 1, B: 2 };
-const state = { current: null, history: [], metrics: null, grade: "ALL", query: "" };
+const state = {
+  current: null,
+  history: [],
+  metrics: null,
+  grade: "ALL",
+  query: "",
+  candidateStatus: "ALL",
+  candidateQuery: "",
+};
+
+const statusMeta = {
+  waiting: ["Esperando sesiones", "status-waiting"],
+  waiting_expansion: ["Esperando expansión", "status-waiting"],
+  expanded_waiting_retest: ["Esperando retest", "status-ready"],
+  signal: ["Señal", "status-signal"],
+  rejected_first_contact: ["Rechazado", "status-rejected"],
+  expired: ["Expirado", "status-expired"],
+  missing_prices: ["Sin precios", "status-error"],
+  missing_formation: ["Sin formación", "status-error"],
+  invalid_formation: ["Formación inválida", "status-error"],
+};
+
+const phaseMeta = {
+  before_retest_window: "Ventana de retest todavía no abierta",
+  retest_window_open: "Ventana de retest abierta",
+  retest_window_closed: "Ventana de retest cerrada",
+};
+
+const checkLabels = {
+  contact: "Contacto con la banda",
+  hold: "Cierre sobre el nivel L",
+  strong_close: "Cierre en el 70% superior",
+  not_extended: "Extensión máxima de 0,75 ATR",
+  volume_contraction: "Volumen inferior al 80%",
+};
 
 const byQualityDate = (a, b) =>
   (gradeOrder[a.grade] ?? 9) - (gradeOrder[b.grade] ?? 9) ||
@@ -9,6 +43,7 @@ const byQualityDate = (a, b) =>
 const gradeClass = (grade) => grade === "A+" ? "grade-aplus" : grade === "A" ? "grade-a" : "grade-b";
 const fmtPct = (value, digits = 2) => value == null ? "N/D" : `${value >= 0 ? "+" : ""}${(100 * value).toFixed(digits)}%`;
 const fmtNum = (value, digits = 2) => value == null ? "N/D" : Number(value).toFixed(digits);
+const fmtPrice = (value) => value == null ? "N/D" : `$${Number(value).toFixed(Math.abs(value) < 10 ? 3 : 2)}`;
 const fmtDate = (value) => value ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(`${value}T12:00:00`)) : "Pendiente";
 const signClass = (value) => value == null ? "" : value >= 0 ? "positive" : "negative";
 
@@ -23,13 +58,18 @@ async function fetchJson(path, fallback) {
   }
 }
 
+function cyclePhaseLabel() {
+  return phaseMeta[state.current?.cycle_phase] || "Estado de ventana no disponible";
+}
+
 function renderSummary() {
   const signals = state.current?.signals || [];
   const stats = state.current?.formation_stats || {};
+  const actionable = signals.filter(signal => signal.event_date === state.current?.cutoff);
   const cards = [
-    ["Formación activa", state.current?.formation_date || "N/D", `Corte ${state.current?.cutoff || "N/D"}`],
+    ["Formación del ciclo", state.current?.formation_date || "N/D", cyclePhaseLabel()],
     ["Candidatos swing", stats.swing_top20 ?? "N/D", `${stats.d10 ?? "N/D"} acciones en D10`],
-    ["Señales del ciclo", signals.length, `${signals.filter(x => x.grade === "A+").length} de grado A+`],
+    ["Señales confirmadas hoy", actionable.length, actionable.length ? "Entrada en la próxima apertura" : "Ninguna entrada nueva"],
     ["Referencia histórica", state.history.length, "A+, A y B auditadas"],
   ];
   document.querySelector("#summary").innerHTML = cards.map(([label, value, note]) => `
@@ -37,10 +77,64 @@ function renderSummary() {
   `).join("");
 }
 
+function statusPill(candidate) {
+  const [label, cls] = statusMeta[candidate.status] || [candidate.status || "N/D", "status-error"];
+  const suffix = candidate.status === "signal" && candidate.grade ? ` ${candidate.grade}` : "";
+  return `<span class="status-pill ${cls}">${label}${suffix}</span>`;
+}
+
+function candidateGroup(candidate) {
+  if (["waiting", "waiting_expansion", "expanded_waiting_retest"].includes(candidate.status)) return "POSSIBLE";
+  if (candidate.status === "signal") return "SIGNAL";
+  if (candidate.status === "rejected_first_contact") return "REJECTED";
+  if (candidate.status === "expired") return "EXPIRED";
+  return "OTHER";
+}
+
+function candidateRow(candidate) {
+  const latest = candidate.latest_session;
+  const lastSession = latest ? `D${latest.day} · ${fmtDate(latest.date)}` : "Sin sesión";
+  const volume = latest ? fmtPct(latest.volume_ratio - 1) : "N/D";
+  return `<tr data-candidate="${candidate.ticker}">
+    <td>${candidate.candidate_rank ?? "—"}</td>
+    <td><strong>${candidate.ticker}</strong></td>
+    <td>${statusPill(candidate)}</td>
+    <td>${fmtNum(candidate.swing_score, 3)}</td>
+    <td>${fmtPrice(candidate.formation_close)}</td>
+    <td>≥ ${fmtPrice(candidate.expansion_threshold)}</td>
+    <td>${fmtPrice(candidate.contact_band_low)}–${fmtPrice(candidate.contact_band_high)}</td>
+    <td>${lastSession}</td>
+    <td class="${latest && latest.volume_ratio < 0.8 ? "positive" : ""}">${volume}</td>
+    <td class="next-step">${candidate.next_step || "N/D"}</td>
+    <td><button class="detail-button">Ver →</button></td>
+  </tr>`;
+}
+
+function renderCandidates() {
+  const candidates = state.current?.candidates || [];
+  const query = state.candidateQuery.trim().toUpperCase();
+  const filtered = candidates
+    .filter(candidate => state.candidateStatus === "ALL" || candidateGroup(candidate) === state.candidateStatus)
+    .filter(candidate => !query || String(candidate.ticker).toUpperCase().includes(query))
+    .sort((a, b) => (a.candidate_rank ?? 9999) - (b.candidate_rank ?? 9999));
+  const session = state.current?.session_after_formation;
+  document.querySelector("#candidate-subtitle").textContent = state.current
+    ? `${cyclePhaseLabel()} · sesión ${session} posterior · corte ${state.current.cutoff}`
+    : "Datos no disponibles";
+  document.querySelector("#candidate-body").innerHTML = filtered.length
+    ? filtered.map(candidateRow).join("")
+    : `<tr><td colspan="11" class="empty-table">No hay candidatos en este filtro.</td></tr>`;
+  document.querySelector("#candidate-count").textContent = `${filtered.length} de ${candidates.length} candidatos`;
+}
+
 function signalCard(signal) {
-  return `<article class="signal-card" data-signal="${signal.signal_id}">
+  const actionable = signal.event_date === state.current?.cutoff;
+  const timing = actionable
+    ? "Confirmada hoy · entrada en próxima apertura"
+    : `Señal ${fmtDate(signal.event_date)} · entrada ${fmtDate(signal.entry_date)}`;
+  return `<article class="signal-card ${actionable ? "actionable" : ""}" data-signal="${signal.signal_id}">
     <div class="signal-top"><span class="signal-ticker">${signal.ticker}</span><span class="grade ${gradeClass(signal.grade)}">${signal.grade}</span></div>
-    <p class="muted">Señal ${fmtDate(signal.event_date)}</p>
+    <p class="muted">${timing}</p>
     <div class="signal-metrics">
       <div class="metric"><span>SwingScore</span><strong>${fmtNum(signal.swing_score, 3)}</strong></div>
       <div class="metric"><span>Volumen</span><strong>${fmtPct(signal.event_volume_change)}</strong></div>
@@ -52,12 +146,14 @@ function signalCard(signal) {
 function renderCurrent() {
   const signals = [...(state.current?.signals || [])].sort(byQualityDate);
   const subtitle = document.querySelector("#current-subtitle");
-  subtitle.textContent = state.current ? `Formación ${state.current.formation_date} · sesión ${state.current.session_after_formation} posterior · corte ${state.current.cutoff}` : "Datos no disponibles";
+  subtitle.textContent = state.current
+    ? `Formación ${state.current.formation_date} · ${cyclePhaseLabel().toLowerCase()} · corte ${state.current.cutoff}`
+    : "Datos no disponibles";
   const empty = document.querySelector("#current-empty");
   const grid = document.querySelector("#current-signals");
   if (!signals.length) {
     empty.hidden = false;
-    empty.textContent = "No hay señales confirmadas en el ciclo activo. La selectividad es una característica del método, no un error de actualización.";
+    empty.textContent = "No hubo señales confirmadas en este ciclo. La selectividad es una característica del método.";
     grid.innerHTML = "";
   } else {
     empty.hidden = true;
@@ -106,7 +202,7 @@ function detailItem(label, value, cls = "") {
   return `<div class="detail-item"><span>${label}</span><strong class="${cls}">${value}</strong></div>`;
 }
 
-function openDrawer(signalId) {
+function openSignalDrawer(signalId) {
   const signal = [...(state.current?.signals || []), ...state.history].find(row => row.signal_id === signalId);
   if (!signal) return;
   const content = document.querySelector("#drawer-content");
@@ -136,7 +232,65 @@ function openDrawer(signalId) {
       ${detailItem("MFE10", fmtPct(signal.mfe10), signClass(signal.mfe10))}
       ${detailItem("MAE10", fmtPct(signal.mae10), signClass(signal.mae10))}
     </div></section>
-    <section class="detail-section"><h3>Entrada</h3><p>${signal.entry_rule || "Apertura ajustada de la sesión posterior al retest."}</p><p class="muted">Precio de referencia: ${signal.entry_open == null ? "pendiente" : `$${fmtNum(signal.entry_open, 4)}`}. R5/R10 son métricas de estudio, no reglas automáticas de salida.</p></section>`;
+    <section class="detail-section"><h3>Entrada</h3><p>${signal.entry_rule || "Apertura ajustada de la sesión posterior al retest."}</p><p class="muted">Precio de referencia: ${signal.entry_open == null ? "pendiente" : fmtPrice(signal.entry_open)}. R5/R10 son métricas de estudio, no reglas automáticas de salida.</p></section>`;
+  showDrawer();
+}
+
+function checksBlock(candidate) {
+  if (!candidate.checks) return "";
+  return `<section class="detail-section"><h3>Comprobación del primer contacto</h3><div class="check-list">
+    ${Object.entries(checkLabels).map(([key, label]) => {
+      const passed = Boolean(candidate.checks[key]);
+      return `<div class="check-row"><span>${label}</span><strong class="${passed ? "check-pass" : "check-fail"}">${passed ? "Cumple" : "Falla"}</strong></div>`;
+    }).join("")}
+  </div></section>`;
+}
+
+function openCandidateDrawer(ticker) {
+  const candidate = (state.current?.candidates || []).find(row => row.ticker === ticker);
+  if (!candidate) return;
+  const latest = candidate.latest_session;
+  const content = document.querySelector("#drawer-content");
+  content.innerHTML = `
+    <p class="eyebrow">Candidato #${candidate.candidate_rank ?? "—"}</p>
+    <div class="drawer-title"><h2>${candidate.ticker}</h2>${statusPill(candidate)}</div>
+    <p class="muted">Formación ${fmtDate(candidate.formation_date)} · ${candidate.next_step}</p>
+    <section class="detail-section"><h3>Selección</h3><div class="detail-grid">
+      ${detailItem("SwingScore", fmtNum(candidate.swing_score, 3))}
+      ${detailItem("Percentil swing", fmtNum(candidate.swing_rank_percentile, 3))}
+      ${detailItem("Percentil MOM universo", fmtNum(candidate.universe_momentum_percentile, 3))}
+      ${detailItem("Pendiente SMA200 pct", fmtNum(candidate.sma200_slope_percentile_d10, 3))}
+    </div></section>
+    <section class="detail-section"><h3>Niveles congelados</h3><div class="detail-grid">
+      ${detailItem("Nivel L", fmtPrice(candidate.formation_close))}
+      ${detailItem("ATR20", fmtPrice(candidate.atr_abs20))}
+      ${detailItem("Expansión mínima", fmtPrice(candidate.expansion_threshold))}
+      ${detailItem("Cierre máximo", fmtPrice(candidate.max_valid_close))}
+      ${detailItem("Banda inferior", fmtPrice(candidate.contact_band_low))}
+      ${detailItem("Banda superior", fmtPrice(candidate.contact_band_high))}
+      ${detailItem("Volumen medio20", fmtNum(candidate.prior_adj_volume20, 0))}
+      ${detailItem("Volumen máximo", fmtNum(candidate.max_event_volume, 0))}
+    </div></section>
+    <section class="detail-section"><h3>Secuencia</h3><div class="detail-grid">
+      ${detailItem("Expansión", candidate.expansion_seen ? fmtDate(candidate.expansion_date) : "No confirmada")}
+      ${detailItem("Pico expansión", fmtPrice(candidate.expansion_peak))}
+      ${detailItem("Primer contacto", fmtDate(candidate.first_contact_date))}
+      ${detailItem("Sesiones restantes", candidate.sessions_remaining ?? "N/D")}
+    </div></section>
+    ${latest ? `<section class="detail-section"><h3>Última sesión evaluada</h3><div class="detail-grid">
+      ${detailItem("Fecha / día", `${fmtDate(latest.date)} · D${latest.day}`)}
+      ${detailItem("Cierre", fmtPrice(latest.close))}
+      ${detailItem("Máximo / mínimo", `${fmtPrice(latest.high)} / ${fmtPrice(latest.low)}`)}
+      ${detailItem("Cierre en rango", fmtNum(latest.close_location, 3))}
+      ${detailItem("Cierre vs L", `${fmtNum(latest.close_vs_level_atr)} ATR`)}
+      ${detailItem("Volumen vs media", fmtPct(latest.volume_ratio - 1))}
+    </div></section>` : ""}
+    ${checksBlock(candidate)}
+    ${candidate.status === "signal" ? `<section class="detail-section"><h3>Entrada</h3><p>Grado ${candidate.grade}. Entrada en la apertura posterior al retest.</p><p class="muted">${candidate.entry_date ? `${fmtDate(candidate.entry_date)} a ${fmtPrice(candidate.entry_open)}` : "Precio pendiente hasta la próxima sesión."}</p></section>` : ""}`;
+  showDrawer();
+}
+
+function showDrawer() {
   document.querySelector("#drawer").classList.add("open");
   document.querySelector("#drawer").setAttribute("aria-hidden", "false");
   document.querySelector("#backdrop").hidden = false;
@@ -154,13 +308,27 @@ function bindEvents() {
     document.querySelectorAll(".filter").forEach(x => x.classList.toggle("active", x === button));
     renderHistory();
   }));
+  document.querySelectorAll(".candidate-filter").forEach(button => button.addEventListener("click", () => {
+    state.candidateStatus = button.dataset.candidateStatus;
+    document.querySelectorAll(".candidate-filter").forEach(x => x.classList.toggle("active", x === button));
+    renderCandidates();
+  }));
   document.querySelector("#ticker-search").addEventListener("input", event => {
     state.query = event.target.value;
     renderHistory();
   });
+  document.querySelector("#candidate-search").addEventListener("input", event => {
+    state.candidateQuery = event.target.value;
+    renderCandidates();
+  });
   document.body.addEventListener("click", event => {
-    const row = event.target.closest("[data-signal]");
-    if (row) openDrawer(row.dataset.signal);
+    const candidate = event.target.closest("[data-candidate]");
+    if (candidate) {
+      openCandidateDrawer(candidate.dataset.candidate);
+      return;
+    }
+    const signal = event.target.closest("[data-signal]");
+    if (signal) openSignalDrawer(signal.dataset.signal);
   });
   document.querySelector("#drawer-close").addEventListener("click", closeDrawer);
   document.querySelector("#backdrop").addEventListener("click", closeDrawer);
@@ -179,7 +347,12 @@ async function init() {
   const badge = document.querySelector("#run-badge");
   if (current) badge.textContent = `Datos hasta ${current.cutoff}`;
   else { badge.textContent = "Datos no disponibles"; badge.classList.add("error"); }
-  renderSummary(); renderCurrent(); renderHistory(); renderProfile(); bindEvents();
+  renderSummary();
+  renderCandidates();
+  renderCurrent();
+  renderHistory();
+  renderProfile();
+  bindEvents();
 }
 
 init();

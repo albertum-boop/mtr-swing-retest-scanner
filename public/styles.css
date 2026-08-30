@@ -84,6 +84,7 @@ h2 { font-size: 28px; letter-spacing: -.02em; }
 
 .signal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
 .signal-card { border: 1px solid var(--line); border-radius: 15px; padding: 16px; background: #fbfcfd; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+.signal-card.actionable { border-color: #76b99e; box-shadow: 0 0 0 2px rgba(22, 132, 91, .08); }
 .signal-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(30, 57, 82, .11); }
 .signal-top { display: flex; justify-content: space-between; align-items: center; }
 .signal-ticker { font-size: 24px; font-weight: 700; letter-spacing: -.03em; }
@@ -95,10 +96,10 @@ h2 { font-size: 28px; letter-spacing: -.02em; }
 .empty { padding: 32px; border: 1px dashed #bdcbd7; border-radius: 14px; color: var(--muted); text-align: center; background: #f8fafb; }
 
 .filters { display: flex; flex-wrap: wrap; gap: 7px; justify-content: flex-end; }
-.filter, #ticker-search { border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 10px; height: 35px; padding: 0 12px; font: inherit; font-size: 12px; }
-.filter { cursor: pointer; }
-.filter.active { border-color: var(--navy); background: var(--navy); color: #fff; }
-#ticker-search { width: 105px; text-transform: uppercase; }
+.filter, .candidate-filter, #ticker-search, #candidate-search { border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 10px; height: 35px; padding: 0 12px; font: inherit; font-size: 12px; }
+.filter, .candidate-filter { cursor: pointer; }
+.filter.active, .candidate-filter.active { border-color: var(--navy); background: var(--navy); color: #fff; }
+#ticker-search, #candidate-search { width: 105px; text-transform: uppercase; }
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 13px; }
 table { width: 100%; border-collapse: collapse; font-size: 12px; white-space: nowrap; }
 th { padding: 11px 10px; text-align: right; background: #edf3f7; color: #42576b; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; }
@@ -110,6 +111,17 @@ tbody tr:hover { background: #f4f8fa; }
 .positive { color: var(--green); }
 .negative { color: var(--red); }
 .table-count { margin: 12px 0 0; color: var(--muted); font-size: 12px; text-align: right; }
+.candidate-table th:nth-child(-n+3), .candidate-table td:nth-child(-n+3), .candidate-table th:nth-child(10), .candidate-table td:nth-child(10) { text-align: left; }
+.candidate-table .next-step { min-width: 230px; max-width: 290px; white-space: normal; line-height: 1.35; color: #42576b; }
+.candidate-table tbody tr[data-candidate] { transition: background .12s ease; }
+.empty-table { padding: 28px; color: var(--muted); text-align: center !important; }
+.status-pill { display: inline-flex; align-items: center; min-height: 25px; padding: 4px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; }
+.status-waiting { background: #fff2d8; color: #8b5d0a; }
+.status-ready { background: #e4f0f8; color: #235d84; }
+.status-signal { background: #ddf3e9; color: #116b49; }
+.status-rejected { background: #fae4e4; color: #9d3535; }
+.status-expired { background: #e9edf1; color: #627181; }
+.status-error { background: #f5e7ee; color: #8f3d62; }
 
 .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .evidence-grid .panel { margin: 0; }
@@ -132,6 +144,11 @@ tbody tr:hover { background: #f4f8fa; }
 .detail-item { background: white; padding: 12px; }
 .detail-item span { display: block; color: var(--muted); font-size: 10px; }
 .detail-item strong { font-size: 13px; }
+.check-list { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.check-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 11px 12px; border-bottom: 1px solid var(--line); font-size: 12px; }
+.check-row:last-child { border-bottom: 0; }
+.check-pass { color: var(--green); }
+.check-fail { color: var(--red); }
 
 footer { max-width: 1240px; margin: 0 auto; padding: 28px 24px 42px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; display: flex; justify-content: space-between; gap: 20px; }
 

@@ -21,6 +21,18 @@ La aplicación no envía órdenes ni incluye todavía una regla operativa de sal
 Los precios completos no se versionan. La formación mensual contiene únicamente los 25–40
 candidatos necesarios para el seguimiento diario.
 
+## Monitor operativo
+
+`public/data/current.json` publica una fila explicativa por candidato, además de las señales. La
+interfaz distingue entre candidatos que esperan expansión, candidatos que esperan retest, señales,
+primeros contactos rechazados y ventanas expiradas. Cada fila conserva los niveles congelados de
+formación (`L`, ATR20, expansión, banda y volumen máximo), la última sesión evaluada y las cinco
+comprobaciones del primer contacto.
+
+Una señal confirmada en la sesión de corte se identifica como accionable para la **próxima
+apertura**. Las señales anteriores del mismo ciclo permanecen visibles como referencia, pero no se
+presentan como entradas nuevas.
+
 ## Ejecución local
 
 ```bash

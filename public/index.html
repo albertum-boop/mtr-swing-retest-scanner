@@ -35,11 +35,36 @@
 
       <section id="summary" class="summary-grid" aria-label="Resumen"></section>
 
+      <section class="panel candidate-panel">
+        <div class="panel-header history-heading">
+          <div>
+            <p class="eyebrow">Seguimiento operativo</p>
+            <h2>Monitor de candidatos swing</h2>
+            <p id="candidate-subtitle" class="muted"></p>
+          </div>
+          <div class="filters candidate-filters" role="group" aria-label="Filtrar candidatos">
+            <button class="candidate-filter active" data-candidate-status="ALL">Todos</button>
+            <button class="candidate-filter" data-candidate-status="POSSIBLE">Posibles</button>
+            <button class="candidate-filter" data-candidate-status="SIGNAL">Señal</button>
+            <button class="candidate-filter" data-candidate-status="REJECTED">Rechazados</button>
+            <button class="candidate-filter" data-candidate-status="EXPIRED">Expirados</button>
+            <input id="candidate-search" type="search" placeholder="Ticker" aria-label="Buscar candidato" />
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="candidate-table">
+            <thead><tr><th>#</th><th>Ticker</th><th>Estado</th><th>Score</th><th>Nivel L</th><th>Expansión</th><th>Banda retest</th><th>Última sesión</th><th>Volumen</th><th>Qué falta</th><th></th></tr></thead>
+            <tbody id="candidate-body"></tbody>
+          </table>
+        </div>
+        <p id="candidate-count" class="table-count"></p>
+      </section>
+
       <section class="panel current-panel">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">Mes activo</p>
-            <h2>Señales actuales</h2>
+            <p class="eyebrow">Ciclo de formación</p>
+            <h2>Señales del ciclo</h2>
             <p id="current-subtitle" class="muted"></p>
           </div>
           <div class="legend"><span class="dot aplus"></span>A+<span class="dot a"></span>A<span class="dot b"></span>B</div>

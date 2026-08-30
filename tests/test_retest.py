@@ -51,6 +51,7 @@ def prices(event_day: int = 2, event_volume: float = 700.0) -> pd.DataFrame:
 def test_valid_a_plus_retest_and_executable_outcomes():
     result = scan_candidate(candidate(), prices())
     signal = result["signal"]
+    monitor = result["monitor"]
     assert result["status"] == "signal"
     assert signal["event_day"] == 2
     assert signal["grade"] == "A+"
@@ -58,6 +59,17 @@ def test_valid_a_plus_retest_and_executable_outcomes():
     assert signal["entry_open"] == 102.5
     assert signal["mfe5"] >= signal["r5"]
     assert signal["mae5"] <= signal["r5"]
+    assert monitor["status"] == "signal"
+    assert monitor["expansion_date"] == "2026-08-03"
+    assert monitor["first_contact_date"] == "2026-08-04"
+    assert monitor["checks"] == {
+        "contact": True,
+        "hold": True,
+        "strong_close": True,
+        "not_extended": True,
+        "volume_contraction": True,
+    }
+    assert monitor["entry_open"] == signal["entry_open"]
 
 
 def test_failed_first_contact_cannot_be_revived_later():
@@ -65,6 +77,8 @@ def test_failed_first_contact_cannot_be_revived_later():
     assert result["signal"] is None
     assert result["status"] == "rejected_first_contact"
     assert result["rejections"][0]["failed"] == ["volume_contraction"]
+    assert result["monitor"]["failed_conditions"] == ["volume_contraction"]
+    assert result["monitor"]["first_contact_date"] == "2026-08-04"
 
 
 def test_volume_threshold_is_strict():
@@ -82,3 +96,5 @@ def test_same_bar_cannot_create_expansion_and_retest():
     result = scan_candidate(candidate(), frame, cutoff="2026-08-04")
     assert result["signal"] is None
     assert result["status"] == "expanded_waiting_retest"
+    assert result["monitor"]["expansion_date"] == "2026-08-04"
+    assert result["monitor"]["first_contact_date"] is None
