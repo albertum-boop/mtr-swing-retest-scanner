@@ -1,0 +1,67 @@
+name: MTR daily scan
+
+on:
+  workflow_dispatch:
+    inputs:
+      as_of:
+        description: "Optional YYYY-MM-DD cutoff"
+        required: false
+        type: string
+  schedule:
+    # 19:30 New York in summer; 18:30 in winter. Both are after finalisation.
+    - cron: "30 23 * * 1-5"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mtr-daily-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install scanner
+        run: pip install -e .
+
+      - name: Run frozen v1.0 scanner
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          ALERT_FROM: ${{ secrets.ALERT_FROM }}
+          ALERT_TO: ${{ secrets.ALERT_TO }}
+        run: |
+          args=(--send-alerts)
+          if [[ -n "${{ inputs.as_of }}" ]]; then args+=(--as-of "${{ inputs.as_of }}"); fi
+          python -m mtr_scanner "${args[@]}"
+
+      - name: Validate generated JSON
+        run: |
+          python -m json.tool public/data/current.json >/dev/null
+          python -m json.tool public/data/history.json >/dev/null
+          python -m json.tool state/last_run.json >/dev/null
+
+      - name: Commit state and public signals
+        run: |
+          git config user.name "mtr-signal-bot"
+          git config user.email "mtr-signal-bot@users.noreply.github.com"
+          git add public/data/current.json public/data/history.json state/formations state/sent_signals.json state/last_run.json
+          if git diff --cached --quiet; then
+            echo "No state changes"
+          else
+            git commit -m "data: update MTR signals [skip ci]"
+            git push
+          fi

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Escáner diario del método MTR Swing Retest v1.0" />
+    <title>MTR Swing Retest Scanner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#">
+        <span class="brand-mark">MTR</span>
+        <span><strong>Swing Retest</strong><small>Scanner v1.0</small></span>
+      </a>
+      <div id="run-badge" class="run-badge">Cargando datos…</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Momentum transversal · Retest confirmado</p>
+          <h1>Señales swing ordenadas por calidad.</h1>
+          <p class="hero-copy">El motor aplica sin cambios la especificación congelada: D10 por MOM12‑1, SwingScore top 20%, expansión, retest y clasificación A+, A o B.</p>
+        </div>
+        <div class="method-card">
+          <span>Método activo</span>
+          <strong>MTR‑Swing‑Retest‑v1.0</strong>
+          <small>La entrada de referencia es la apertura posterior. No se envían órdenes.</small>
+        </div>
+      </section>
+
+      <section id="summary" class="summary-grid" aria-label="Resumen"></section>
+
+      <section class="panel current-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Mes activo</p>
+            <h2>Señales actuales</h2>
+            <p id="current-subtitle" class="muted"></p>
+          </div>
+          <div class="legend"><span class="dot aplus"></span>A+<span class="dot a"></span>A<span class="dot b"></span>B</div>
+        </div>
+        <div id="current-empty" class="empty" hidden></div>
+        <div id="current-signals" class="signal-grid"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header history-heading">
+          <div>
+            <p class="eyebrow">Referencia auditada</p>
+            <h2>Histórico de señales</h2>
+            <p class="muted">Ordenado primero por calidad y, dentro de cada grado, por fecha.</p>
+          </div>
+          <div class="filters" role="group" aria-label="Filtrar histórico">
+            <button class="filter active" data-grade="ALL">Todas</button>
+            <button class="filter" data-grade="A+">A+</button>
+            <button class="filter" data-grade="A">A</button>
+            <button class="filter" data-grade="B">B</button>
+            <input id="ticker-search" type="search" placeholder="Ticker" aria-label="Buscar ticker" />
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Grado</th><th>Ticker</th><th>Señal</th><th>Entrada</th><th>R5</th><th>MFE5</th><th>MAE5</th><th>R10</th><th>MFE10</th><th>MAE10</th><th></th></tr></thead>
+            <tbody id="history-body"></tbody>
+          </table>
+        </div>
+        <p id="history-count" class="table-count"></p>
+      </section>
+
+      <section class="evidence-grid">
+        <article class="panel evidence-copy">
+          <p class="eyebrow">Contrato del motor</p>
+          <h2>Qué exige una señal</h2>
+          <ol>
+            <li><strong>D10:</strong> percentil MOM12‑1 superior a 0,90.</li>
+            <li><strong>Swing:</strong> top 20% del score ATR, momentum y retorno‑volumen.</li>
+            <li><strong>Expansión:</strong> máximo ≥ L + 0,25 ATR.</li>
+            <li><strong>Retest:</strong> primer contacto en días 2–5; debe hacer hold y volumen &lt;80%.</li>
+            <li><strong>Grado:</strong> A+ tiene prioridad; después A y B por cierre en rango.</li>
+          </ol>
+        </article>
+        <article class="panel">
+          <p class="eyebrow">Muestra 2019–2026</p>
+          <h2>Perfil histórico por grado</h2>
+          <div id="grade-profile" class="profile-list"></div>
+        </article>
+      </section>
+    </main>
+
+    <aside id="drawer" class="drawer" aria-hidden="true">
+      <button id="drawer-close" class="drawer-close" aria-label="Cerrar">×</button>
+      <div id="drawer-content"></div>
+    </aside>
+    <div id="backdrop" class="backdrop" hidden></div>
+
+    <footer>
+      <span>MTR Swing Retest v1.0</span>
+      <span>Herramienta de investigación; no constituye asesoramiento financiero.</span>
+    </footer>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

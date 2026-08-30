@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mtr-swing-retest-scanner"
+version = "1.0.0"
+description = "Daily scanner for the frozen MTR Swing Retest v1.0 method"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=2.0,<3",
+  "pandas>=2.2,<3",
+  "pandas-market-calendars>=4.4,<6",
+  "yfinance>=0.2.54,<2"
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<9", "ruff>=0.9,<1"]
+
+[project.scripts]
+mtr-scan = "mtr_scanner.pipeline:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 105
+target-version = "py311"
