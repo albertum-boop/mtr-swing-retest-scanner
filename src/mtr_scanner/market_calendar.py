@@ -48,6 +48,29 @@ def active_formation_date(cutoff: pd.Timestamp) -> pd.Timestamp:
     return pd.Timestamp(completed.iloc[-1])
 
 
+def weekly_formation_dates(cutoff: pd.Timestamp, count: int = 2) -> list[pd.Timestamp]:
+    """Last completed NYSE session in each W-FRI week, oldest first."""
+
+    cutoff = pd.Timestamp(cutoff).normalize()
+    lookback_days = max(35, count * 12)
+    sessions = _schedule(
+        cutoff - pd.Timedelta(days=lookback_days), cutoff + pd.Timedelta(days=7)
+    )
+    weekly_closes = pd.Series(sessions, index=sessions).groupby(
+        sessions.to_period("W-FRI")
+    ).max()
+    completed = weekly_closes.loc[weekly_closes.le(cutoff)].tail(count)
+    if len(completed) < count:
+        raise RuntimeError("No se encontraron suficientes cierres semanales NYSE")
+    return [pd.Timestamp(value) for value in completed]
+
+
+def previous_weekly_formation_date(formation: pd.Timestamp) -> pd.Timestamp:
+    return weekly_formation_dates(
+        pd.Timestamp(formation) - pd.Timedelta(days=1), count=1
+    )[0]
+
+
 def session_number_after(formation: pd.Timestamp, cutoff: pd.Timestamp) -> int:
     sessions = _schedule(pd.Timestamp(formation), pd.Timestamp(cutoff))
     return int(((sessions > pd.Timestamp(formation)) & (sessions <= pd.Timestamp(cutoff))).sum())

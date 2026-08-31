@@ -87,6 +87,7 @@ h2 { font-size: 28px; letter-spacing: -.02em; }
 .signal-card.actionable { border-color: #76b99e; box-shadow: 0 0 0 2px rgba(22, 132, 91, .08); }
 .signal-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(30, 57, 82, .11); }
 .signal-top { display: flex; justify-content: space-between; align-items: center; }
+.signal-top > span:last-child { display: inline-flex; align-items: center; gap: 6px; }
 .signal-ticker { font-size: 24px; font-weight: 700; letter-spacing: -.03em; }
 .grade { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 26px; padding: 0 8px; border-radius: 8px; color: #fff; font-size: 12px; font-weight: 700; }
 .signal-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 13px; }
@@ -111,7 +112,7 @@ tbody tr:hover { background: #f4f8fa; }
 .positive { color: var(--green); }
 .negative { color: var(--red); }
 .table-count { margin: 12px 0 0; color: var(--muted); font-size: 12px; text-align: right; }
-.candidate-table th:nth-child(-n+3), .candidate-table td:nth-child(-n+3), .candidate-table th:nth-child(10), .candidate-table td:nth-child(10) { text-align: left; }
+.candidate-table th:nth-child(-n+4), .candidate-table td:nth-child(-n+4), .candidate-table th:nth-child(11), .candidate-table td:nth-child(11) { text-align: left; }
 .candidate-table .next-step { min-width: 230px; max-width: 290px; white-space: normal; line-height: 1.35; color: #42576b; }
 .candidate-table tbody tr[data-candidate] { transition: background .12s ease; }
 .empty-table { padding: 28px; color: var(--muted); text-align: center !important; }
@@ -122,6 +123,10 @@ tbody tr:hover { background: #f4f8fa; }
 .status-rejected { background: #fae4e4; color: #9d3535; }
 .status-expired { background: #e9edf1; color: #627181; }
 .status-error { background: #f5e7ee; color: #8f3d62; }
+.source-badge { display: inline-flex; align-items: center; min-height: 22px; padding: 3px 7px; border-radius: 7px; font-size: 9px; font-weight: 700; white-space: nowrap; }
+.source-monthly { background: #e9eff5; color: #365871; }
+.source-weekly { background: #e8f3ec; color: #28704d; }
+.source-confluence { background: #eee9f8; color: #644e91; }
 
 .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .evidence-grid .panel { margin: 0; }

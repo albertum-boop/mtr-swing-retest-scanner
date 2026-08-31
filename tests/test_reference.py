@@ -28,3 +28,29 @@ def test_reference_grades_reproduce_frozen_equations():
     expected.loc[(~is_a_plus) & data["close_location"].ge(0.75)] = "A"
     expected.loc[is_a_plus] = "A+"
     assert expected.tolist() == data["grade"].tolist()
+
+
+def test_weekly_reference_keeps_b_for_audit_but_marks_it_non_actionable():
+    data = pd.read_csv(ROOT / "reference" / "weekly_signals_v1_0.csv")
+    assert len(data) == 129
+    assert data["grade"].value_counts().to_dict() == {"A": 62, "B": 38, "A+": 29}
+    assert data.loc[data["grade"].eq("B"), "actionable"].eq(False).all()
+    assert data.loc[data["grade"].isin(["A+", "A"]), "actionable"].eq(True).all()
+
+
+def test_multitemporal_reference_is_union_not_replacement():
+    data = pd.read_csv(ROOT / "reference" / "multitemporal_signals_v1_1.csv")
+    assert len(data) == 232
+    assert data["master_grade"].value_counts().to_dict() == {
+        "A": 132,
+        "A+": 75,
+        "B": 25,
+    }
+    assert data["origin"].value_counts().to_dict() == {
+        "monthly_only": 141,
+        "weekly_incremental": 78,
+        "exact_confluence": 13,
+    }
+    assert data.loc[data["origin"].eq("weekly_incremental"), "weekly_grade"].isin(
+        ["A+", "A"]
+    ).all()

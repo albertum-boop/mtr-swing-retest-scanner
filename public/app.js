@@ -15,6 +15,7 @@ const statusMeta = {
   expanded_waiting_retest: ["Esperando retest", "status-ready"],
   signal: ["Señal", "status-signal"],
   rejected_first_contact: ["Rechazado", "status-rejected"],
+  rejected_weekly_grade: ["B semanal descartada", "status-rejected"],
   expired: ["Expirado", "status-expired"],
   missing_prices: ["Sin precios", "status-error"],
   missing_formation: ["Sin formación", "status-error"],
@@ -46,6 +47,13 @@ const fmtNum = (value, digits = 2) => value == null ? "N/D" : Number(value).toFi
 const fmtPrice = (value) => value == null ? "N/D" : `$${Number(value).toFixed(Math.abs(value) < 10 ? 3 : 2)}`;
 const fmtDate = (value) => value ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(`${value}T12:00:00`)) : "Pendiente";
 const signClass = (value) => value == null ? "" : value >= 0 ? "positive" : "negative";
+const sourceLabel = (row) => row?.is_confluence || row?.source === "monthly+weekly"
+  ? "Mensual + semanal"
+  : row?.source === "weekly" ? "Semanal" : "Mensual";
+const sourceClass = (row) => row?.is_confluence || row?.source === "monthly+weekly"
+  ? "source-confluence"
+  : row?.source === "weekly" ? "source-weekly" : "source-monthly";
+const sourceBadge = (row) => `<span class="source-badge ${sourceClass(row)}">${sourceLabel(row)}</span>`;
 
 async function fetchJson(path, fallback) {
   try {
@@ -64,13 +72,14 @@ function cyclePhaseLabel() {
 
 function renderSummary() {
   const signals = state.current?.signals || [];
-  const stats = state.current?.formation_stats || {};
+  const counts = state.current?.source_counts || {};
+  const weeklyDates = state.current?.weekly_formation_dates || [];
   const actionable = signals.filter(signal => signal.event_date === state.current?.cutoff);
   const cards = [
-    ["Formación del ciclo", state.current?.formation_date || "N/D", cyclePhaseLabel()],
-    ["Candidatos swing", stats.swing_top20 ?? "N/D", `${stats.d10 ?? "N/D"} acciones en D10`],
+    ["Formaciones activas", 1 + weeklyDates.length, `Mensual ${state.current?.monthly_formation_date || "N/D"}${weeklyDates.length ? ` · semanal ${weeklyDates.join(", ")}` : ""}`],
+    ["Candidatos swing", (counts.monthly_candidates ?? 0) + (counts.weekly_crossing_candidates ?? 0), `${counts.monthly_candidates ?? 0} mensuales · ${counts.weekly_crossing_candidates ?? 0} cruces semanales`],
     ["Señales confirmadas hoy", actionable.length, actionable.length ? "Entrada en la próxima apertura" : "Ninguna entrada nueva"],
-    ["Referencia histórica", state.history.length, "A+, A y B auditadas"],
+    ["Histórico operativo", state.history.length, `${state.metrics?.signals ?? 232} señales de referencia + posteriores`],
   ];
   document.querySelector("#summary").innerHTML = cards.map(([label, value, note]) => `
     <article class="summary-card"><span>${label}</span><strong>${value}</strong><small>${note}</small></article>
@@ -86,7 +95,7 @@ function statusPill(candidate) {
 function candidateGroup(candidate) {
   if (["waiting", "waiting_expansion", "expanded_waiting_retest"].includes(candidate.status)) return "POSSIBLE";
   if (candidate.status === "signal") return "SIGNAL";
-  if (candidate.status === "rejected_first_contact") return "REJECTED";
+  if (["rejected_first_contact", "rejected_weekly_grade"].includes(candidate.status)) return "REJECTED";
   if (candidate.status === "expired") return "EXPIRED";
   return "OTHER";
 }
@@ -95,9 +104,10 @@ function candidateRow(candidate) {
   const latest = candidate.latest_session;
   const lastSession = latest ? `D${latest.day} · ${fmtDate(latest.date)}` : "Sin sesión";
   const volume = latest ? fmtPct(latest.volume_ratio - 1) : "N/D";
-  return `<tr data-candidate="${candidate.ticker}">
+  return `<tr data-candidate="${candidate.candidate_id}">
     <td>${candidate.candidate_rank ?? "—"}</td>
     <td><strong>${candidate.ticker}</strong></td>
+    <td>${sourceBadge(candidate)}</td>
     <td>${statusPill(candidate)}</td>
     <td>${fmtNum(candidate.swing_score, 3)}</td>
     <td>${fmtPrice(candidate.formation_close)}</td>
@@ -116,14 +126,16 @@ function renderCandidates() {
   const filtered = candidates
     .filter(candidate => state.candidateStatus === "ALL" || candidateGroup(candidate) === state.candidateStatus)
     .filter(candidate => !query || String(candidate.ticker).toUpperCase().includes(query))
-    .sort((a, b) => (a.candidate_rank ?? 9999) - (b.candidate_rank ?? 9999));
-  const session = state.current?.session_after_formation;
+    .sort((a, b) => String(a.source).localeCompare(String(b.source)) ||
+      String(b.formation_date).localeCompare(String(a.formation_date)) ||
+      (a.candidate_rank ?? 9999) - (b.candidate_rank ?? 9999));
+  const weeklyDates = state.current?.weekly_formation_dates || [];
   document.querySelector("#candidate-subtitle").textContent = state.current
-    ? `${cyclePhaseLabel()} · sesión ${session} posterior · corte ${state.current.cutoff}`
+    ? `Mensual ${state.current.monthly_formation_date} · semanal ${weeklyDates.join(", ") || "sin ventana activa"} · corte ${state.current.cutoff}`
     : "Datos no disponibles";
   document.querySelector("#candidate-body").innerHTML = filtered.length
     ? filtered.map(candidateRow).join("")
-    : `<tr><td colspan="11" class="empty-table">No hay candidatos en este filtro.</td></tr>`;
+    : `<tr><td colspan="12" class="empty-table">No hay candidatos en este filtro.</td></tr>`;
   document.querySelector("#candidate-count").textContent = `${filtered.length} de ${candidates.length} candidatos`;
 }
 
@@ -133,7 +145,7 @@ function signalCard(signal) {
     ? "Confirmada hoy · entrada en próxima apertura"
     : `Señal ${fmtDate(signal.event_date)} · entrada ${fmtDate(signal.entry_date)}`;
   return `<article class="signal-card ${actionable ? "actionable" : ""}" data-signal="${signal.signal_id}">
-    <div class="signal-top"><span class="signal-ticker">${signal.ticker}</span><span class="grade ${gradeClass(signal.grade)}">${signal.grade}</span></div>
+    <div class="signal-top"><span class="signal-ticker">${signal.ticker}</span><span>${sourceBadge(signal)} <span class="grade ${gradeClass(signal.grade)}">${signal.grade}</span></span></div>
     <p class="muted">${timing}</p>
     <div class="signal-metrics">
       <div class="metric"><span>SwingScore</span><strong>${fmtNum(signal.swing_score, 3)}</strong></div>
@@ -147,7 +159,7 @@ function renderCurrent() {
   const signals = [...(state.current?.signals || [])].sort(byQualityDate);
   const subtitle = document.querySelector("#current-subtitle");
   subtitle.textContent = state.current
-    ? `Formación ${state.current.formation_date} · ${cyclePhaseLabel().toLowerCase()} · corte ${state.current.cutoff}`
+    ? `Unión de la formación mensual y los cruces semanales A/A+ · corte ${state.current.cutoff}`
     : "Datos no disponibles";
   const empty = document.querySelector("#current-empty");
   const grid = document.querySelector("#current-signals");
@@ -165,6 +177,7 @@ function historyRow(signal) {
   return `<tr data-signal="${signal.signal_id}">
     <td><span class="grade ${gradeClass(signal.grade)}">${signal.grade}</span></td>
     <td><strong>${signal.ticker}</strong></td>
+    <td>${sourceBadge(signal)}</td>
     <td>${signal.event_date || "N/D"}</td>
     <td>${signal.entry_date || "N/D"}</td>
     <td class="${signClass(signal.r5)}">${fmtPct(signal.r5)}</td>
@@ -207,15 +220,23 @@ function openSignalDrawer(signalId) {
   if (!signal) return;
   const content = document.querySelector("#drawer-content");
   content.innerHTML = `
-    <p class="eyebrow">${signal.method_version || "MTR‑Swing‑Retest‑v1.0"}</p>
+    <p class="eyebrow">${signal.method_version || "MTR‑Multitemporal‑v1.1"}</p>
     <div class="drawer-title"><h2>${signal.ticker}</h2><span class="grade ${gradeClass(signal.grade)}">${signal.grade}</span></div>
-    <p class="muted">Formación ${fmtDate(signal.formation_date)} · señal ${fmtDate(signal.event_date)} · entrada ${fmtDate(signal.entry_date)}</p>
+    <p>${sourceBadge(signal)}</p>
+    <p class="muted">Formación ${Object.entries(signal.formation_dates || { principal: signal.formation_date }).map(([source, date]) => `${source === "monthly" ? "mensual" : source === "weekly" ? "semanal" : source} ${fmtDate(date)}`).join(" · ")} · señal ${fmtDate(signal.event_date)} · entrada ${fmtDate(signal.entry_date)}</p>
+    ${signal.is_confluence ? `<section class="detail-section"><h3>Confluencia</h3><p>El mismo retest fue detectado por ambos marcos. Grado mensual ${signal.monthly_grade}; grado semanal ${signal.weekly_grade}. El grado maestro es el mejor grado observado, sin mejora automática por coincidencia.</p></section>` : ""}
     <section class="detail-section"><h3>Selección</h3><div class="detail-grid">
       ${detailItem("MOM universo", fmtNum(signal.universe_momentum_percentile, 3))}
       ${detailItem("SwingScore", fmtNum(signal.swing_score, 3))}
       ${detailItem("Pendiente SMA200 pct", fmtNum(signal.sma200_slope_percentile_d10, 3))}
       ${detailItem("ADV20", signal.adv20 == null ? "N/D" : `$${(signal.adv20 / 1e6).toFixed(1)} M`)}
     </div></section>
+    ${signal.weekly_grade ? `<section class="detail-section"><h3>Calidad semanal</h3><div class="detail-grid">
+      ${detailItem("Grado semanal", signal.weekly_grade)}
+      ${detailItem("Puntos de calidad", signal.weekly_quality_points ?? signal.source_details?.weekly?.weekly_quality_points ?? "N/D")}
+      ${detailItem("Volumen formación 5/20", fmtPct(signal.formation_relative_volume5_20 ?? signal.source_details?.weekly?.formation_relative_volume5_20))}
+      ${detailItem("Confirmación volumen", (signal.weekly_formation_volume_confirmation ?? signal.source_details?.weekly?.weekly_formation_volume_confirmation) ? "Sí" : "No")}
+    </div></section>` : ""}
     <section class="detail-section"><h3>Retest</h3><div class="detail-grid">
       ${detailItem("Día del evento", signal.event_day ?? "N/D")}
       ${detailItem("Cierre en rango", fmtNum(signal.close_location, 3))}
@@ -246,13 +267,13 @@ function checksBlock(candidate) {
   </div></section>`;
 }
 
-function openCandidateDrawer(ticker) {
-  const candidate = (state.current?.candidates || []).find(row => row.ticker === ticker);
+function openCandidateDrawer(candidateId) {
+  const candidate = (state.current?.candidates || []).find(row => row.candidate_id === candidateId);
   if (!candidate) return;
   const latest = candidate.latest_session;
   const content = document.querySelector("#drawer-content");
   content.innerHTML = `
-    <p class="eyebrow">Candidato #${candidate.candidate_rank ?? "—"}</p>
+    <p class="eyebrow">Candidato #${candidate.candidate_rank ?? "—"} · ${sourceLabel(candidate)}</p>
     <div class="drawer-title"><h2>${candidate.ticker}</h2>${statusPill(candidate)}</div>
     <p class="muted">Formación ${fmtDate(candidate.formation_date)} · ${candidate.next_step}</p>
     <section class="detail-section"><h3>Selección</h3><div class="detail-grid">

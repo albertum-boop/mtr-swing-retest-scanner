@@ -35,7 +35,7 @@ jobs:
       - name: Install scanner
         run: pip install -e .
 
-      - name: Run frozen v1.0 scanner
+      - name: Run multitemporal v1.1 scanner
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
@@ -53,12 +53,13 @@ jobs:
           python -m json.tool public/data/current.json >/dev/null
           python -m json.tool public/data/history.json >/dev/null
           python -m json.tool state/last_run.json >/dev/null
+          find state/weekly_formations -name '*.json' -print0 | xargs -0 -n1 python -m json.tool >/dev/null
 
       - name: Commit state and public signals
         run: |
           git config user.name "mtr-signal-bot"
           git config user.email "mtr-signal-bot@users.noreply.github.com"
-          git add public/data/current.json public/data/history.json state/formations state/sent_signals.json state/last_run.json
+          git add public/data/current.json public/data/history.json state/formations state/weekly_formations state/sent_signals.json state/last_run.json
           if git diff --cached --quiet; then
             echo "No state changes"
           else

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Escáner diario del método MTR Swing Retest v1.0" />
+    <meta name="description" content="Escáner multitemporal mensual y semanal MTR Swing Retest" />
     <title>MTR Swing Retest Scanner</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +14,7 @@
     <header class="topbar">
       <a class="brand" href="#">
         <span class="brand-mark">MTR</span>
-        <span><strong>Swing Retest</strong><small>Scanner v1.0</small></span>
+        <span><strong>Swing Retest</strong><small>Multitemporal v1.1</small></span>
       </a>
       <div id="run-badge" class="run-badge">Cargando datos…</div>
     </header>
@@ -22,13 +22,13 @@
     <main>
       <section class="hero">
         <div>
-          <p class="eyebrow">Momentum transversal · Retest confirmado</p>
+          <p class="eyebrow">Momentum transversal · Mensual + semanal</p>
           <h1>Señales swing ordenadas por calidad.</h1>
-          <p class="hero-copy">El motor aplica sin cambios la especificación congelada: D10 por MOM12‑1, SwingScore top 20%, expansión, retest y clasificación A+, A o B.</p>
+          <p class="hero-copy">El motor conserva todas las señales del método mensual y añade los cruces semanales de calidad A+ o A. Las B semanales quedan expresamente fuera de señales y alertas.</p>
         </div>
         <div class="method-card">
           <span>Método activo</span>
-          <strong>MTR‑Swing‑Retest‑v1.0</strong>
+          <strong>MTR‑Multitemporal‑v1.1</strong>
           <small>La entrada de referencia es la apertura posterior. No se envían órdenes.</small>
         </div>
       </section>
@@ -53,7 +53,7 @@
         </div>
         <div class="table-wrap">
           <table class="candidate-table">
-            <thead><tr><th>#</th><th>Ticker</th><th>Estado</th><th>Score</th><th>Nivel L</th><th>Expansión</th><th>Banda retest</th><th>Última sesión</th><th>Volumen</th><th>Qué falta</th><th></th></tr></thead>
+            <thead><tr><th>#</th><th>Ticker</th><th>Marco</th><th>Estado</th><th>Score</th><th>Nivel L</th><th>Expansión</th><th>Banda retest</th><th>Última sesión</th><th>Volumen</th><th>Qué falta</th><th></th></tr></thead>
             <tbody id="candidate-body"></tbody>
           </table>
         </div>
@@ -63,11 +63,11 @@
       <section class="panel current-panel">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">Ciclo de formación</p>
-            <h2>Señales del ciclo</h2>
+            <p class="eyebrow">Ciclos activos</p>
+            <h2>Señales multitemporales</h2>
             <p id="current-subtitle" class="muted"></p>
           </div>
-          <div class="legend"><span class="dot aplus"></span>A+<span class="dot a"></span>A<span class="dot b"></span>B</div>
+          <div class="legend"><span class="dot aplus"></span>A+<span class="dot a"></span>A<span class="dot b"></span>B mensual</div>
         </div>
         <div id="current-empty" class="empty" hidden></div>
         <div id="current-signals" class="signal-grid"></div>
@@ -90,7 +90,7 @@
         </div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Grado</th><th>Ticker</th><th>Señal</th><th>Entrada</th><th>R5</th><th>MFE5</th><th>MAE5</th><th>R10</th><th>MFE10</th><th>MAE10</th><th></th></tr></thead>
+            <thead><tr><th>Grado</th><th>Ticker</th><th>Marco</th><th>Señal</th><th>Entrada</th><th>R5</th><th>MFE5</th><th>MAE5</th><th>R10</th><th>MFE10</th><th>MAE10</th><th></th></tr></thead>
             <tbody id="history-body"></tbody>
           </table>
         </div>
@@ -102,15 +102,16 @@
           <p class="eyebrow">Contrato del motor</p>
           <h2>Qué exige una señal</h2>
           <ol>
-            <li><strong>D10:</strong> percentil MOM12‑1 superior a 0,90.</li>
-            <li><strong>Swing:</strong> top 20% del score ATR, momentum y retorno‑volumen.</li>
+            <li><strong>Base común:</strong> D10 por MOM12‑1 y top 20% del SwingScore.</li>
+            <li><strong>Mensual:</strong> se conserva el cierre mensual y sus grados A+, A y B.</li>
+            <li><strong>Semanal:</strong> solo un cruce nuevo respecto al cierre semanal anterior puede iniciar ciclo.</li>
             <li><strong>Expansión:</strong> máximo ≥ L + 0,25 ATR.</li>
             <li><strong>Retest:</strong> primer contacto en días 2–5; debe hacer hold y volumen &lt;80%.</li>
-            <li><strong>Grado:</strong> A+ tiene prioridad; después A y B por cierre en rango.</li>
+            <li><strong>Filtro semanal:</strong> se publican A+ y A; B se calcula únicamente para auditoría y se descarta.</li>
           </ol>
         </article>
         <article class="panel">
-          <p class="eyebrow">Muestra 2019–2026</p>
+          <p class="eyebrow">Unión auditada 2019–2026</p>
           <h2>Perfil histórico por grado</h2>
           <div id="grade-profile" class="profile-list"></div>
         </article>
@@ -124,7 +125,7 @@
     <div id="backdrop" class="backdrop" hidden></div>
 
     <footer>
-      <span>MTR Swing Retest v1.0</span>
+      <span>MTR Multitemporal v1.1</span>
       <span>Herramienta de investigación; no constituye asesoramiento financiero.</span>
     </footer>
     <script src="/app.js" defer></script>

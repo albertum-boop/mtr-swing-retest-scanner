@@ -1,12 +1,20 @@
-"""MTR Swing Retest Scanner.
+"""MTR Multitemporal Swing Retest Scanner.
 
-The public API is intentionally small: the frozen strategy configuration,
-monthly candidate builder and retest scanner are the three stable contracts.
+The monthly v1.0 contract remains available while v1.1 adds the frozen weekly
+crossing branch and point-in-time ranking engine.
 """
 
 from .config import StrategyConfig
-from .features import build_monthly_candidates
+from .features import build_monthly_candidates, build_ranked_candidates
 from .retest import scan_candidate
+from .weekly import MULTITEMPORAL_METHOD_VERSION, WEEKLY_METHOD_VERSION
 
-__all__ = ["StrategyConfig", "build_monthly_candidates", "scan_candidate"]
-__version__ = "1.0.0"
+__all__ = [
+    "MULTITEMPORAL_METHOD_VERSION",
+    "WEEKLY_METHOD_VERSION",
+    "StrategyConfig",
+    "build_monthly_candidates",
+    "build_ranked_candidates",
+    "scan_candidate",
+]
+__version__ = "1.1.0"

@@ -19,6 +19,15 @@ def _number(value: Any, decimals: int = 2) -> str:
     return "N/D" if value is None else f"{float(value):.{decimals}f}"
 
 
+def _source(signal: dict[str, Any]) -> str:
+    labels = {
+        "monthly": "Mensual",
+        "weekly": "Semanal",
+        "monthly+weekly": "Mensual + semanal",
+    }
+    return labels.get(str(signal.get("source", "monthly")), "Mensual")
+
+
 def build_email(signals: Iterable[dict[str, Any]]) -> tuple[str, str, str]:
     ordered = sorted(
         signals,
@@ -29,7 +38,8 @@ def build_email(signals: Iterable[dict[str, Any]]) -> tuple[str, str, str]:
     rows = []
     for signal in ordered:
         plain_lines.append(
-            f"{signal['grade']} · {signal['ticker']} · {signal['event_date']} · "
+            f"{signal['grade']} · {signal['ticker']} · {_source(signal)} · "
+            f"{signal['event_date']} · "
             f"Swing {_number(signal.get('swing_score'), 3)} · "
             f"volumen {_pct(signal.get('event_volume_change'))}"
         )
@@ -37,6 +47,7 @@ def build_email(signals: Iterable[dict[str, Any]]) -> tuple[str, str, str]:
             "<tr>"
             f"<td><strong>{html.escape(str(signal['grade']))}</strong></td>"
             f"<td><strong>{html.escape(str(signal['ticker']))}</strong></td>"
+            f"<td>{html.escape(_source(signal))}</td>"
             f"<td>{html.escape(str(signal['event_date']))}</td>"
             f"<td>{_number(signal.get('swing_score'), 3)}</td>"
             f"<td>{_number(signal.get('close_location'), 3)}</td>"
@@ -47,12 +58,12 @@ def build_email(signals: Iterable[dict[str, Any]]) -> tuple[str, str, str]:
     body_html = f"""
     <html><body style="font-family:Arial,sans-serif;color:#182432">
       <h2>{html.escape(subject)}</h2>
-      <p>La configuración se confirmó al cierre. La entrada v1.0 es la apertura ajustada de la próxima sesión; no es una orden automática.</p>
+      <p>La configuración mensual o semanal se confirmó al cierre. La entrada es la apertura ajustada de la próxima sesión; no es una orden automática. Las señales B semanales están excluidas.</p>
       <table cellpadding="7" cellspacing="0" border="1" style="border-collapse:collapse;border-color:#ccd6e0">
-        <thead><tr style="background:#173f5f;color:white"><th>Grado</th><th>Ticker</th><th>Fecha</th><th>Swing</th><th>Cierre/rango</th><th>Volumen</th><th>Pullback</th></tr></thead>
+        <thead><tr style="background:#173f5f;color:white"><th>Grado</th><th>Ticker</th><th>Marco</th><th>Fecha</th><th>Swing</th><th>Cierre/rango</th><th>Volumen</th><th>Pullback</th></tr></thead>
         <tbody>{''.join(rows)}</tbody>
       </table>
-      <p style="color:#667587;font-size:12px">MTR Swing Retest v1.0 · señal de investigación, no recomendación financiera.</p>
+      <p style="color:#667587;font-size:12px">MTR Multitemporal v1.1 · señal de investigación, no recomendación financiera.</p>
     </body></html>
     """
     return subject, "\n".join(plain_lines), body_html

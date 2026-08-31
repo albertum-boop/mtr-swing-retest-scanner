@@ -43,10 +43,17 @@ def _formation_observation(
     raw_dollar_volume = data["Close"] * data["Volume"]
     adv20 = raw_dollar_volume.rolling(20, min_periods=20).mean()
     prior_adj_volume20 = data["AdjVolume"].rolling(20, min_periods=20).mean()
+    prior_adj_volume5 = data["AdjVolume"].rolling(5, min_periods=5).mean()
     mom = (
         close.iloc[i - config.momentum_skip_sessions]
         / close.iloc[i - config.momentum_lookback_sessions]
         - 1
+    )
+    average_volume20 = float(prior_adj_volume20.iloc[i])
+    relative_volume5_20 = (
+        float(prior_adj_volume5.iloc[i] / average_volume20 - 1)
+        if np.isfinite(average_volume20) and average_volume20 > 0
+        else np.nan
     )
     values = {
         "ticker": ticker,
@@ -56,18 +63,22 @@ def _formation_observation(
         "adv20": float(adv20.iloc[i]),
         "atr_abs20": float(atr_abs.iloc[i]),
         "atr_pct20": float(atr_abs.iloc[i] / close.iloc[i]),
-        "prior_adj_volume20": float(prior_adj_volume20.iloc[i]),
+        "prior_adj_volume20": average_volume20,
+        "relative_volume5_20": relative_volume5_20,
         "mom12_1": float(mom),
         "return_volume_corr20": float(corr.iloc[i]),
         "sma200_slope20": float(sma200.iloc[i] / sma200.iloc[i - 20] - 1),
     }
-    numeric = [values[key] for key in ["adv20", "atr_abs20", *RAW_FEATURES]]
+    numeric = [
+        values[key]
+        for key in ["adv20", "atr_abs20", "relative_volume5_20", *RAW_FEATURES]
+    ]
     if not all(np.isfinite(numeric)) or values["atr_abs20"] <= 0:
         return None
     return values
 
 
-def build_monthly_candidates(
+def build_ranked_candidates(
     prices: Mapping[str, pd.DataFrame],
     formation_date: pd.Timestamp,
     config: StrategyConfig | None = None,
@@ -115,3 +126,13 @@ def build_monthly_candidates(
         "coverage": float(len(panel) / max(len(prices), 1)),
     }
     return candidates, stats
+
+
+def build_monthly_candidates(
+    prices: Mapping[str, pd.DataFrame],
+    formation_date: pd.Timestamp,
+    config: StrategyConfig | None = None,
+) -> tuple[list[dict[str, object]], dict[str, object]]:
+    """Backward-compatible name for the point-in-time ranking engine."""
+
+    return build_ranked_candidates(prices, formation_date, config)

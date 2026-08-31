@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mtr-swing-retest-scanner"
-version = "1.0.0"
-description = "Daily scanner for the frozen MTR Swing Retest v1.0 method"
+version = "1.1.0"
+description = "Daily scanner for the monthly and weekly MTR Swing Retest method"
 requires-python = ">=3.11"
 dependencies = [
   "numpy>=2.0,<3",

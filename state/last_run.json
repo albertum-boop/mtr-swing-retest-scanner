@@ -1,9 +1,19 @@
 {
   "status": "ok",
-  "generated_at": "2026-08-30T18:11:14+00:00",
+  "generated_at": "2026-08-31T06:15:26+00:00",
   "cutoff": "2026-08-27",
-  "formation_date": "2026-07-31",
-  "signals": 1,
+  "monthly_formation_date": "2026-07-31",
+  "weekly_formation_dates": [
+    "2026-08-21"
+  ],
+  "signals": 2,
+  "source_counts": {
+    "monthly_candidates": 36,
+    "weekly_crossing_candidates": 11,
+    "monthly_signals": 1,
+    "weekly_signals": 1,
+    "confluence_signals": 0
+  },
   "pending_alerts": 0,
   "alert_result": {
     "status": "disabled",
