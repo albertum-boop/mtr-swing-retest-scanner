@@ -1,13 +1,15 @@
 {
-  "method_version": "MTR-Multitemporal-v1.1",
+  "method_version": "MTR-Multitemporal-v1.2",
   "source_method_versions": {
     "monthly": "MTR-Swing-Retest-v1.0",
+    "lm2": "MTR-LM2-v1.0",
     "weekly": "MTR-Weekly-Cross-v1.0"
   },
-  "generated_at": "2026-08-31T06:15:26+00:00",
+  "generated_at": "2026-08-31T09:35:46+00:00",
   "cutoff": "2026-08-27",
   "formation_date": "2026-07-31",
   "monthly_formation_date": "2026-07-31",
+  "lm2_formation_date": null,
   "weekly_formation_dates": [
     "2026-08-21"
   ],
@@ -35,12 +37,16 @@
       "download_errors": 37
     }
   ],
+  "lm2_formation_stats": null,
   "source_counts": {
     "monthly_candidates": 36,
     "weekly_crossing_candidates": 11,
+    "lm2_candidates": 0,
     "monthly_signals": 1,
-    "weekly_signals": 1,
-    "confluence_signals": 0
+    "lm2_signals": 0,
+    "weekly_signals": 2,
+    "confluence_signals": 1,
+    "cooldown_suppressed": 0
   },
   "scan_status": {
     "rejected_first_contact": 28,
@@ -55,6 +61,7 @@
       "expired": 11,
       "signal": 1
     },
+    "lm2": {},
     "weekly": {
       "rejected_first_contact": 4,
       "signal": 1,
@@ -3060,7 +3067,7 @@
   "signals": [
     {
       "signal_id": "MTR-Swing-Retest-v1.0:PRAX:2026-08-05",
-      "method_version": "MTR-Multitemporal-v1.1",
+      "method_version": "MTR-Multitemporal-v1.2",
       "grade": "A",
       "ticker": "PRAX",
       "formation_date": "2026-07-31",
@@ -3097,24 +3104,30 @@
       "r10": 0.10192028161123279,
       "mfe10": 0.11978203794935327,
       "mae10": -0.019231290013123292,
-      "source": "monthly",
+      "source": "monthly+weekly",
       "signal_sources": [
-        "monthly"
+        "monthly",
+        "weekly"
       ],
-      "is_confluence": false,
+      "is_confluence": true,
       "monthly_grade": "A",
-      "weekly_grade": null,
+      "lm2_grade": null,
+      "weekly_grade": "A",
       "source_grades": {
-        "monthly": "A"
+        "monthly": "A",
+        "weekly": "A"
       },
       "formation_dates": {
-        "monthly": "2026-07-31"
+        "monthly": "2026-07-31",
+        "weekly": "2026-07-31"
       },
       "source_method_versions": {
-        "monthly": "MTR-Swing-Retest-v1.0"
+        "monthly": "MTR-Swing-Retest-v1.0",
+        "weekly": "MTR-Weekly-Cross-v1.0"
       },
       "source_signal_ids": {
-        "monthly": "MTR-Swing-Retest-v1.0:PRAX:2026-08-05"
+        "monthly": "MTR-Swing-Retest-v1.0:PRAX:2026-08-05",
+        "weekly": "MTR-Weekly-Cross-v1.0:PRAX:2026-08-05"
       },
       "source_details": {
         "monthly": {
@@ -3132,12 +3145,40 @@
           "close_vs_level_atr": 0.6282667390536726,
           "close_location": 0.8840939972238959,
           "event_volume_ratio": 0.7778532608695652
+        },
+        "weekly": {
+          "formation_date": "2026-07-31",
+          "formation_close": 307.8299865722656,
+          "atr_abs20": 18.14519805908204,
+          "adv20": 111654488.14834596,
+          "universe_momentum_percentile": 0.990427927927928,
+          "swing_score": 0.7191011235955056,
+          "swing_rank_percentile": 0.8595505617977528,
+          "momentum_percentile_d10": 0.904494382022472,
+          "atr_percentile_d10": 0.4044943820224719,
+          "return_volume_percentile_d10": 0.848314606741573,
+          "sma200_slope_percentile_d10": 0.7471910112359551,
+          "formation_relative_volume5_20": 0.1185461956521738,
+          "weekly_quality_points": 2,
+          "weekly_quality_checks": {
+            "momentum": true,
+            "controlled_atr": true,
+            "swing_rank": false,
+            "retest_extension": false
+          },
+          "weekly_formation_volume_confirmation": true,
+          "close_vs_level_atr": 0.6282667390536726,
+          "close_location": 0.8840939972238959,
+          "event_volume_ratio": 0.7778532608695652
         }
-      }
+      },
+      "cooldown_sessions": 10,
+      "suppressed_by_cooldown": null,
+      "actionable": true
     },
     {
       "signal_id": "MTR-Weekly-Cross-v1.0:MRVL:2026-08-26",
-      "method_version": "MTR-Multitemporal-v1.1",
+      "method_version": "MTR-Multitemporal-v1.2",
       "grade": "A",
       "ticker": "MRVL",
       "formation_date": "2026-08-21",
@@ -3191,6 +3232,7 @@
       ],
       "is_confluence": false,
       "monthly_grade": null,
+      "lm2_grade": null,
       "source_grades": {
         "weekly": "A"
       },
@@ -3229,11 +3271,16 @@
           "close_location": 0.9928403909743803,
           "event_volume_ratio": 0.7090718462167533
         }
-      }
+      },
+      "cooldown_sessions": 10,
+      "suppressed_by_cooldown": null,
+      "actionable": true
     }
   ],
-  "alert_scope": "A+, A and monthly B signals confirmed on cutoff session only",
+  "alert_scope": "A+, A and monthly B confirmed on cutoff; actionable after 10-session cooldown",
   "weekly_b_policy": "computed_for_audit_but_never_published_or_alerted",
+  "lm2_b_policy": "computed_for_audit_but_never_published_or_alerted",
+  "cross_source_cooldown_sessions": 10,
   "alert_result": {
     "status": "disabled",
     "sent": 0

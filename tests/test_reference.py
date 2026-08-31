@@ -54,3 +54,36 @@ def test_multitemporal_reference_is_union_not_replacement():
     assert data.loc[data["origin"].eq("weekly_incremental"), "weekly_grade"].isin(
         ["A+", "A"]
     ).all()
+
+
+def test_lm2_reference_keeps_all_grades_but_only_a_plus_and_a_are_actionable():
+    data = pd.read_csv(ROOT / "reference" / "lm2_signals_v1_0.csv")
+    assert len(data) == 128
+    assert data["grade"].value_counts().to_dict() == {"A": 59, "B": 36, "A+": 33}
+    expected_points = (
+        data["formation_gap"].ge(0.0).astype(int)
+        + data["atr_pct20_pct"].ge(0.85).astype(int)
+        + data["sma200_slope20_raw"].ge(0.075).astype(int)
+    )
+    assert expected_points.tolist() == data["quality_points"].tolist()
+    expected_grade = expected_points.map({3: "A+", 2: "A", 1: "B", 0: "B"})
+    assert expected_grade.tolist() == data["grade"].tolist()
+    assert data.loc[data["grade"].eq("B"), "actionable"].eq(False).all()
+    assert data.loc[data["grade"].isin(["A+", "A"]), "actionable"].eq(True).all()
+
+
+def test_multitemporal_v12_adds_lm2_without_removing_v11():
+    data = pd.read_csv(ROOT / "reference" / "multitemporal_signals_v1_2.csv")
+    assert len(data) == 322
+    assert data["master_grade"].value_counts().to_dict() == {
+        "A": 189,
+        "A+": 108,
+        "B": 25,
+    }
+    assert data["origin"].value_counts().to_dict() == {
+        "monthly_only": 141,
+        "lm2_incremental": 90,
+        "weekly_incremental": 76,
+        "exact_confluence": 13,
+        "weekly_lm2_confluence": 2,
+    }

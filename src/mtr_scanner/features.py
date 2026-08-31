@@ -65,13 +65,20 @@ def _formation_observation(
         "atr_pct20": float(atr_abs.iloc[i] / close.iloc[i]),
         "prior_adj_volume20": average_volume20,
         "relative_volume5_20": relative_volume5_20,
+        "formation_gap": float(data["AdjOpen"].iloc[i] / close.iloc[i - 1] - 1),
         "mom12_1": float(mom),
         "return_volume_corr20": float(corr.iloc[i]),
         "sma200_slope20": float(sma200.iloc[i] / sma200.iloc[i - 20] - 1),
     }
     numeric = [
         values[key]
-        for key in ["adv20", "atr_abs20", "relative_volume5_20", *RAW_FEATURES]
+        for key in [
+            "adv20",
+            "atr_abs20",
+            "relative_volume5_20",
+            "formation_gap",
+            *RAW_FEATURES,
+        ]
     ]
     if not all(np.isfinite(numeric)) or values["atr_abs20"] <= 0:
         return None

@@ -4,7 +4,7 @@ from dataclasses import asdict, dataclass
 from typing import Any
 
 WEEKLY_METHOD_VERSION = "MTR-Weekly-Cross-v1.0"
-MULTITEMPORAL_METHOD_VERSION = "MTR-Multitemporal-v1.1"
+MULTITEMPORAL_METHOD_VERSION = "MTR-Multitemporal-v1.2"
 
 
 @dataclass(frozen=True)

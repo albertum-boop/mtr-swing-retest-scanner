@@ -20,12 +20,11 @@ def _number(value: Any, decimals: int = 2) -> str:
 
 
 def _source(signal: dict[str, Any]) -> str:
-    labels = {
-        "monthly": "Mensual",
-        "weekly": "Semanal",
-        "monthly+weekly": "Mensual + semanal",
-    }
-    return labels.get(str(signal.get("source", "monthly")), "Mensual")
+    labels = {"monthly": "Mensual", "lm2": "LM2", "weekly": "Semanal"}
+    sources = signal.get("signal_sources") or str(
+        signal.get("source", "monthly")
+    ).split("+")
+    return " + ".join(labels.get(str(source), str(source)) for source in sources)
 
 
 def build_email(signals: Iterable[dict[str, Any]]) -> tuple[str, str, str]:
@@ -58,12 +57,12 @@ def build_email(signals: Iterable[dict[str, Any]]) -> tuple[str, str, str]:
     body_html = f"""
     <html><body style="font-family:Arial,sans-serif;color:#182432">
       <h2>{html.escape(subject)}</h2>
-      <p>La configuración mensual o semanal se confirmó al cierre. La entrada es la apertura ajustada de la próxima sesión; no es una orden automática. Las señales B semanales están excluidas.</p>
+      <p>La configuración mensual, LM2 o semanal se confirmó al cierre. La entrada es la apertura ajustada de la próxima sesión; no es una orden automática. Las señales B de LM2 y semanales están excluidas, y el cooldown común evita entradas duplicadas.</p>
       <table cellpadding="7" cellspacing="0" border="1" style="border-collapse:collapse;border-color:#ccd6e0">
         <thead><tr style="background:#173f5f;color:white"><th>Grado</th><th>Ticker</th><th>Marco</th><th>Fecha</th><th>Swing</th><th>Cierre/rango</th><th>Volumen</th><th>Pullback</th></tr></thead>
         <tbody>{''.join(rows)}</tbody>
       </table>
-      <p style="color:#667587;font-size:12px">MTR Multitemporal v1.1 · señal de investigación, no recomendación financiera.</p>
+      <p style="color:#667587;font-size:12px">MTR Multitemporal v1.2 · señal de investigación, no recomendación financiera.</p>
     </body></html>
     """
     return subject, "\n".join(plain_lines), body_html

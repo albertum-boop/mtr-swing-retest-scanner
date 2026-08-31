@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Escáner multitemporal mensual y semanal MTR Swing Retest" />
+    <meta name="description" content="Escáner multitemporal mensual, LM2 y semanal MTR Swing Retest" />
     <title>MTR Swing Retest Scanner</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +14,7 @@
     <header class="topbar">
       <a class="brand" href="#">
         <span class="brand-mark">MTR</span>
-        <span><strong>Swing Retest</strong><small>Multitemporal v1.1</small></span>
+        <span><strong>Swing Retest</strong><small>Multitemporal v1.2</small></span>
       </a>
       <div id="run-badge" class="run-badge">Cargando datos…</div>
     </header>
@@ -22,13 +22,13 @@
     <main>
       <section class="hero">
         <div>
-          <p class="eyebrow">Momentum transversal · Mensual + semanal</p>
+          <p class="eyebrow">Momentum transversal · Mensual + LM2 + semanal</p>
           <h1>Señales swing ordenadas por calidad.</h1>
-          <p class="hero-copy">El motor conserva todas las señales del método mensual y añade los cruces semanales de calidad A+ o A. Las B semanales quedan expresamente fuera de señales y alertas.</p>
+          <p class="hero-copy">El motor conserva todas las señales mensuales y añade LM2 —penúltima sesión del mes— y cruces semanales cuando obtienen A+ o A. Las B LM2 y semanales quedan fuera de entradas y alertas.</p>
         </div>
         <div class="method-card">
           <span>Método activo</span>
-          <strong>MTR‑Multitemporal‑v1.1</strong>
+          <strong>MTR‑Multitemporal‑v1.2</strong>
           <small>La entrada de referencia es la apertura posterior. No se envían órdenes.</small>
         </div>
       </section>
@@ -67,7 +67,7 @@
             <h2>Señales multitemporales</h2>
             <p id="current-subtitle" class="muted"></p>
           </div>
-          <div class="legend"><span class="dot aplus"></span>A+<span class="dot a"></span>A<span class="dot b"></span>B mensual</div>
+          <div class="legend"><span class="dot aplus"></span>A+<span class="dot a"></span>A<span class="dot b"></span>B solo mensual</div>
         </div>
         <div id="current-empty" class="empty" hidden></div>
         <div id="current-signals" class="signal-grid"></div>
@@ -104,14 +104,16 @@
           <ol>
             <li><strong>Base común:</strong> D10 por MOM12‑1 y top 20% del SwingScore.</li>
             <li><strong>Mensual:</strong> se conserva el cierre mensual y sus grados A+, A y B.</li>
+            <li><strong>LM2:</strong> la penúltima sesión mensual abre un ciclo independiente; solo A+/A es operativa.</li>
             <li><strong>Semanal:</strong> solo un cruce nuevo respecto al cierre semanal anterior puede iniciar ciclo.</li>
             <li><strong>Expansión:</strong> máximo ≥ L + 0,25 ATR.</li>
             <li><strong>Retest:</strong> primer contacto en días 2–5; debe hacer hold y volumen &lt;80%.</li>
-            <li><strong>Filtro semanal:</strong> se publican A+ y A; B se calcula únicamente para auditoría y se descarta.</li>
+            <li><strong>Filtros LM2/semanal:</strong> se publican A+ y A; B se calcula para auditoría y se descarta.</li>
+            <li><strong>Cooldown:</strong> tras una entrada, otra señal del mismo ticker queda suprimida durante 10 sesiones.</li>
           </ol>
         </article>
         <article class="panel">
-          <p class="eyebrow">Unión auditada 2019–2026</p>
+          <p class="eyebrow">Unión auditada 2019–2026 · 322 eventos</p>
           <h2>Perfil histórico por grado</h2>
           <div id="grade-profile" class="profile-list"></div>
         </article>
@@ -125,7 +127,7 @@
     <div id="backdrop" class="backdrop" hidden></div>
 
     <footer>
-      <span>MTR Multitemporal v1.1</span>
+      <span>MTR Multitemporal v1.2</span>
       <span>Herramienta de investigación; no constituye asesoramiento financiero.</span>
     </footer>
     <script src="/app.js" defer></script>

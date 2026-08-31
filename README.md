@@ -1,17 +1,21 @@
 # MTR Multitemporal Swing Retest
 
-Aplicación diaria del método congelado **MTR Multitemporal v1.1**. El motor conserva
-íntegramente la rama mensual MTR Swing Retest v1.0 y añade una rama semanal incremental.
+Aplicación diaria del método congelado **MTR Multitemporal v1.2**. El motor conserva
+íntegramente la rama mensual MTR Swing Retest v1.0 y añade dos ramas independientes:
+LM2, formada en la penúltima sesión NYSE del mes, y la rama semanal incremental.
 Las señales operativas son:
 
 - todas las señales mensuales A+, A y B;
+- únicamente las señales LM2 A+ y A;
 - únicamente las señales semanales A+ y A;
-- una sola señal con distintivo de confluencia cuando ambos marcos confirman el mismo
+- una sola señal con distintivo de confluencia cuando varios marcos confirman el mismo
   ticker en la misma fecha de evento.
 
-Las B semanales se calculan para poder auditar el filtro, pero no se publican, no se añaden
-al histórico operativo y no generan correo. La aplicación no envía órdenes. `R5`, `R10`,
-`MFE` y `MAE` describen el recorrido posterior y no constituyen una regla automática de salida.
+Las B LM2 y semanales se calculan para auditar los filtros, pero no se publican como entrada
+ni generan correo. Un cooldown común de diez sesiones evita dos entradas próximas en el
+mismo ticker, aunque el segundo evento se conserva marcado para auditoría. La aplicación no
+envía órdenes. `R5`, `R10`, `MFE` y `MAE` describen el recorrido posterior y no constituyen
+una regla automática de salida.
 
 ## Base matemática común
 
@@ -37,6 +41,31 @@ del score, usando un corte estricto superior a 0,80.
 La rama mensual se congela en la última sesión bursátil de cada mes. Durante las cinco
 sesiones siguientes sigue los candidatos sin recalcular sus niveles. Conserva la clasificación
 histórica A+, A y B de MTR Swing Retest v1.0.
+
+## Formación LM2
+
+LM2 se forma en la **penúltima sesión NYSE de cada mes natural**. No sustituye el cierre
+mensual: abre un ciclo adicional con su propio nivel, ATR y candidatos congelados. Si el
+mes termina un lunes, por ejemplo, LM2 se forma el viernes anterior; el calendario se calcula
+con sesiones reales y festivos de NYSE, no restando un día natural.
+
+LM2 usa la misma selección D10 + top 20% de SwingScore y el mismo retest que las demás ramas.
+El grado operativo, sin embargo, se calcula con tres condiciones observables al cierre LM2:
+
+```text
+gap_formación = Apertura_ajustada(t) / Cierre_ajustado(t-1) - 1
+
+Q_LM2 = 1[gap_formación >= 0]
+      + 1[percentil_ATR20_D10 >= 0,85]
+      + 1[SMA200(t) / SMA200(t-20) - 1 >= 0,075]
+```
+
+- **A+**: 3 puntos;
+- **A**: 2 puntos;
+- **B**: 0 o 1 punto; se conserva en `reference/lm2_signals_v1_0.csv`, pero no es entrada.
+
+Los umbrales se aplican sin redondear. El gap y la pendiente usan precios ajustados; el
+percentil ATR se calcula transversalmente dentro de D10 en esa formación.
 
 ## Formación semanal incremental
 
@@ -67,7 +96,7 @@ La clasificación congelada es:
 
 ## Expansión y retest
 
-Ambas ramas usan exactamente el mismo patrón:
+Las tres ramas usan exactamente el mismo patrón:
 
 1. nivel `L`: cierre ajustado de formación;
 2. expansión: máximo ajustado ≥ `L + 0,25 × ATR20`;
@@ -80,37 +109,61 @@ El **primer contacto** es definitivo. Si toca la banda y falla una condición, e
 rechaza; un contacto posterior no puede reactivarlo. Si no hay expansión o contacto antes
 del final del día 5, la ventana expira.
 
-## Unión y confluencia
+## Unión, confluencia y cooldown
 
 Las ramas se calculan independientemente y después se unen por `(ticker, event_date)`. Una
-coincidencia conserva los dos grados, las dos fechas de formación y los dos identificadores.
+coincidencia conserva todos los grados, fechas de formación e identificadores de origen.
 El grado maestro es el mejor grado realmente obtenido; la confluencia es un distintivo y no
 produce una mejora automática.
 
 Los identificadores mensuales existentes se preservan para no reenviar alertas históricas.
-Una señal exclusivamente semanal usa `MTR-Weekly-Cross-v1.0:TICKER:FECHA`.
+Una señal exclusivamente LM2 usa `MTR-LM2-v1.0:TICKER:FECHA`; una exclusivamente semanal
+usa `MTR-Weekly-Cross-v1.0:TICKER:FECHA`.
+
+Después de unir coincidencias exactas se aplica el cooldown por ticker. La primera señal
+accionable bloquea las señales posteriores durante diez sesiones NYSE. Una señal suprimida:
+
+- permanece en el histórico con `actionable=false`;
+- registra `suppressed_by_cooldown` y la distancia en sesiones;
+- no prolonga el cooldown;
+- no genera correo ni una segunda entrada.
 
 ## Evidencia congelada 2019–2026
 
-La referencia contiene 232 eventos únicos:
+La referencia v1.2 contiene 322 eventos únicos:
 
 | Componente | Señales |
 |---|---:|
 | Mensuales originales | 154 |
 | Semanales A+/A | 91 |
-| Coincidencias exactas | 13 |
-| Semanales realmente incrementales | 78 |
-| Unión única | 232 |
+| LM2 totales auditadas | 128 |
+| LM2 A+/A | 92 |
+| LM2 realmente incrementales | 90 |
+| Coincidencias exactas semanal + LM2 | 2 |
+| Unión única | 322 |
 
-La unión queda distribuida en 75 A+, 132 A y 25 B. Las 38 B semanales permanecen en
-`reference/weekly_signals_v1_0.csv` únicamente como control de auditoría. El archivo
-`reference/multitemporal_signals_v1_1.csv` contiene la unión completa ordenada por calidad
-y fecha. El original mensual sigue en `reference/signals_v1_0.csv`.
+La unión queda distribuida en 108 A+, 189 A y 25 B. Las 38 B semanales permanecen en
+`reference/weekly_signals_v1_0.csv` y las 36 B LM2 en `reference/lm2_signals_v1_0.csv`
+como controles de auditoría. `reference/multitemporal_signals_v1_2.csv` contiene la unión
+completa ordenada por calidad y fecha. Las referencias v1.0 mensual y v1.1 multitemporal
+se mantienen sin modificación.
+
+El perfil aislado LM2 que justificó el filtro es:
+
+| Grado LM2 | n | R5 | MFE5 | MAE5 | R10 | MFE10 | MAE10 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| A+ | 33 | 8,02% | 16,59% | −6,26% | 15,07% | 26,49% | −8,32% |
+| A | 59 | 3,10% | 10,56% | −6,66% | 3,90% | 17,31% | −9,87% |
+| B | 36 | 1,15% | 6,94% | −6,47% | −1,79% | 9,64% | −9,92% |
+
+Son medias por señal, no una curva de capital ni una promesa de rentabilidad. La entrada de
+medición es la apertura siguiente al retest y cada horizonte contiene exactamente cinco o
+diez sesiones posteriores.
 
 ## Monitor operativo
 
-`public/data/current.json` publica simultáneamente la formación mensual y las formaciones
-semanales cuya ventana de cinco sesiones sigue activa. Cada candidato lleva un `candidate_id`
+`public/data/current.json` publica simultáneamente la formación mensual, LM2 si su ventana
+sigue activa y las formaciones semanales activas. Cada candidato lleva un `candidate_id`
 único, su marco, fecha de formación, niveles congelados, última sesión evaluada y estado.
 
 Una señal confirmada en la sesión de corte es accionable para la **próxima apertura**. Las
@@ -148,8 +201,9 @@ El workflow reconoce estos secretos de GitHub:
 | `ALERT_FROM` | remitente |
 | `ALERT_TO` | destinatarios separados por coma |
 
-El correo incluye grado y marco temporal. Solo se envían señales confirmadas en la sesión
-de corte, nunca señales atrasadas de una reconstrucción. Un identificador se registra como
+El correo incluye grado y marco temporal. Solo se envían señales accionables confirmadas en
+la sesión de corte, nunca señales atrasadas, B LM2/semanales ni eventos suprimidos por
+cooldown. Un identificador se registra como
 enviado únicamente después de un envío SMTP correcto.
 
 ## Automatización y despliegue
@@ -159,6 +213,7 @@ el universo una sola vez cuando necesita congelar una formación, actualiza los 
 envía alertas y versiona:
 
 - `state/formations/` para formaciones mensuales;
+- `state/lm2_formations/` para la penúltima sesión mensual;
 - `state/weekly_formations/` para cierres semanales y su conjunto seleccionado completo;
 - `public/data/current.json` y `public/data/history.json`;
 - el registro de alertas y el resultado de la última ejecución.
@@ -169,5 +224,5 @@ sin servidor ni base de datos adicional.
 ## Contrato de reproducción
 
 Las pruebas impiden cambiar silenciosamente los conteos históricos, el orden calidad-fecha,
-las ecuaciones mensuales, el cruce semanal, el filtro que excluye B semanal o la unión por
-evento. Cualquier cambio de umbral debe usar una versión distinta del método.
+las ecuaciones mensuales y LM2, el cruce semanal, los filtros B, la unión por evento o el
+cooldown. Cualquier cambio de umbral debe usar una versión distinta del método.

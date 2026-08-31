@@ -126,6 +126,7 @@ tbody tr:hover { background: #f4f8fa; }
 .source-badge { display: inline-flex; align-items: center; min-height: 22px; padding: 3px 7px; border-radius: 7px; font-size: 9px; font-weight: 700; white-space: nowrap; }
 .source-monthly { background: #e9eff5; color: #365871; }
 .source-weekly { background: #e8f3ec; color: #28704d; }
+.source-lm2 { background: #fff0db; color: #8b5b17; }
 .source-confluence { background: #eee9f8; color: #644e91; }
 
 .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }

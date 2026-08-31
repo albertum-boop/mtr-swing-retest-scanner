@@ -11,8 +11,14 @@ import pandas as pd
 from .alerts import GRADE_ORDER, send_signal_email
 from .config import StrategyConfig
 from .features import build_ranked_candidates
+from .lm2 import (
+    LM2_METHOD_VERSION,
+    LM2StrategyConfig,
+    apply_lm2_grade,
+)
 from .market_calendar import (
     active_formation_date,
+    active_lm2_formation_date,
     latest_completed_session,
     previous_weekly_formation_date,
     session_number_after,
@@ -20,7 +26,12 @@ from .market_calendar import (
 )
 from .market_data import download_histories, load_price_directory
 from .retest import candidate_monitor, scan_candidate
-from .signals import annotate_signal, merge_signal_records
+from .signals import (
+    annotate_signal,
+    apply_signal_cooldown,
+    merge_signal_records,
+    signal_key,
+)
 from .storage import read_json, write_json
 from .universe import load_universe
 from .weekly import (
@@ -58,7 +69,9 @@ def _new_alert_candidates(
     return [
         signal
         for signal in signals
-        if signal["signal_id"] not in sent_ids and signal.get("event_date") == cutoff_iso
+        if signal["signal_id"] not in sent_ids
+        and signal.get("event_date") == cutoff_iso
+        and signal.get("actionable", True)
     ]
 
 
@@ -76,6 +89,10 @@ def _monthly_state_path(root: Path, formation_date: pd.Timestamp) -> Path:
 
 def _weekly_state_path(root: Path, formation_date: pd.Timestamp) -> Path:
     return root / "state" / "weekly_formations" / f"{formation_date.date().isoformat()}.json"
+
+
+def _lm2_state_path(root: Path, formation_date: pd.Timestamp) -> Path:
+    return root / "state" / "lm2_formations" / f"{formation_date.date().isoformat()}.json"
 
 
 def _valid_state(path: Path, method_version: str) -> dict[str, Any] | None:
@@ -133,6 +150,35 @@ def _build_monthly_state(
         "candidates": candidates,
     }
     write_json(_monthly_state_path(root, formation_date), payload)
+    return payload
+
+
+def _build_lm2_state(
+    *,
+    root: Path,
+    formation_date: pd.Timestamp,
+    prices: dict[str, pd.DataFrame],
+    errors: dict[str, str],
+    base_config: StrategyConfig,
+    lm2_config: LM2StrategyConfig,
+) -> dict[str, Any]:
+    candidates, stats = build_ranked_candidates(prices, formation_date, base_config)
+    _coverage_guard(stats, "la formación LM2")
+    payload = {
+        "method_version": LM2_METHOD_VERSION,
+        "base_retest_method_version": base_config.method_version,
+        "formation_frequency": "lm2",
+        "generated_at": _iso_now(),
+        "formation_date": formation_date.date().isoformat(),
+        "parameters": {
+            "base": base_config.as_dict(),
+            "lm2_grade": lm2_config.as_dict(),
+            "formation_rule": "penultimate_nyse_session_of_calendar_month",
+        },
+        "stats": {**stats, "download_errors": len(errors)},
+        "candidates": candidates,
+    }
+    write_json(_lm2_state_path(root, formation_date), payload)
     return payload
 
 
@@ -256,6 +302,7 @@ def _scan_source_candidates(
     cutoff: pd.Timestamp,
     base_config: StrategyConfig,
     weekly_config: WeeklyStrategyConfig,
+    lm2_config: LM2StrategyConfig,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     scans: list[dict[str, Any]] = []
     monitors: list[dict[str, Any]] = []
@@ -276,6 +323,9 @@ def _scan_source_candidates(
             monitor = result["monitor"]
             if source == "weekly":
                 result = apply_weekly_grade(result, candidate, weekly_config)
+                monitor = result["monitor"]
+            elif source == "lm2":
+                result = apply_lm2_grade(result, candidate, lm2_config)
                 monitor = result["monitor"]
 
         monitor = _decorate_monitor(
@@ -309,8 +359,11 @@ def run_pipeline(
 ) -> dict[str, Any]:
     base_config = StrategyConfig()
     weekly_config = WeeklyStrategyConfig()
+    lm2_config = LM2StrategyConfig()
     cutoff = pd.Timestamp(as_of).normalize() if as_of else latest_completed_session()
     monthly_date = active_formation_date(cutoff)
+    lm2_date = active_lm2_formation_date(cutoff)
+    lm2_is_active = session_number_after(lm2_date, cutoff) <= base_config.last_retest_day
     weekly_dates = weekly_formation_dates(cutoff, count=2)
 
     monthly = _valid_state(_monthly_state_path(root, monthly_date), base_config.method_version)
@@ -318,13 +371,25 @@ def run_pipeline(
         _valid_state(_weekly_state_path(root, date), WEEKLY_METHOD_VERSION)
         for date in weekly_dates
     ]
-    needs_universe = monthly is None or any(state is None for state in weekly_states)
+    lm2 = (
+        _valid_state(_lm2_state_path(root, lm2_date), LM2_METHOD_VERSION)
+        if lm2_is_active
+        else None
+    )
+    needs_universe = (
+        monthly is None
+        or any(state is None for state in weekly_states)
+        or (lm2_is_active and lm2 is None)
+    )
     full_prices: dict[str, pd.DataFrame] = {}
     universe_errors: dict[str, str] = {}
     universe_size = 0
     if needs_universe:
         earliest_comparison = previous_weekly_formation_date(weekly_dates[0])
-        start = min(monthly_date, earliest_comparison) - pd.Timedelta(days=560)
+        required_dates = [monthly_date, earliest_comparison]
+        if lm2_is_active:
+            required_dates.append(lm2_date)
+        start = min(required_dates) - pd.Timedelta(days=560)
         full_prices, universe_errors, universe_size = _load_universe_prices(
             root=root,
             start=start,
@@ -348,6 +413,15 @@ def run_pipeline(
             base_config=base_config,
             weekly_config=weekly_config,
         )
+    if lm2_is_active and lm2 is None:
+        lm2 = _build_lm2_state(
+            root=root,
+            formation_date=lm2_date,
+            prices=full_prices,
+            errors=universe_errors,
+            base_config=base_config,
+            lm2_config=lm2_config,
+        )
     active_weekly = [
         state
         for state in weekly_states
@@ -356,7 +430,11 @@ def run_pipeline(
         <= base_config.last_retest_day
     ]
 
-    formations = [("monthly", monthly), *[("weekly", state) for state in active_weekly]]
+    formations = [
+        ("monthly", monthly),
+        *([("lm2", lm2)] if lm2 is not None else []),
+        *[("weekly", state) for state in active_weekly],
+    ]
     candidate_tickers = sorted(
         {
             str(candidate["ticker"])
@@ -396,7 +474,11 @@ def run_pipeline(
     scans: list[dict[str, Any]] = []
     candidate_monitors: list[dict[str, Any]] = []
     source_signals: list[dict[str, Any]] = []
-    scans_by_source: dict[str, list[dict[str, Any]]] = {"monthly": [], "weekly": []}
+    scans_by_source: dict[str, list[dict[str, Any]]] = {
+        "monthly": [],
+        "lm2": [],
+        "weekly": [],
+    }
     for source, formation in formations:
         source_scans, monitors, signals = _scan_source_candidates(
             source=source,
@@ -405,17 +487,25 @@ def run_pipeline(
             cutoff=cutoff,
             base_config=base_config,
             weekly_config=weekly_config,
+            lm2_config=lm2_config,
         )
         scans.extend(source_scans)
         scans_by_source[source].extend(source_scans)
         candidate_monitors.extend(monitors)
         source_signals.extend(signals)
-    current_signals = _sort_signals(merge_signal_records(source_signals))
+    merged_current = merge_signal_records(source_signals)
+    current_keys = {signal_key(signal) for signal in merged_current}
 
     history_path = root / "public" / "data" / "history.json"
     history_payload = read_json(history_path, {"signals": []})
     all_history = _sort_signals(
-        merge_signal_records([*history_payload.get("signals", []), *current_signals])
+        apply_signal_cooldown(
+            [*history_payload.get("signals", []), *merged_current],
+            cooldown_sessions=10,
+        )
+    )
+    current_signals = _sort_signals(
+        [signal for signal in all_history if signal_key(signal) in current_keys]
     )
 
     sent_path = root / "state" / "sent_signals.json"
@@ -435,20 +525,25 @@ def run_pipeline(
         "weekly_crossing_candidates": sum(
             len(state.get("candidates", [])) for state in active_weekly
         ),
+        "lm2_candidates": len(lm2.get("candidates", [])) if lm2 else 0,
         "monthly_signals": sum("monthly" in row["signal_sources"] for row in current_signals),
+        "lm2_signals": sum("lm2" in row["signal_sources"] for row in current_signals),
         "weekly_signals": sum("weekly" in row["signal_sources"] for row in current_signals),
         "confluence_signals": sum(bool(row.get("is_confluence")) for row in current_signals),
+        "cooldown_suppressed": sum(not row.get("actionable", True) for row in current_signals),
     }
     current_payload = {
         "method_version": MULTITEMPORAL_METHOD_VERSION,
         "source_method_versions": {
             "monthly": base_config.method_version,
+            "lm2": lm2_config.method_version,
             "weekly": weekly_config.method_version,
         },
         "generated_at": _iso_now(),
         "cutoff": cutoff.date().isoformat(),
         "formation_date": monthly_date.date().isoformat(),
         "monthly_formation_date": monthly_date.date().isoformat(),
+        "lm2_formation_date": lm2["formation_date"] if lm2 else None,
         "weekly_formation_dates": [state["formation_date"] for state in active_weekly],
         "session_after_formation": monthly_session,
         "cycle_phase": _cycle_phase(monthly_session, base_config),
@@ -461,6 +556,7 @@ def run_pipeline(
             }
             for state in active_weekly
         ],
+        "lm2_formation_stats": lm2["stats"] if lm2 else None,
         "source_counts": source_counts,
         "scan_status": _status_counts(scans),
         "scan_status_by_source": {
@@ -472,15 +568,17 @@ def run_pipeline(
         "candidates": sorted(
             candidate_monitors,
             key=lambda row: (
-                0 if row.get("source") == "monthly" else 1,
+                {"monthly": 0, "lm2": 1, "weekly": 2}.get(row.get("source"), 9),
                 row.get("formation_date", ""),
                 row.get("candidate_rank") is None,
                 row.get("candidate_rank") or 0,
             ),
         ),
         "signals": current_signals,
-        "alert_scope": "A+, A and monthly B signals confirmed on cutoff session only",
+        "alert_scope": "A+, A and monthly B confirmed on cutoff; actionable after 10-session cooldown",
         "weekly_b_policy": "computed_for_audit_but_never_published_or_alerted",
+        "lm2_b_policy": "computed_for_audit_but_never_published_or_alerted",
+        "cross_source_cooldown_sessions": 10,
         "alert_result": alert_result,
     }
     write_json(root / "public" / "data" / "current.json", current_payload)
@@ -499,6 +597,7 @@ def run_pipeline(
             "generated_at": current_payload["generated_at"],
             "cutoff": current_payload["cutoff"],
             "monthly_formation_date": current_payload["monthly_formation_date"],
+            "lm2_formation_date": current_payload["lm2_formation_date"],
             "weekly_formation_dates": current_payload["weekly_formation_dates"],
             "signals": len(current_signals),
             "source_counts": source_counts,
@@ -510,7 +609,7 @@ def run_pipeline(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="MTR Multitemporal v1.1 daily scanner")
+    parser = argparse.ArgumentParser(description="MTR Multitemporal v1.2 daily scanner")
     parser.add_argument("--as-of", help="Fecha de corte YYYY-MM-DD; por defecto, última sesión completa")
     parser.add_argument("--prices-dir", type=Path, help="Directorio OHLCV local para auditoría")
     parser.add_argument("--send-alerts", action="store_true")

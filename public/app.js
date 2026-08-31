@@ -16,6 +16,7 @@ const statusMeta = {
   signal: ["Señal", "status-signal"],
   rejected_first_contact: ["Rechazado", "status-rejected"],
   rejected_weekly_grade: ["B semanal descartada", "status-rejected"],
+  rejected_lm2_grade: ["B LM2 descartada", "status-rejected"],
   expired: ["Expirado", "status-expired"],
   missing_prices: ["Sin precios", "status-error"],
   missing_formation: ["Sin formación", "status-error"],
@@ -47,12 +48,12 @@ const fmtNum = (value, digits = 2) => value == null ? "N/D" : Number(value).toFi
 const fmtPrice = (value) => value == null ? "N/D" : `$${Number(value).toFixed(Math.abs(value) < 10 ? 3 : 2)}`;
 const fmtDate = (value) => value ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(`${value}T12:00:00`)) : "Pendiente";
 const signClass = (value) => value == null ? "" : value >= 0 ? "positive" : "negative";
-const sourceLabel = (row) => row?.is_confluence || row?.source === "monthly+weekly"
-  ? "Mensual + semanal"
-  : row?.source === "weekly" ? "Semanal" : "Mensual";
-const sourceClass = (row) => row?.is_confluence || row?.source === "monthly+weekly"
+const sourceNames = { monthly: "Mensual", lm2: "LM2", weekly: "Semanal" };
+const signalSources = (row) => row?.signal_sources || String(row?.source || "monthly").split("+");
+const sourceLabel = (row) => signalSources(row).map(source => sourceNames[source] || source).join(" + ");
+const sourceClass = (row) => signalSources(row).length > 1
   ? "source-confluence"
-  : row?.source === "weekly" ? "source-weekly" : "source-monthly";
+  : row?.source === "weekly" ? "source-weekly" : row?.source === "lm2" ? "source-lm2" : "source-monthly";
 const sourceBadge = (row) => `<span class="source-badge ${sourceClass(row)}">${sourceLabel(row)}</span>`;
 
 async function fetchJson(path, fallback) {
@@ -74,12 +75,13 @@ function renderSummary() {
   const signals = state.current?.signals || [];
   const counts = state.current?.source_counts || {};
   const weeklyDates = state.current?.weekly_formation_dates || [];
-  const actionable = signals.filter(signal => signal.event_date === state.current?.cutoff);
+  const lm2Date = state.current?.lm2_formation_date;
+  const actionable = signals.filter(signal => signal.event_date === state.current?.cutoff && signal.actionable !== false);
   const cards = [
-    ["Formaciones activas", 1 + weeklyDates.length, `Mensual ${state.current?.monthly_formation_date || "N/D"}${weeklyDates.length ? ` · semanal ${weeklyDates.join(", ")}` : ""}`],
-    ["Candidatos swing", (counts.monthly_candidates ?? 0) + (counts.weekly_crossing_candidates ?? 0), `${counts.monthly_candidates ?? 0} mensuales · ${counts.weekly_crossing_candidates ?? 0} cruces semanales`],
+    ["Formaciones activas", 1 + weeklyDates.length + (lm2Date ? 1 : 0), `Mensual ${state.current?.monthly_formation_date || "N/D"}${lm2Date ? ` · LM2 ${lm2Date}` : ""}${weeklyDates.length ? ` · semanal ${weeklyDates.join(", ")}` : ""}`],
+    ["Candidatos swing", (counts.monthly_candidates ?? 0) + (counts.lm2_candidates ?? 0) + (counts.weekly_crossing_candidates ?? 0), `${counts.monthly_candidates ?? 0} mensuales · ${counts.lm2_candidates ?? 0} LM2 · ${counts.weekly_crossing_candidates ?? 0} cruces semanales`],
     ["Señales confirmadas hoy", actionable.length, actionable.length ? "Entrada en la próxima apertura" : "Ninguna entrada nueva"],
-    ["Histórico operativo", state.history.length, `${state.metrics?.signals ?? 232} señales de referencia + posteriores`],
+    ["Histórico operativo", state.history.length, `${state.metrics?.signals ?? 322} señales de referencia + posteriores`],
   ];
   document.querySelector("#summary").innerHTML = cards.map(([label, value, note]) => `
     <article class="summary-card"><span>${label}</span><strong>${value}</strong><small>${note}</small></article>
@@ -126,12 +128,13 @@ function renderCandidates() {
   const filtered = candidates
     .filter(candidate => state.candidateStatus === "ALL" || candidateGroup(candidate) === state.candidateStatus)
     .filter(candidate => !query || String(candidate.ticker).toUpperCase().includes(query))
-    .sort((a, b) => String(a.source).localeCompare(String(b.source)) ||
+    .sort((a, b) => ({ monthly: 0, lm2: 1, weekly: 2 }[a.source] ?? 9) - ({ monthly: 0, lm2: 1, weekly: 2 }[b.source] ?? 9) ||
       String(b.formation_date).localeCompare(String(a.formation_date)) ||
       (a.candidate_rank ?? 9999) - (b.candidate_rank ?? 9999));
   const weeklyDates = state.current?.weekly_formation_dates || [];
+  const lm2Date = state.current?.lm2_formation_date;
   document.querySelector("#candidate-subtitle").textContent = state.current
-    ? `Mensual ${state.current.monthly_formation_date} · semanal ${weeklyDates.join(", ") || "sin ventana activa"} · corte ${state.current.cutoff}`
+    ? `Mensual ${state.current.monthly_formation_date} · LM2 ${lm2Date || "sin ventana activa"} · semanal ${weeklyDates.join(", ") || "sin ventana activa"} · corte ${state.current.cutoff}`
     : "Datos no disponibles";
   document.querySelector("#candidate-body").innerHTML = filtered.length
     ? filtered.map(candidateRow).join("")
@@ -140,8 +143,10 @@ function renderCandidates() {
 }
 
 function signalCard(signal) {
-  const actionable = signal.event_date === state.current?.cutoff;
-  const timing = actionable
+  const actionable = signal.event_date === state.current?.cutoff && signal.actionable !== false;
+  const timing = signal.actionable === false
+    ? `No accionable · cooldown de ${signal.cooldown_sessions ?? 10} sesiones`
+    : actionable
     ? "Confirmada hoy · entrada en próxima apertura"
     : `Señal ${fmtDate(signal.event_date)} · entrada ${fmtDate(signal.entry_date)}`;
   return `<article class="signal-card ${actionable ? "actionable" : ""}" data-signal="${signal.signal_id}">
@@ -159,7 +164,7 @@ function renderCurrent() {
   const signals = [...(state.current?.signals || [])].sort(byQualityDate);
   const subtitle = document.querySelector("#current-subtitle");
   subtitle.textContent = state.current
-    ? `Unión de la formación mensual y los cruces semanales A/A+ · corte ${state.current.cutoff}`
+    ? `Unión mensual + LM2 A/A+ + cruces semanales A/A+ · corte ${state.current.cutoff}`
     : "Datos no disponibles";
   const empty = document.querySelector("#current-empty");
   const grid = document.querySelector("#current-signals");
@@ -174,12 +179,13 @@ function renderCurrent() {
 }
 
 function historyRow(signal) {
+  const entry = signal.actionable === false ? "Suprimida (cooldown)" : signal.entry_date || "N/D";
   return `<tr data-signal="${signal.signal_id}">
     <td><span class="grade ${gradeClass(signal.grade)}">${signal.grade}</span></td>
     <td><strong>${signal.ticker}</strong></td>
     <td>${sourceBadge(signal)}</td>
     <td>${signal.event_date || "N/D"}</td>
-    <td>${signal.entry_date || "N/D"}</td>
+    <td>${entry}</td>
     <td class="${signClass(signal.r5)}">${fmtPct(signal.r5)}</td>
     <td class="${signClass(signal.mfe5)}">${fmtPct(signal.mfe5)}</td>
     <td class="${signClass(signal.mae5)}">${fmtPct(signal.mae5)}</td>
@@ -220,11 +226,12 @@ function openSignalDrawer(signalId) {
   if (!signal) return;
   const content = document.querySelector("#drawer-content");
   content.innerHTML = `
-    <p class="eyebrow">${signal.method_version || "MTR‑Multitemporal‑v1.1"}</p>
+    <p class="eyebrow">${signal.method_version || "MTR‑Multitemporal‑v1.2"}</p>
     <div class="drawer-title"><h2>${signal.ticker}</h2><span class="grade ${gradeClass(signal.grade)}">${signal.grade}</span></div>
     <p>${sourceBadge(signal)}</p>
-    <p class="muted">Formación ${Object.entries(signal.formation_dates || { principal: signal.formation_date }).map(([source, date]) => `${source === "monthly" ? "mensual" : source === "weekly" ? "semanal" : source} ${fmtDate(date)}`).join(" · ")} · señal ${fmtDate(signal.event_date)} · entrada ${fmtDate(signal.entry_date)}</p>
-    ${signal.is_confluence ? `<section class="detail-section"><h3>Confluencia</h3><p>El mismo retest fue detectado por ambos marcos. Grado mensual ${signal.monthly_grade}; grado semanal ${signal.weekly_grade}. El grado maestro es el mejor grado observado, sin mejora automática por coincidencia.</p></section>` : ""}
+    <p class="muted">Formación ${Object.entries(signal.formation_dates || { principal: signal.formation_date }).map(([source, date]) => `${sourceNames[source]?.toLowerCase() || source} ${fmtDate(date)}`).join(" · ")} · señal ${fmtDate(signal.event_date)} · entrada ${signal.actionable === false ? "suprimida por cooldown" : fmtDate(signal.entry_date)}</p>
+    ${signal.is_confluence ? `<section class="detail-section"><h3>Confluencia</h3><p>El mismo retest fue detectado por ${sourceLabel(signal).toLowerCase()}. ${Object.entries(signal.source_grades || {}).map(([source, grade]) => `${sourceNames[source] || source}: ${grade}`).join(" · ")}. El grado maestro es el mejor grado observado, sin mejora automática por coincidencia.</p></section>` : ""}
+    ${signal.actionable === false ? `<section class="detail-section"><h3>Cooldown</h3><p>Se conserva para auditoría, pero no genera entrada ni correo porque el ticker ya confirmó otra señal en las ${signal.cooldown_sessions ?? 10} sesiones anteriores.</p><p class="muted">Bloqueada por ${signal.suppressed_by_cooldown || "una señal anterior"}.</p></section>` : ""}
     <section class="detail-section"><h3>Selección</h3><div class="detail-grid">
       ${detailItem("MOM universo", fmtNum(signal.universe_momentum_percentile, 3))}
       ${detailItem("SwingScore", fmtNum(signal.swing_score, 3))}
@@ -236,6 +243,13 @@ function openSignalDrawer(signalId) {
       ${detailItem("Puntos de calidad", signal.weekly_quality_points ?? signal.source_details?.weekly?.weekly_quality_points ?? "N/D")}
       ${detailItem("Volumen formación 5/20", fmtPct(signal.formation_relative_volume5_20 ?? signal.source_details?.weekly?.formation_relative_volume5_20))}
       ${detailItem("Confirmación volumen", (signal.weekly_formation_volume_confirmation ?? signal.source_details?.weekly?.weekly_formation_volume_confirmation) ? "Sí" : "No")}
+    </div></section>` : ""}
+    ${signal.lm2_grade ? `<section class="detail-section"><h3>Calidad LM2</h3><div class="detail-grid">
+      ${detailItem("Grado LM2", signal.lm2_grade)}
+      ${detailItem("Puntos (0–3)", signal.lm2_quality_points ?? signal.source_details?.lm2?.lm2_quality_points ?? "N/D")}
+      ${detailItem("Gap de formación", fmtPct(signal.formation_gap ?? signal.source_details?.lm2?.formation_gap))}
+      ${detailItem("ATR pct D10", fmtNum(signal.formation_atr_percentile_d10 ?? signal.source_details?.lm2?.formation_atr_percentile_d10, 3))}
+      ${detailItem("Pendiente SMA200/20", fmtPct(signal.formation_sma200_slope20 ?? signal.source_details?.lm2?.formation_sma200_slope20))}
     </div></section>` : ""}
     <section class="detail-section"><h3>Retest</h3><div class="detail-grid">
       ${detailItem("Día del evento", signal.event_day ?? "N/D")}
@@ -282,6 +296,13 @@ function openCandidateDrawer(candidateId) {
       ${detailItem("Percentil MOM universo", fmtNum(candidate.universe_momentum_percentile, 3))}
       ${detailItem("Pendiente SMA200 pct", fmtNum(candidate.sma200_slope_percentile_d10, 3))}
     </div></section>
+    ${candidate.source === "lm2" ? `<section class="detail-section"><h3>Calidad LM2 congelada</h3><div class="detail-grid">
+      ${detailItem("Grado potencial", candidate.lm2_grade || "N/D")}
+      ${detailItem("Puntos (0–3)", candidate.lm2_quality_points ?? "N/D")}
+      ${detailItem("Gap formación", fmtPct(candidate.formation_gap))}
+      ${detailItem("ATR pct D10", fmtNum(candidate.formation_atr_percentile_d10, 3))}
+      ${detailItem("Pendiente SMA200/20", fmtPct(candidate.formation_sma200_slope20))}
+    </div></section>` : ""}
     <section class="detail-section"><h3>Niveles congelados</h3><div class="detail-grid">
       ${detailItem("Nivel L", fmtPrice(candidate.formation_close))}
       ${detailItem("ATR20", fmtPrice(candidate.atr_abs20))}

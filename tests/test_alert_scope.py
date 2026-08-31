@@ -8,6 +8,7 @@ def test_alerts_exclude_stale_and_already_sent_signals():
         {"signal_id": "new", "event_date": "2026-08-27"},
         {"signal_id": "old", "event_date": "2026-08-05"},
         {"signal_id": "sent", "event_date": "2026-08-27"},
+        {"signal_id": "cooldown", "event_date": "2026-08-27", "actionable": False},
     ]
 
     result = _new_alert_candidates(

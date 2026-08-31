@@ -35,7 +35,7 @@ jobs:
       - name: Install scanner
         run: pip install -e .
 
-      - name: Run multitemporal v1.1 scanner
+      - name: Run multitemporal v1.2 scanner
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
@@ -54,12 +54,13 @@ jobs:
           python -m json.tool public/data/history.json >/dev/null
           python -m json.tool state/last_run.json >/dev/null
           find state/weekly_formations -name '*.json' -print0 | xargs -0 -n1 python -m json.tool >/dev/null
+          if [[ -d state/lm2_formations ]]; then find state/lm2_formations -name '*.json' -print0 | xargs -0 -r -n1 python -m json.tool >/dev/null; fi
 
       - name: Commit state and public signals
         run: |
           git config user.name "mtr-signal-bot"
           git config user.email "mtr-signal-bot@users.noreply.github.com"
-          git add public/data/current.json public/data/history.json state/formations state/weekly_formations state/sent_signals.json state/last_run.json
+          git add public/data/current.json public/data/history.json state/formations state/weekly_formations state/lm2_formations state/sent_signals.json state/last_run.json
           if git diff --cached --quiet; then
             echo "No state changes"
           else

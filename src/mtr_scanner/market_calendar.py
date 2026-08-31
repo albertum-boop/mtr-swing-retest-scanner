@@ -48,6 +48,43 @@ def active_formation_date(cutoff: pd.Timestamp) -> pd.Timestamp:
     return pd.Timestamp(completed.iloc[-1])
 
 
+def active_lm2_formation_date(cutoff: pd.Timestamp) -> pd.Timestamp:
+    """Most recent completed penultimate NYSE session of a calendar month."""
+
+    cutoff = pd.Timestamp(cutoff).normalize()
+    sessions = _schedule(cutoff - pd.Timedelta(days=100), cutoff + pd.Timedelta(days=10))
+    grouped = pd.Series(sessions, index=sessions).groupby(sessions.to_period("M"))
+    penultimate = grouped.nth(-2)
+    completed = penultimate.loc[penultimate.le(cutoff)]
+    if completed.empty:
+        raise RuntimeError("No se encontró una formación LM2 completa")
+    return pd.Timestamp(completed.iloc[-1])
+
+
+def sessions_between(start: pd.Timestamp, end: pd.Timestamp) -> int:
+    """Count completed NYSE sessions strictly after ``start`` through ``end``."""
+
+    start = pd.Timestamp(start).normalize()
+    end = pd.Timestamp(end).normalize()
+    if end <= start:
+        return 0
+    sessions = _schedule(start, end)
+    return int(((sessions > start) & (sessions <= end)).sum())
+
+
+def session_ordinals(dates: list[pd.Timestamp]) -> dict[str, int]:
+    """Map NYSE signal dates to one shared ordinal for fast distance checks."""
+
+    normalized = sorted({pd.Timestamp(value).normalize() for value in dates})
+    if not normalized:
+        return {}
+    sessions = _schedule(normalized[0] - pd.Timedelta(days=7), normalized[-1])
+    return {
+        value.date().isoformat(): int(sessions.searchsorted(value, side="right") - 1)
+        for value in normalized
+    }
+
+
 def weekly_formation_dates(cutoff: pd.Timestamp, count: int = 2) -> list[pd.Timestamp]:
     """Last completed NYSE session in each W-FRI week, oldest first."""
 
