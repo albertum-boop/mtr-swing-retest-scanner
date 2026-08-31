@@ -1,17 +1,18 @@
 {
   "status": "ok",
-  "generated_at": "2026-08-31T09:35:46+00:00",
-  "cutoff": "2026-08-27",
+  "generated_at": "2026-08-31T12:27:59+00:00",
+  "cutoff": "2026-08-28",
   "monthly_formation_date": "2026-07-31",
-  "lm2_formation_date": null,
+  "lm2_formation_date": "2026-08-28",
   "weekly_formation_dates": [
-    "2026-08-21"
+    "2026-08-21",
+    "2026-08-28"
   ],
   "signals": 2,
   "source_counts": {
     "monthly_candidates": 36,
-    "weekly_crossing_candidates": 11,
-    "lm2_candidates": 0,
+    "weekly_crossing_candidates": 23,
+    "lm2_candidates": 37,
     "monthly_signals": 1,
     "lm2_signals": 0,
     "weekly_signals": 2,
@@ -20,7 +21,7 @@
   },
   "pending_alerts": 0,
   "alert_result": {
-    "status": "disabled",
+    "status": "nothing_to_send",
     "sent": 0
   }
 }
