@@ -1,6 +1,13 @@
 name: MTR daily scan
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/daily-scan.yml"
+      - "config/**"
+      - "pyproject.toml"
+      - "src/**"
   workflow_dispatch:
     inputs:
       as_of:
