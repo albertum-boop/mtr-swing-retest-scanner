@@ -1,22 +1,21 @@
 {
   "status": "ok",
-  "generated_at": "2026-08-31T12:27:59+00:00",
-  "cutoff": "2026-08-28",
-  "monthly_formation_date": "2026-07-31",
+  "generated_at": "2026-08-31T23:35:05+00:00",
+  "cutoff": "2026-08-31",
+  "monthly_formation_date": "2026-08-31",
   "lm2_formation_date": "2026-08-28",
   "weekly_formation_dates": [
-    "2026-08-21",
     "2026-08-28"
   ],
-  "signals": 2,
+  "signals": 0,
   "source_counts": {
-    "monthly_candidates": 36,
-    "weekly_crossing_candidates": 23,
+    "monthly_candidates": 35,
+    "weekly_crossing_candidates": 12,
     "lm2_candidates": 37,
-    "monthly_signals": 1,
+    "monthly_signals": 0,
     "lm2_signals": 0,
-    "weekly_signals": 2,
-    "confluence_signals": 1,
+    "weekly_signals": 0,
+    "confluence_signals": 0,
     "cooldown_suppressed": 0
   },
   "pending_alerts": 0,
