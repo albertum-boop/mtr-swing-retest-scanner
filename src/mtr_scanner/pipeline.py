@@ -501,7 +501,7 @@ def run_pipeline(
     all_history = _sort_signals(
         apply_signal_cooldown(
             [*history_payload.get("signals", []), *merged_current],
-            cooldown_sessions=10,
+            cooldown_sessions=base_config.cooldown_sessions,
         )
     )
     current_signals = _sort_signals(
@@ -575,10 +575,10 @@ def run_pipeline(
             ),
         ),
         "signals": current_signals,
-        "alert_scope": "A+, A and monthly B confirmed on cutoff; actionable after 10-session cooldown",
+        "alert_scope": "A+, A and monthly B confirmed on cutoff; actionable after global cooldown",
         "weekly_b_policy": "computed_for_audit_but_never_published_or_alerted",
         "lm2_b_policy": "computed_for_audit_but_never_published_or_alerted",
-        "cross_source_cooldown_sessions": 10,
+        "cross_source_cooldown_sessions": base_config.cooldown_sessions,
         "alert_result": alert_result,
     }
     write_json(root / "public" / "data" / "current.json", current_payload)
@@ -609,7 +609,7 @@ def run_pipeline(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="MTR Multitemporal v1.2 daily scanner")
+    parser = argparse.ArgumentParser(description="MTR Multitemporal v2.0 daily scanner")
     parser.add_argument("--as-of", help="Fecha de corte YYYY-MM-DD; por defecto, última sesión completa")
     parser.add_argument("--prices-dir", type=Path, help="Directorio OHLCV local para auditoría")
     parser.add_argument("--send-alerts", action="store_true")

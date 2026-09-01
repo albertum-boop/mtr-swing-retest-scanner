@@ -12,7 +12,7 @@ from .weekly import MULTITEMPORAL_METHOD_VERSION, WEEKLY_METHOD_VERSION
 
 SOURCE_ORDER = {"monthly": 0, "lm2": 1, "weekly": 2}
 SOURCE_METHODS = {
-    "monthly": "MTR-Swing-Retest-v1.0",
+    "monthly": "MTR-Swing-Retest-v2.0",
     "lm2": LM2_METHOD_VERSION,
     "weekly": WEEKLY_METHOD_VERSION,
 }

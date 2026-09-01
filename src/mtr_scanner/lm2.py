@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from typing import Any
 
-LM2_METHOD_VERSION = "MTR-LM2-v1.0"
+LM2_METHOD_VERSION = "MTR-LM2-v2.0"
 
 
 @dataclass(frozen=True)

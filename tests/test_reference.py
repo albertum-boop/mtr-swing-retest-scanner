@@ -87,3 +87,43 @@ def test_multitemporal_v12_adds_lm2_without_removing_v11():
         "exact_confluence": 13,
         "weekly_lm2_confluence": 2,
     }
+
+
+def test_v2_unique_reference_is_complete_ordered_and_cooldown_audited():
+    data = pd.read_csv(ROOT / "reference" / "signals_v2_0.csv", parse_dates=["event_date"])
+
+    assert len(data) == 323
+    assert data["master_grade"].value_counts().to_dict() == {
+        "A": 191,
+        "A+": 109,
+        "B": 23,
+    }
+    assert data["actionable"].value_counts().to_dict() == {True: 313, False: 10}
+    assert data["appendix_ref"].is_unique
+    assert "stop_15pct" not in data.columns
+    assert not data.duplicated(["ticker", "event_date"]).any()
+    assert data["master_grade"].map({"A+": 0, "A": 1, "B": 2}).is_monotonic_increasing
+    for _, group in data.groupby("master_grade", sort=False):
+        assert group["event_date"].is_monotonic_increasing
+    assert not data[["r5", "mfe5", "mae5", "r10", "mfe10", "mae10"]].isna().any().any()
+
+
+def test_v2_source_reference_has_exact_active_branch_counts_and_no_weekly_lm2_b():
+    data = pd.read_csv(
+        ROOT / "reference" / "source_signals_v2_0.csv",
+        parse_dates=["event_date"],
+    )
+
+    assert len(data) == 348
+    assert data["source"].value_counts().to_dict() == {
+        "monthly": 154,
+        "lm2": 102,
+        "weekly": 92,
+    }
+    assert data["appendix_ref"].is_unique
+    assert data.loc[data["source"].isin(["weekly", "lm2"]), "source_grade"].isin(
+        ["A+", "A"]
+    ).all()
+    assert data["source_grade"].map({"A+": 0, "A": 1, "B": 2}).is_monotonic_increasing
+    for _, group in data.groupby("source_grade", sort=False):
+        assert group["event_date"].is_monotonic_increasing

@@ -1,7 +1,7 @@
 # MTR Multitemporal Swing Retest
 
-Aplicación diaria del método congelado **MTR Multitemporal v1.2**. El motor conserva
-íntegramente la rama mensual MTR Swing Retest v1.0 y añade dos ramas independientes:
+Aplicación diaria de la especificación candidata **MTR Multitemporal v2.0**. El motor une
+la rama mensual MTR Swing Retest v2.0 con dos ramas independientes:
 LM2, formada en la penúltima sesión NYSE del mes, y la rama semanal incremental.
 Las señales operativas son:
 
@@ -40,7 +40,7 @@ del score, usando un corte estricto superior a 0,80.
 
 La rama mensual se congela en la última sesión bursátil de cada mes. Durante las cinco
 sesiones siguientes sigue los candidatos sin recalcular sus niveles. Conserva la clasificación
-histórica A+, A y B de MTR Swing Retest v1.0.
+histórica A+, A y B de MTR Swing Retest v2.0.
 
 ## Formación LM2
 
@@ -117,8 +117,9 @@ El grado maestro es el mejor grado realmente obtenido; la confluencia es un dist
 produce una mejora automática.
 
 Los identificadores mensuales existentes se preservan para no reenviar alertas históricas.
-Una señal exclusivamente LM2 usa `MTR-LM2-v1.0:TICKER:FECHA`; una exclusivamente semanal
-usa `MTR-Weekly-Cross-v1.0:TICKER:FECHA`.
+Las señales y sus estados guardan versiones explícitas `MTR-LM2-v2.0`,
+`MTR-Weekly-Cross-v2.0` y `MTR-Multitemporal-v2.0` para impedir que una revisión de
+parámetros reescriba silenciosamente el pasado.
 
 Después de unir coincidencias exactas se aplica el cooldown por ticker. La primera señal
 accionable bloquea las señales posteriores durante diez sesiones NYSE. Una señal suprimida:
@@ -128,33 +129,34 @@ accionable bloquea las señales posteriores durante diez sesiones NYSE. Una señ
 - no prolonga el cooldown;
 - no genera correo ni una segunda entrada.
 
-## Evidencia congelada 2019–2026
+## Evidencia auditada 2019–2026
 
-La referencia v1.2 contiene 322 eventos únicos:
+La referencia v2.0 contiene 348 observaciones por fuente, que se fusionan en 323 eventos
+únicos antes de aplicar el cooldown:
 
 | Componente | Señales |
 |---|---:|
 | Mensuales originales | 154 |
-| Semanales A+/A | 91 |
-| LM2 totales auditadas | 128 |
-| LM2 A+/A | 92 |
-| LM2 realmente incrementales | 90 |
-| Coincidencias exactas semanal + LM2 | 2 |
-| Unión única | 322 |
+| Semanales A+/A | 92 |
+| LM2 A+/A | 102 |
+| Observaciones por fuente | 348 |
+| Unión única antes de cooldown | 323 |
+| Eventos accionables tras cooldown | 313 |
+| Eventos suprimidos pero auditados | 10 |
 
-La unión queda distribuida en 108 A+, 189 A y 25 B. Las 38 B semanales permanecen en
-`reference/weekly_signals_v1_0.csv` y las 36 B LM2 en `reference/lm2_signals_v1_0.csv`
-como controles de auditoría. `reference/multitemporal_signals_v1_2.csv` contiene la unión
-completa ordenada por calidad y fecha. Las referencias v1.0 mensual y v1.1 multitemporal
-se mantienen sin modificación.
+La unión queda distribuida en 109 A+, 191 A y 23 B; tras cooldown quedan 107 A+, 183 A y
+23 B accionables. `reference/signals_v2_0.csv` contiene los 323 eventos únicos y
+`reference/source_signals_v2_0.csv` conserva las 348 observaciones fuente. Ambos archivos
+se ordenan primero por calidad y, dentro de cada calidad, por fecha. Las referencias v1 se
+mantienen sin modificación como trazabilidad.
 
 El perfil aislado LM2 que justificó el filtro es:
 
 | Grado LM2 | n | R5 | MFE5 | MAE5 | R10 | MFE10 | MAE10 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| A+ | 33 | 8,02% | 16,59% | −6,26% | 15,07% | 26,49% | −8,32% |
-| A | 59 | 3,10% | 10,56% | −6,66% | 3,90% | 17,31% | −9,87% |
-| B | 36 | 1,15% | 6,94% | −6,47% | −1,79% | 9,64% | −9,92% |
+| A+ | 37 | 10,09% | 18,89% | −6,39% | 19,76% | 31,64% | −8,22% |
+| A | 65 | 3,02% | 10,33% | −6,76% | 4,14% | 17,25% | −9,79% |
+| B | 40 | 0,96% | 7,07% | −6,83% | −0,93% | 9,83% | −10,09% |
 
 Son medias por señal, no una curva de capital ni una promesa de rentabilidad. La entrada de
 medición es la apertura siguiente al retest y cada horizonte contiene exactamente cinco o

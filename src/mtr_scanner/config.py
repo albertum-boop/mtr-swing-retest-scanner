@@ -5,13 +5,13 @@ from dataclasses import asdict, dataclass
 
 @dataclass(frozen=True)
 class StrategyConfig:
-    """Frozen MTR Swing Retest v1.0 parameters.
+    """Frozen MTR Swing Retest v2.0 candidate parameters.
 
     Changing any field creates a different research branch. Production code
     serialises this object with every formation state and every signal.
     """
 
-    method_version: str = "MTR-Swing-Retest-v1.0"
+    method_version: str = "MTR-Swing-Retest-v2.0"
     min_price: float = 5.0
     min_adv20_usd: float = 10_000_000.0
     momentum_lookback_sessions: int = 252
@@ -34,6 +34,7 @@ class StrategyConfig:
     a_plus_min_pullback_from_peak_atr: float = -0.25
     a_plus_min_bull_body_atr: float = 0.25
     a_min_close_location: float = 0.75
+    cooldown_sessions: int = 10
 
     def as_dict(self) -> dict[str, object]:
         return asdict(self)

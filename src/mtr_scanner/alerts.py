@@ -62,7 +62,7 @@ def build_email(signals: Iterable[dict[str, Any]]) -> tuple[str, str, str]:
         <thead><tr style="background:#173f5f;color:white"><th>Grado</th><th>Ticker</th><th>Marco</th><th>Fecha</th><th>Swing</th><th>Cierre/rango</th><th>Volumen</th><th>Pullback</th></tr></thead>
         <tbody>{''.join(rows)}</tbody>
       </table>
-      <p style="color:#667587;font-size:12px">MTR Multitemporal v1.2 · señal de investigación, no recomendación financiera.</p>
+      <p style="color:#667587;font-size:12px">MTR Multitemporal v2.0 · señal de investigación, no recomendación financiera.</p>
     </body></html>
     """
     return subject, "\n".join(plain_lines), body_html

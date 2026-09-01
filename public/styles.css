@@ -133,8 +133,9 @@ tbody tr:hover { background: #f4f8fa; }
 .evidence-grid .panel { margin: 0; }
 .evidence-copy ol { margin: 18px 0 0; padding-left: 22px; }
 .evidence-copy li { margin: 8px 0; color: #42576b; }
-.profile-row { display: grid; grid-template-columns: 45px 1fr 1fr 1fr; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.profile-row { display: grid; grid-template-columns: 45px 1fr; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); }
 .profile-row:last-child { border: 0; }
+.profile-metrics-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 12px; }
 .profile-metric span { color: var(--muted); font-size: 10px; display: block; }
 .profile-metric strong { font-size: 13px; }
 

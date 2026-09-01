@@ -7,6 +7,8 @@ on:
       - ".github/workflows/daily-scan.yml"
       - "config/**"
       - "pyproject.toml"
+      - "reference/**"
+      - "scripts/**"
       - "src/**"
   workflow_dispatch:
     inputs:
@@ -42,7 +44,7 @@ jobs:
       - name: Install scanner
         run: pip install -e .
 
-      - name: Run multitemporal v1.2 scanner
+      - name: Run multitemporal v2.0 scanner
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}

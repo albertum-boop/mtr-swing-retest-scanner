@@ -81,7 +81,7 @@ function renderSummary() {
     ["Formaciones activas", 1 + weeklyDates.length + (lm2Date ? 1 : 0), `Mensual ${state.current?.monthly_formation_date || "N/D"}${lm2Date ? ` · LM2 ${lm2Date}` : ""}${weeklyDates.length ? ` · semanal ${weeklyDates.join(", ")}` : ""}`],
     ["Candidatos swing", (counts.monthly_candidates ?? 0) + (counts.lm2_candidates ?? 0) + (counts.weekly_crossing_candidates ?? 0), `${counts.monthly_candidates ?? 0} mensuales · ${counts.lm2_candidates ?? 0} LM2 · ${counts.weekly_crossing_candidates ?? 0} cruces semanales`],
     ["Señales confirmadas hoy", actionable.length, actionable.length ? "Entrada en la próxima apertura" : "Ninguna entrada nueva"],
-    ["Histórico operativo", state.history.length, `${state.metrics?.signals ?? 322} señales de referencia + posteriores`],
+    ["Histórico operativo", state.history.length, `${state.metrics?.signals ?? 323} señales completas + posteriores`],
   ];
   document.querySelector("#summary").innerHTML = cards.map(([label, value, note]) => `
     <article class="summary-card"><span>${label}</span><strong>${value}</strong><small>${note}</small></article>
@@ -97,7 +97,7 @@ function statusPill(candidate) {
 function candidateGroup(candidate) {
   if (["waiting", "waiting_expansion", "expanded_waiting_retest"].includes(candidate.status)) return "POSSIBLE";
   if (candidate.status === "signal") return "SIGNAL";
-  if (["rejected_first_contact", "rejected_weekly_grade"].includes(candidate.status)) return "REJECTED";
+  if (["rejected_first_contact", "rejected_weekly_grade", "rejected_lm2_grade"].includes(candidate.status)) return "REJECTED";
   if (candidate.status === "expired") return "EXPIRED";
   return "OTHER";
 }
@@ -211,9 +211,14 @@ function renderProfile() {
   document.querySelector("#grade-profile").innerHTML = profiles.map(row => `
     <div class="profile-row">
       <span class="grade ${gradeClass(row.grade)}">${row.grade}</span>
-      <div class="profile-metric"><span>R5 medio</span><strong>${fmtPct(row.r5)}</strong></div>
-      <div class="profile-metric"><span>MFE5</span><strong>${fmtPct(row.mfe5)}</strong></div>
-      <div class="profile-metric"><span>MAE5</span><strong>${fmtPct(row.mae5)}</strong></div>
+      <div class="profile-metrics-grid">
+        <div class="profile-metric"><span>R5 medio</span><strong>${fmtPct(row.r5)}</strong></div>
+        <div class="profile-metric"><span>MFE5</span><strong>${fmtPct(row.mfe5)}</strong></div>
+        <div class="profile-metric"><span>MAE5</span><strong>${fmtPct(row.mae5)}</strong></div>
+        <div class="profile-metric"><span>R10 medio</span><strong>${fmtPct(row.r10)}</strong></div>
+        <div class="profile-metric"><span>MFE10</span><strong>${fmtPct(row.mfe10)}</strong></div>
+        <div class="profile-metric"><span>MAE10</span><strong>${fmtPct(row.mae10)}</strong></div>
+      </div>
     </div>`).join("");
 }
 
@@ -226,7 +231,7 @@ function openSignalDrawer(signalId) {
   if (!signal) return;
   const content = document.querySelector("#drawer-content");
   content.innerHTML = `
-    <p class="eyebrow">${signal.method_version || "MTR‑Multitemporal‑v1.2"}</p>
+    <p class="eyebrow">${signal.method_version || "MTR‑Multitemporal‑v2.0"}</p>
     <div class="drawer-title"><h2>${signal.ticker}</h2><span class="grade ${gradeClass(signal.grade)}">${signal.grade}</span></div>
     <p>${sourceBadge(signal)}</p>
     <p class="muted">Formación ${Object.entries(signal.formation_dates || { principal: signal.formation_date }).map(([source, date]) => `${sourceNames[source]?.toLowerCase() || source} ${fmtDate(date)}`).join(" · ")} · señal ${fmtDate(signal.event_date)} · entrada ${signal.actionable === false ? "suprimida por cooldown" : fmtDate(signal.entry_date)}</p>
@@ -267,7 +272,7 @@ function openSignalDrawer(signalId) {
       ${detailItem("MFE10", fmtPct(signal.mfe10), signClass(signal.mfe10))}
       ${detailItem("MAE10", fmtPct(signal.mae10), signClass(signal.mae10))}
     </div></section>
-    <section class="detail-section"><h3>Entrada</h3><p>${signal.entry_rule || "Apertura ajustada de la sesión posterior al retest."}</p><p class="muted">Precio de referencia: ${signal.entry_open == null ? "pendiente" : fmtPrice(signal.entry_open)}. R5/R10 son métricas de estudio, no reglas automáticas de salida.</p></section>`;
+    <section class="detail-section"><h3>Entrada</h3><p>${signal.entry_rule || "Apertura ajustada de la sesión posterior al retest."}</p><p class="muted">Fecha: ${fmtDate(signal.entry_date)} · precio de referencia: ${signal.entry_open == null ? "pendiente hasta la apertura" : fmtPrice(signal.entry_open)}. R5/R10/MFE/MAE son métricas históricas; la aplicación no ejecuta operaciones.</p></section>`;
   showDrawer();
 }
 

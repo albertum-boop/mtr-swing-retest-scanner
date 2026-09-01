@@ -3,8 +3,8 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from typing import Any
 
-WEEKLY_METHOD_VERSION = "MTR-Weekly-Cross-v1.0"
-MULTITEMPORAL_METHOD_VERSION = "MTR-Multitemporal-v1.2"
+WEEKLY_METHOD_VERSION = "MTR-Weekly-Cross-v2.0"
+MULTITEMPORAL_METHOD_VERSION = "MTR-Multitemporal-v2.0"
 
 
 @dataclass(frozen=True)
