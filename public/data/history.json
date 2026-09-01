@@ -1,11 +1,9 @@
 {
   "method_version": "MTR-Multitemporal-v2.0",
-  "updated_at": "2026-09-01T05:36:40+00:00",
-  "reference_cutoff": "2026-08-05",
-  "reference_signals": 323,
+  "updated_at": "2026-09-01T06:37:25+00:00",
   "signals": [
     {
-      "signal_id": "MTR-Multitemporal-v2.0:QNST:2019-01-17",
+      "signal_id": "MTR-Weekly-Cross-v2.0:QNST:2019-01-17",
       "reference_id": "A+001",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -85,7 +83,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:UPBD:2019-02-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:UPBD:2019-02-04",
       "reference_id": "A+002",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -165,7 +163,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CDNA:2019-05-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:CDNA:2019-05-02",
       "reference_id": "A+003",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -245,7 +243,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ROKU:2019-05-14",
+      "signal_id": "MTR-Weekly-Cross-v2.0:ROKU:2019-05-14",
       "reference_id": "A+004",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -325,7 +323,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ROKU:2019-06-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:ROKU:2019-06-04",
       "reference_id": "A+005",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -405,7 +403,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SE:2019-06-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:SE:2019-06-04",
       "reference_id": "A+006",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -485,7 +483,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:UPBD:2019-06-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:UPBD:2019-06-04",
       "reference_id": "A+007",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -565,7 +563,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ENPH:2019-07-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:ENPH:2019-07-02",
       "reference_id": "A+008",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -685,7 +683,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ZS:2019-07-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:ZS:2019-07-02",
       "reference_id": "A+009",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -765,7 +763,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:GFI:2019-12-10",
+      "signal_id": "MTR-Weekly-Cross-v2.0:GFI:2019-12-10",
       "reference_id": "A+010",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -845,7 +843,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ROKU:2020-01-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:ROKU:2020-01-03",
       "reference_id": "A+011",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -925,7 +923,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SE:2020-01-30",
+      "signal_id": "MTR-Weekly-Cross-v2.0:SE:2020-01-30",
       "reference_id": "A+012",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1005,7 +1003,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MGNI:2020-02-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:MGNI:2020-02-04",
       "reference_id": "A+013",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1085,7 +1083,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:APPS:2020-02-19",
+      "signal_id": "MTR-Weekly-Cross-v2.0:APPS:2020-02-19",
       "reference_id": "A+014",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1165,7 +1163,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MRNA:2020-06-02",
+      "signal_id": "MTR-LM2-v2.0:MRNA:2020-06-02",
       "reference_id": "A+015",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1245,7 +1243,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DQ:2020-08-03",
+      "signal_id": "MTR-LM2-v2.0:DQ:2020-08-03",
       "reference_id": "A+016",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1325,7 +1323,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ZM:2020-10-01",
+      "signal_id": "MTR-LM2-v2.0:ZM:2020-10-01",
       "reference_id": "A+017",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1405,7 +1403,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SE:2020-10-13",
+      "signal_id": "MTR-Weekly-Cross-v2.0:SE:2020-10-13",
       "reference_id": "A+018",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1485,7 +1483,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DKNG:2020-11-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:DKNG:2020-11-03",
       "reference_id": "A+019",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1565,7 +1563,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MRNA:2020-11-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:MRNA:2020-11-03",
       "reference_id": "A+020",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1665,7 +1663,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NET:2020-11-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:NET:2020-11-03",
       "reference_id": "A+021",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1745,7 +1743,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:PDD:2020-12-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:PDD:2020-12-02",
       "reference_id": "A+022",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1825,7 +1823,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:UPWK:2021-01-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:UPWK:2021-01-05",
       "reference_id": "A+023",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1905,7 +1903,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MRNA:2021-01-06",
+      "signal_id": "MTR-LM2-v2.0:MRNA:2021-01-06",
       "reference_id": "A+024",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -1985,7 +1983,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TGTX:2021-01-07",
+      "signal_id": "MTR-Swing-Retest-v2.0:TGTX:2021-01-07",
       "reference_id": "A+025",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -2085,7 +2083,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AGNT:2021-01-12",
+      "signal_id": "MTR-Weekly-Cross-v2.0:AGNT:2021-01-12",
       "reference_id": "A+026",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -2165,7 +2163,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MARA:2021-02-01",
+      "signal_id": "MTR-LM2-v2.0:MARA:2021-02-01",
       "reference_id": "A+027",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -2245,7 +2243,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:RIOT:2021-02-01",
+      "signal_id": "MTR-LM2-v2.0:RIOT:2021-02-01",
       "reference_id": "A+028",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -2325,7 +2323,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DFTX:2021-02-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:DFTX:2021-02-02",
       "reference_id": "A+029",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -2405,7 +2403,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NVAX:2021-03-01",
+      "signal_id": "MTR-LM2-v2.0:NVAX:2021-03-01",
       "reference_id": "A+030",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -2485,7 +2483,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:LQDT:2021-06-01",
+      "signal_id": "MTR-LM2-v2.0:LQDT:2021-06-01",
       "reference_id": "A+031",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -2565,7 +2563,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TDAY:2021-06-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:TDAY:2021-06-02",
       "reference_id": "A+032",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -2665,7 +2663,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:BBW:2021-07-01",
+      "signal_id": "MTR-LM2-v2.0:BBW:2021-07-01",
       "reference_id": "A+033",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -2745,7 +2743,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:PRTA:2021-08-02",
+      "signal_id": "MTR-LM2-v2.0:PRTA:2021-08-02",
       "reference_id": "A+034",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -2825,7 +2823,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CLDX:2021-08-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:CLDX:2021-08-03",
       "reference_id": "A+035",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -2925,7 +2923,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:OCGN:2021-08-03",
+      "signal_id": "MTR-LM2-v2.0:OCGN:2021-08-03",
       "reference_id": "A+036",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -3005,7 +3003,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AA:2022-02-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:AA:2022-02-02",
       "reference_id": "A+037",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -3105,7 +3103,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DVN:2022-02-02",
+      "signal_id": "MTR-LM2-v2.0:DVN:2022-02-02",
       "reference_id": "A+038",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -3205,7 +3203,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:BCYC:2022-03-24",
+      "signal_id": "MTR-Weekly-Cross-v2.0:BCYC:2022-03-24",
       "reference_id": "A+039",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -3285,7 +3283,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:OXY:2022-04-01",
+      "signal_id": "MTR-LM2-v2.0:OXY:2022-04-01",
       "reference_id": "A+040",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -3365,7 +3363,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:RES:2022-04-01",
+      "signal_id": "MTR-LM2-v2.0:RES:2022-04-01",
       "reference_id": "A+041",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -3445,7 +3443,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SD:2022-04-01",
+      "signal_id": "MTR-LM2-v2.0:SD:2022-04-01",
       "reference_id": "A+042",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -3525,7 +3523,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AMR:2022-08-01",
+      "signal_id": "MTR-LM2-v2.0:AMR:2022-08-01",
       "reference_id": "A+043",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -3605,7 +3603,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TMDX:2022-09-01",
+      "signal_id": "MTR-LM2-v2.0:TMDX:2022-09-01",
       "reference_id": "A+044",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -3685,7 +3683,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SGML:2022-09-07",
+      "signal_id": "MTR-Swing-Retest-v2.0:SGML:2022-09-07",
       "reference_id": "A+045",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -3765,7 +3763,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:RYTM:2022-10-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:RYTM:2022-10-04",
       "reference_id": "A+046",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -3845,7 +3843,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:WFRD:2023-03-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:WFRD:2023-03-02",
       "reference_id": "A+047",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -3921,11 +3919,11 @@
       },
       "cooldown_sessions": 10,
       "actionable": false,
-      "suppressed_by_cooldown": "MTR-Multitemporal-v2.0:WFRD:2023-03-01",
+      "suppressed_by_cooldown": "MTR-LM2-v2.0:WFRD:2023-03-01",
       "cooldown_gap_sessions": 1
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:PTGX:2023-05-01",
+      "signal_id": "MTR-LM2-v2.0:PTGX:2023-05-01",
       "reference_id": "A+048",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4005,7 +4003,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AXSM:2023-06-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:AXSM:2023-06-02",
       "reference_id": "A+049",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4085,7 +4083,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:PRTA:2023-06-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:PRTA:2023-06-02",
       "reference_id": "A+050",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4165,7 +4163,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TMDX:2023-06-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:TMDX:2023-06-05",
       "reference_id": "A+051",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4245,7 +4243,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:VKTX:2023-06-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:VKTX:2023-06-05",
       "reference_id": "A+052",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4325,7 +4323,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AI:2023-07-03",
+      "signal_id": "MTR-LM2-v2.0:AI:2023-07-03",
       "reference_id": "A+053",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4405,7 +4403,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AAOI:2023-08-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:AAOI:2023-08-02",
       "reference_id": "A+054",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4505,7 +4503,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ANF:2023-08-29",
+      "signal_id": "MTR-Weekly-Cross-v2.0:ANF:2023-08-29",
       "reference_id": "A+055",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4585,7 +4583,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ANF:2023-09-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:ANF:2023-09-05",
       "reference_id": "A+056",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4661,11 +4659,11 @@
       },
       "cooldown_sessions": 10,
       "actionable": false,
-      "suppressed_by_cooldown": "MTR-Multitemporal-v2.0:ANF:2023-08-29",
+      "suppressed_by_cooldown": "MTR-Weekly-Cross-v2.0:ANF:2023-08-29",
       "cooldown_gap_sessions": 4
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:XPO:2023-11-07",
+      "signal_id": "MTR-Weekly-Cross-v2.0:XPO:2023-11-07",
       "reference_id": "A+057",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4745,7 +4743,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SPOT:2023-12-12",
+      "signal_id": "MTR-Weekly-Cross-v2.0:SPOT:2023-12-12",
       "reference_id": "A+058",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4825,7 +4823,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ANF:2024-01-17",
+      "signal_id": "MTR-Weekly-Cross-v2.0:ANF:2024-01-17",
       "reference_id": "A+059",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4905,7 +4903,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NVDA:2024-01-23",
+      "signal_id": "MTR-Weekly-Cross-v2.0:NVDA:2024-01-23",
       "reference_id": "A+060",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -4985,7 +4983,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:UPST:2024-02-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:UPST:2024-02-02",
       "reference_id": "A+061",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -5065,7 +5063,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:COIN:2024-03-01",
+      "signal_id": "MTR-LM2-v2.0:COIN:2024-03-01",
       "reference_id": "A+062",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -5145,7 +5143,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DFTX:2024-04-01",
+      "signal_id": "MTR-LM2-v2.0:DFTX:2024-04-01",
       "reference_id": "A+063",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -5225,7 +5223,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:APP:2024-05-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:APP:2024-05-02",
       "reference_id": "A+064",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -5305,7 +5303,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:VRT:2024-05-06",
+      "signal_id": "MTR-Swing-Retest-v2.0:VRT:2024-05-06",
       "reference_id": "A+065",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -5385,7 +5383,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:WGS:2024-06-03",
+      "signal_id": "MTR-LM2-v2.0:WGS:2024-06-03",
       "reference_id": "A+066",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -5465,7 +5463,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AMSC:2024-07-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:AMSC:2024-07-02",
       "reference_id": "A+067",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -5545,7 +5543,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NVAX:2024-07-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:NVAX:2024-07-02",
       "reference_id": "A+068",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -5645,7 +5643,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ROOT:2024-07-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:ROOT:2024-07-02",
       "reference_id": "A+069",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -5725,7 +5723,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ASTS:2024-09-03",
+      "signal_id": "MTR-LM2-v2.0:ASTS:2024-09-03",
       "reference_id": "A+070",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -5805,7 +5803,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CVNA:2024-10-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:CVNA:2024-10-02",
       "reference_id": "A+071",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -5885,7 +5883,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TPC:2024-10-29",
+      "signal_id": "MTR-Weekly-Cross-v2.0:TPC:2024-10-29",
       "reference_id": "A+072",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -5965,7 +5963,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:HOOD:2024-12-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:HOOD:2024-12-03",
       "reference_id": "A+073",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -6065,7 +6063,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TPC:2025-01-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:TPC:2025-01-03",
       "reference_id": "A+074",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -6145,7 +6143,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:IONQ:2025-02-03",
+      "signal_id": "MTR-LM2-v2.0:IONQ:2025-02-03",
       "reference_id": "A+075",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -6225,7 +6223,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:QBTS:2025-02-03",
+      "signal_id": "MTR-LM2-v2.0:QBTS:2025-02-03",
       "reference_id": "A+076",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -6305,7 +6303,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:LTBR:2025-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:LTBR:2025-04-02",
       "reference_id": "A+077",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -6385,7 +6383,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SEZL:2025-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:SEZL:2025-04-02",
       "reference_id": "A+078",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -6465,7 +6463,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SMR:2025-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:SMR:2025-04-02",
       "reference_id": "A+079",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -6545,7 +6543,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:IONQ:2025-05-06",
+      "signal_id": "MTR-LM2-v2.0:IONQ:2025-05-06",
       "reference_id": "A+080",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -6625,7 +6623,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:QBTS:2025-05-06",
+      "signal_id": "MTR-Swing-Retest-v2.0:QBTS:2025-05-06",
       "reference_id": "A+081",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -6725,7 +6723,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ADPT:2025-06-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:ADPT:2025-06-03",
       "reference_id": "A+082",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -6805,7 +6803,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:GRRR:2025-06-03",
+      "signal_id": "MTR-LM2-v2.0:GRRR:2025-06-03",
       "reference_id": "A+083",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -6885,7 +6883,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ASST:2025-07-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:ASST:2025-07-02",
       "reference_id": "A+084",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -6965,7 +6963,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CRDO:2025-07-07",
+      "signal_id": "MTR-Swing-Retest-v2.0:CRDO:2025-07-07",
       "reference_id": "A+085",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -7045,7 +7043,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:RCAT:2025-08-01",
+      "signal_id": "MTR-LM2-v2.0:RCAT:2025-08-01",
       "reference_id": "A+086",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -7125,7 +7123,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:WGS:2025-08-06",
+      "signal_id": "MTR-Swing-Retest-v2.0:WGS:2025-08-06",
       "reference_id": "A+087",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -7225,7 +7223,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:HSAI:2025-09-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:HSAI:2025-09-04",
       "reference_id": "A+088",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -7305,7 +7303,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NEGG:2025-10-01",
+      "signal_id": "MTR-LM2-v2.0:NEGG:2025-10-01",
       "reference_id": "A+089",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -7385,7 +7383,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:VNET:2025-10-01",
+      "signal_id": "MTR-LM2-v2.0:VNET:2025-10-01",
       "reference_id": "A+090",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -7465,7 +7463,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TMC:2025-11-25",
+      "signal_id": "MTR-Weekly-Cross-v2.0:TMC:2025-11-25",
       "reference_id": "A+091",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -7545,7 +7543,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:OKLO:2025-12-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:OKLO:2025-12-03",
       "reference_id": "A+092",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -7625,7 +7623,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AEVA:2025-12-09",
+      "signal_id": "MTR-Weekly-Cross-v2.0:AEVA:2025-12-09",
       "reference_id": "A+093",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -7705,7 +7703,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:VSAT:2025-12-26",
+      "signal_id": "MTR-Weekly-Cross-v2.0:VSAT:2025-12-26",
       "reference_id": "A+094",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -7785,7 +7783,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:HYMC:2026-01-02",
+      "signal_id": "MTR-LM2-v2.0:HYMC:2026-01-02",
       "reference_id": "A+095",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -7865,7 +7863,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:OPEN:2026-02-24",
+      "signal_id": "MTR-Weekly-Cross-v2.0:OPEN:2026-02-24",
       "reference_id": "A+096",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -7945,7 +7943,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DMRA:2026-03-02",
+      "signal_id": "MTR-LM2-v2.0:DMRA:2026-03-02",
       "reference_id": "A+097",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8025,7 +8023,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ALM:2026-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:ALM:2026-04-02",
       "reference_id": "A+098",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8105,7 +8103,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CIFR:2026-04-02",
+      "signal_id": "MTR-LM2-v2.0:CIFR:2026-04-02",
       "reference_id": "A+099",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8185,7 +8183,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:LASR:2026-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:LASR:2026-04-02",
       "reference_id": "A+100",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8265,7 +8263,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ONDS:2026-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:ONDS:2026-04-02",
       "reference_id": "A+101",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8345,7 +8343,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:WULF:2026-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:WULF:2026-04-02",
       "reference_id": "A+102",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8425,7 +8423,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AMPX:2026-04-06",
+      "signal_id": "MTR-Swing-Retest-v2.0:AMPX:2026-04-06",
       "reference_id": "A+103",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8505,7 +8503,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NKTR:2026-04-09",
+      "signal_id": "MTR-Weekly-Cross-v2.0:NKTR:2026-04-09",
       "reference_id": "A+104",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8585,7 +8583,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:VSAT:2026-04-10",
+      "signal_id": "MTR-Weekly-Cross-v2.0:VSAT:2026-04-10",
       "reference_id": "A+105",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8665,7 +8663,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TNGX:2026-05-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:TNGX:2026-05-04",
       "reference_id": "A+106",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8745,7 +8743,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ABVX:2026-06-09",
+      "signal_id": "MTR-Weekly-Cross-v2.0:ABVX:2026-06-09",
       "reference_id": "A+107",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8825,7 +8823,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ONDS:2026-07-28",
+      "signal_id": "MTR-Weekly-Cross-v2.0:ONDS:2026-07-28",
       "reference_id": "A+108",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8905,7 +8903,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ONTO:2026-08-03",
+      "signal_id": "MTR-LM2-v2.0:ONTO:2026-08-03",
       "reference_id": "A+109",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -8985,7 +8983,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SKY:2019-01-10",
+      "signal_id": "MTR-Weekly-Cross-v2.0:SKY:2019-01-10",
       "reference_id": "A001",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -9065,7 +9063,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:VNDA:2019-01-10",
+      "signal_id": "MTR-Weekly-Cross-v2.0:VNDA:2019-01-10",
       "reference_id": "A002",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -9145,7 +9143,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AXON:2019-01-30",
+      "signal_id": "MTR-Weekly-Cross-v2.0:AXON:2019-01-30",
       "reference_id": "A003",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -9225,7 +9223,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ARWR:2019-02-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:ARWR:2019-02-04",
       "reference_id": "A004",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -9305,7 +9303,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TCMD:2019-02-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:TCMD:2019-02-04",
       "reference_id": "A005",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -9385,7 +9383,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MDB:2019-04-01",
+      "signal_id": "MTR-LM2-v2.0:MDB:2019-04-01",
       "reference_id": "A006",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -9465,7 +9463,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NTRA:2019-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:NTRA:2019-04-02",
       "reference_id": "A007",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -9545,7 +9543,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TBCH:2019-04-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:TBCH:2019-04-05",
       "reference_id": "A008",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -9625,7 +9623,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:FRPT:2019-04-09",
+      "signal_id": "MTR-Weekly-Cross-v2.0:FRPT:2019-04-09",
       "reference_id": "A009",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -9705,7 +9703,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MDB:2019-04-30",
+      "signal_id": "MTR-Weekly-Cross-v2.0:MDB:2019-04-30",
       "reference_id": "A010",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -9785,7 +9783,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:VKTX:2019-05-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:VKTX:2019-05-02",
       "reference_id": "A011",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -9865,7 +9863,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CDNA:2019-06-04",
+      "signal_id": "MTR-LM2-v2.0:CDNA:2019-06-04",
       "reference_id": "A012",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -9945,7 +9943,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SBGI:2019-06-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:SBGI:2019-06-04",
       "reference_id": "A013",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -10025,7 +10023,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ROKU:2019-06-18",
+      "signal_id": "MTR-Weekly-Cross-v2.0:ROKU:2019-06-18",
       "reference_id": "A014",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -10101,11 +10099,11 @@
       },
       "cooldown_sessions": 10,
       "actionable": false,
-      "suppressed_by_cooldown": "MTR-Multitemporal-v2.0:ROKU:2019-06-04",
+      "suppressed_by_cooldown": "MTR-Swing-Retest-v2.0:ROKU:2019-06-04",
       "cooldown_gap_sessions": 10
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:QURE:2019-07-01",
+      "signal_id": "MTR-LM2-v2.0:QURE:2019-07-01",
       "reference_id": "A015",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -10185,7 +10183,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TTD:2019-07-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:TTD:2019-07-02",
       "reference_id": "A016",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -10265,7 +10263,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AU:2019-07-09",
+      "signal_id": "MTR-Weekly-Cross-v2.0:AU:2019-07-09",
       "reference_id": "A017",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -10345,7 +10343,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:VCYT:2019-08-20",
+      "signal_id": "MTR-Weekly-Cross-v2.0:VCYT:2019-08-20",
       "reference_id": "A018",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -10425,7 +10423,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AGI:2019-09-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:AGI:2019-09-04",
       "reference_id": "A019",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -10525,7 +10523,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AU:2019-09-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:AU:2019-09-04",
       "reference_id": "A020",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -10605,7 +10603,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MDB:2019-10-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:MDB:2019-10-02",
       "reference_id": "A021",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -10685,7 +10683,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:APPS:2019-10-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:APPS:2019-10-04",
       "reference_id": "A022",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -10765,7 +10763,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:B:2019-10-04",
+      "signal_id": "MTR-Weekly-Cross-v2.0:B:2019-10-04",
       "reference_id": "A023",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -10845,7 +10843,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SNAP:2019-11-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:SNAP:2019-11-04",
       "reference_id": "A024",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -10925,7 +10923,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ENPH:2020-03-02",
+      "signal_id": "MTR-LM2-v2.0:ENPH:2020-03-02",
       "reference_id": "A025",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11005,7 +11003,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TSLA:2020-03-06",
+      "signal_id": "MTR-Swing-Retest-v2.0:TSLA:2020-03-06",
       "reference_id": "A026",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11085,7 +11083,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:RPAY:2020-04-15",
+      "signal_id": "MTR-Weekly-Cross-v2.0:RPAY:2020-04-15",
       "reference_id": "A027",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11165,7 +11163,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NTRA:2020-05-15",
+      "signal_id": "MTR-Weekly-Cross-v2.0:NTRA:2020-05-15",
       "reference_id": "A028",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11245,7 +11243,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TGTX:2020-06-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:TGTX:2020-06-02",
       "reference_id": "A029",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11325,7 +11323,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:FVRR:2020-06-24",
+      "signal_id": "MTR-Weekly-Cross-v2.0:FVRR:2020-06-24",
       "reference_id": "A030",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11405,7 +11403,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MRNA:2020-06-30",
+      "signal_id": "MTR-Weekly-Cross-v2.0:MRNA:2020-06-30",
       "reference_id": "A031",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11485,7 +11483,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ALT:2020-08-03",
+      "signal_id": "MTR-LM2-v2.0:ALT:2020-08-03",
       "reference_id": "A032",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11565,7 +11563,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ARCT:2020-08-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:ARCT:2020-08-04",
       "reference_id": "A033",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11665,7 +11663,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MRNA:2020-08-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:MRNA:2020-08-04",
       "reference_id": "A034",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11745,7 +11743,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:BE:2020-09-01",
+      "signal_id": "MTR-LM2-v2.0:BE:2020-09-01",
       "reference_id": "A035",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11825,7 +11823,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:BE:2020-09-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:BE:2020-09-02",
       "reference_id": "A036",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11901,11 +11899,11 @@
       },
       "cooldown_sessions": 10,
       "actionable": false,
-      "suppressed_by_cooldown": "MTR-Multitemporal-v2.0:BE:2020-09-01",
+      "suppressed_by_cooldown": "MTR-LM2-v2.0:BE:2020-09-01",
       "cooldown_gap_sessions": 1
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TRUP:2020-09-02",
+      "signal_id": "MTR-LM2-v2.0:TRUP:2020-09-02",
       "reference_id": "A037",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -11985,7 +11983,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:OVID:2020-09-09",
+      "signal_id": "MTR-Weekly-Cross-v2.0:OVID:2020-09-09",
       "reference_id": "A038",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -12065,7 +12063,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:FLGT:2020-09-29",
+      "signal_id": "MTR-Weekly-Cross-v2.0:FLGT:2020-09-29",
       "reference_id": "A039",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -12145,7 +12143,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SWBI:2020-10-01",
+      "signal_id": "MTR-LM2-v2.0:SWBI:2020-10-01",
       "reference_id": "A040",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -12225,7 +12223,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TGTX:2020-10-01",
+      "signal_id": "MTR-LM2-v2.0:TGTX:2020-10-01",
       "reference_id": "A041",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -12305,7 +12303,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NVAX:2020-10-07",
+      "signal_id": "MTR-Swing-Retest-v2.0:NVAX:2020-10-07",
       "reference_id": "A042",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -12385,7 +12383,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AGNT:2020-11-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:AGNT:2020-11-03",
       "reference_id": "A043",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -12465,7 +12463,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NVAX:2020-11-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:NVAX:2020-11-03",
       "reference_id": "A044",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -12545,7 +12543,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CSIQ:2020-11-17",
+      "signal_id": "MTR-Weekly-Cross-v2.0:CSIQ:2020-11-17",
       "reference_id": "A045",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -12625,7 +12623,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DNLI:2020-12-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:DNLI:2020-12-02",
       "reference_id": "A046",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -12705,7 +12703,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:RIOT:2020-12-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:RIOT:2020-12-02",
       "reference_id": "A047",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -12785,7 +12783,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:VNET:2020-12-08",
+      "signal_id": "MTR-Weekly-Cross-v2.0:VNET:2020-12-08",
       "reference_id": "A048",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -12865,7 +12863,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ARCT:2021-01-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:ARCT:2021-01-05",
       "reference_id": "A049",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -12945,7 +12943,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:FCEL:2021-01-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:FCEL:2021-01-05",
       "reference_id": "A050",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -13025,7 +13023,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CLNE:2021-02-01",
+      "signal_id": "MTR-LM2-v2.0:CLNE:2021-02-01",
       "reference_id": "A051",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -13105,7 +13103,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NIU:2021-02-01",
+      "signal_id": "MTR-LM2-v2.0:NIU:2021-02-01",
       "reference_id": "A052",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -13185,7 +13183,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:PLUG:2021-02-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:PLUG:2021-02-02",
       "reference_id": "A053",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -13265,7 +13263,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ENPH:2021-02-04",
+      "signal_id": "MTR-LM2-v2.0:ENPH:2021-02-04",
       "reference_id": "A054",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -13345,7 +13343,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:RIOT:2021-02-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:RIOT:2021-02-04",
       "reference_id": "A055",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -13421,11 +13419,11 @@
       },
       "cooldown_sessions": 10,
       "actionable": false,
-      "suppressed_by_cooldown": "MTR-Multitemporal-v2.0:RIOT:2021-02-01",
+      "suppressed_by_cooldown": "MTR-LM2-v2.0:RIOT:2021-02-01",
       "cooldown_gap_sessions": 3
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DFTX:2021-03-01",
+      "signal_id": "MTR-LM2-v2.0:DFTX:2021-03-01",
       "reference_id": "A056",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -13505,7 +13503,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MSTR:2021-03-30",
+      "signal_id": "MTR-Weekly-Cross-v2.0:MSTR:2021-03-30",
       "reference_id": "A057",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -13585,7 +13583,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CWH:2021-04-06",
+      "signal_id": "MTR-Weekly-Cross-v2.0:CWH:2021-04-06",
       "reference_id": "A058",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -13665,7 +13663,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:GOGO:2021-04-27",
+      "signal_id": "MTR-Weekly-Cross-v2.0:GOGO:2021-04-27",
       "reference_id": "A059",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -13745,7 +13743,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:GOGO:2021-05-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:GOGO:2021-05-04",
       "reference_id": "A060",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -13841,11 +13839,11 @@
       },
       "cooldown_sessions": 10,
       "actionable": false,
-      "suppressed_by_cooldown": "MTR-Multitemporal-v2.0:GOGO:2021-04-27",
+      "suppressed_by_cooldown": "MTR-Weekly-Cross-v2.0:GOGO:2021-04-27",
       "cooldown_gap_sessions": 5
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SIG:2021-05-04",
+      "signal_id": "MTR-LM2-v2.0:SIG:2021-05-04",
       "reference_id": "A061",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -13925,7 +13923,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:FCEL:2021-06-01",
+      "signal_id": "MTR-LM2-v2.0:FCEL:2021-06-01",
       "reference_id": "A062",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -14005,7 +14003,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AGNT:2021-06-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:AGNT:2021-06-02",
       "reference_id": "A063",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -14085,7 +14083,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CLSK:2021-06-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:CLSK:2021-06-02",
       "reference_id": "A064",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -14165,7 +14163,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NEGG:2021-06-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:NEGG:2021-06-02",
       "reference_id": "A065",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -14265,7 +14263,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:WULF:2021-07-08",
+      "signal_id": "MTR-Swing-Retest-v2.0:WULF:2021-07-08",
       "reference_id": "A066",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -14345,7 +14343,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:JKS:2021-08-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:JKS:2021-08-03",
       "reference_id": "A067",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -14425,7 +14423,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MRNA:2021-09-01",
+      "signal_id": "MTR-LM2-v2.0:MRNA:2021-09-01",
       "reference_id": "A068",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -14505,7 +14503,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:BNTX:2021-09-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:BNTX:2021-09-03",
       "reference_id": "A069",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -14585,7 +14583,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DDS:2021-09-03",
+      "signal_id": "MTR-LM2-v2.0:DDS:2021-09-03",
       "reference_id": "A070",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -14665,7 +14663,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:UUUU:2021-10-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:UUUU:2021-10-05",
       "reference_id": "A071",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -14765,7 +14763,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:GSAT:2021-11-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:GSAT:2021-11-02",
       "reference_id": "A072",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -14845,7 +14843,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NOG:2021-11-02",
+      "signal_id": "MTR-LM2-v2.0:NOG:2021-11-02",
       "reference_id": "A073",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -14925,7 +14923,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:UUUU:2021-11-02",
+      "signal_id": "MTR-LM2-v2.0:UUUU:2021-11-02",
       "reference_id": "A074",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15005,7 +15003,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:BTU:2021-12-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:BTU:2021-12-02",
       "reference_id": "A075",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15085,7 +15083,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:UUUU:2021-12-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:UUUU:2021-12-02",
       "reference_id": "A076",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15165,7 +15163,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MXL:2022-03-10",
+      "signal_id": "MTR-Weekly-Cross-v2.0:MXL:2022-03-10",
       "reference_id": "A077",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15245,7 +15243,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AA:2022-04-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:AA:2022-04-04",
       "reference_id": "A078",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15325,7 +15323,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:GTE:2022-04-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:GTE:2022-04-04",
       "reference_id": "A079",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15405,7 +15403,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AMC:2022-05-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:AMC:2022-05-04",
       "reference_id": "A080",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15485,7 +15483,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NEXT:2022-05-04",
+      "signal_id": "MTR-LM2-v2.0:NEXT:2022-05-04",
       "reference_id": "A081",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15565,7 +15563,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:PANW:2022-06-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:PANW:2022-06-02",
       "reference_id": "A082",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15665,7 +15663,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:IRTC:2022-06-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:IRTC:2022-06-03",
       "reference_id": "A083",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15745,7 +15743,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:LNTH:2022-06-03",
+      "signal_id": "MTR-LM2-v2.0:LNTH:2022-06-03",
       "reference_id": "A084",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15825,7 +15823,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:PECO:2022-07-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:PECO:2022-07-05",
       "reference_id": "A085",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15905,7 +15903,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:KOS:2022-08-01",
+      "signal_id": "MTR-LM2-v2.0:KOS:2022-08-01",
       "reference_id": "A086",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -15985,7 +15983,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:PTEN:2022-08-01",
+      "signal_id": "MTR-LM2-v2.0:PTEN:2022-08-01",
       "reference_id": "A087",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -16065,7 +16063,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:LQDA:2022-08-02",
+      "signal_id": "MTR-LM2-v2.0:LQDA:2022-08-02",
       "reference_id": "A088",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -16145,7 +16143,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:EQT:2022-08-10",
+      "signal_id": "MTR-Weekly-Cross-v2.0:EQT:2022-08-10",
       "reference_id": "A089",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -16225,7 +16223,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SM:2022-08-10",
+      "signal_id": "MTR-Weekly-Cross-v2.0:SM:2022-08-10",
       "reference_id": "A090",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -16305,7 +16303,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:LNTH:2022-09-01",
+      "signal_id": "MTR-LM2-v2.0:LNTH:2022-09-01",
       "reference_id": "A091",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -16385,7 +16383,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TMDX:2022-09-29",
+      "signal_id": "MTR-Weekly-Cross-v2.0:TMDX:2022-09-29",
       "reference_id": "A092",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -16465,7 +16463,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:EGY:2022-11-08",
+      "signal_id": "MTR-Weekly-Cross-v2.0:EGY:2022-11-08",
       "reference_id": "A093",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -16545,7 +16543,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:APA:2022-12-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:APA:2022-12-02",
       "reference_id": "A094",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -16625,7 +16623,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MOD:2022-12-02",
+      "signal_id": "MTR-LM2-v2.0:MOD:2022-12-02",
       "reference_id": "A095",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -16705,7 +16703,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AMR:2023-02-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:AMR:2023-02-02",
       "reference_id": "A096",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -16785,7 +16783,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CRK:2023-03-01",
+      "signal_id": "MTR-LM2-v2.0:CRK:2023-03-01",
       "reference_id": "A097",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -16865,7 +16863,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:WFRD:2023-03-01",
+      "signal_id": "MTR-LM2-v2.0:WFRD:2023-03-01",
       "reference_id": "A098",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -16945,7 +16943,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:FLNC:2023-03-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:FLNC:2023-03-02",
       "reference_id": "A099",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17025,7 +17023,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ROIV:2023-04-03",
+      "signal_id": "MTR-LM2-v2.0:ROIV:2023-04-03",
       "reference_id": "A100",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17105,7 +17103,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:BBIO:2023-06-01",
+      "signal_id": "MTR-LM2-v2.0:BBIO:2023-06-01",
       "reference_id": "A101",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17185,7 +17183,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:PACB:2023-06-01",
+      "signal_id": "MTR-LM2-v2.0:PACB:2023-06-01",
       "reference_id": "A102",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17265,7 +17263,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:BBIO:2023-06-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:BBIO:2023-06-02",
       "reference_id": "A103",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17341,11 +17339,11 @@
       },
       "cooldown_sessions": 10,
       "actionable": false,
-      "suppressed_by_cooldown": "MTR-Multitemporal-v2.0:BBIO:2023-06-01",
+      "suppressed_by_cooldown": "MTR-LM2-v2.0:BBIO:2023-06-01",
       "cooldown_gap_sessions": 1
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AMLX:2023-06-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:AMLX:2023-06-05",
       "reference_id": "A104",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17425,7 +17423,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:VRT:2023-06-27",
+      "signal_id": "MTR-Weekly-Cross-v2.0:VRT:2023-06-27",
       "reference_id": "A105",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17505,7 +17503,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:FDMT:2023-07-06",
+      "signal_id": "MTR-Swing-Retest-v2.0:FDMT:2023-07-06",
       "reference_id": "A106",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17585,7 +17583,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NVTS:2023-07-11",
+      "signal_id": "MTR-Weekly-Cross-v2.0:NVTS:2023-07-11",
       "reference_id": "A107",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17665,7 +17663,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:HLX:2023-07-25",
+      "signal_id": "MTR-Weekly-Cross-v2.0:HLX:2023-07-25",
       "reference_id": "A108",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17745,7 +17743,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:GENI:2023-08-01",
+      "signal_id": "MTR-LM2-v2.0:GENI:2023-08-01",
       "reference_id": "A109",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17825,7 +17823,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:IMVT:2023-08-01",
+      "signal_id": "MTR-LM2-v2.0:IMVT:2023-08-01",
       "reference_id": "A110",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17905,7 +17903,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:POWL:2023-08-15",
+      "signal_id": "MTR-Weekly-Cross-v2.0:POWL:2023-08-15",
       "reference_id": "A111",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -17985,7 +17983,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:FSLY:2023-09-01",
+      "signal_id": "MTR-LM2-v2.0:FSLY:2023-09-01",
       "reference_id": "A112",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -18065,7 +18063,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:IONQ:2023-09-01",
+      "signal_id": "MTR-LM2-v2.0:IONQ:2023-09-01",
       "reference_id": "A113",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -18145,7 +18143,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:FSLY:2023-09-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:FSLY:2023-09-05",
       "reference_id": "A114",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -18221,11 +18219,11 @@
       },
       "cooldown_sessions": 10,
       "actionable": false,
-      "suppressed_by_cooldown": "MTR-Multitemporal-v2.0:FSLY:2023-09-01",
+      "suppressed_by_cooldown": "MTR-LM2-v2.0:FSLY:2023-09-01",
       "cooldown_gap_sessions": 1
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:RIOT:2023-09-07",
+      "signal_id": "MTR-Swing-Retest-v2.0:RIOT:2023-09-07",
       "reference_id": "A115",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -18305,7 +18303,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:IDYA:2023-10-10",
+      "signal_id": "MTR-Weekly-Cross-v2.0:IDYA:2023-10-10",
       "reference_id": "A116",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -18385,7 +18383,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ACHR:2023-12-07",
+      "signal_id": "MTR-Swing-Retest-v2.0:ACHR:2023-12-07",
       "reference_id": "A117",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -18465,7 +18463,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:EH:2023-12-12",
+      "signal_id": "MTR-Weekly-Cross-v2.0:EH:2023-12-12",
       "reference_id": "A118",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -18545,7 +18543,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ARDX:2024-02-01",
+      "signal_id": "MTR-LM2-v2.0:ARDX:2024-02-01",
       "reference_id": "A119",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -18625,7 +18623,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:GCT:2024-02-01",
+      "signal_id": "MTR-LM2-v2.0:GCT:2024-02-01",
       "reference_id": "A120",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -18705,7 +18703,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MARA:2024-02-01",
+      "signal_id": "MTR-LM2-v2.0:MARA:2024-02-01",
       "reference_id": "A121",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -18785,7 +18783,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:BHVN:2024-02-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:BHVN:2024-02-02",
       "reference_id": "A122",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -18865,7 +18863,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:COIN:2024-02-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:COIN:2024-02-02",
       "reference_id": "A123",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -18945,7 +18943,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:IRON:2024-02-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:IRON:2024-02-02",
       "reference_id": "A124",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -19025,7 +19023,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MOD:2024-02-23",
+      "signal_id": "MTR-Weekly-Cross-v2.0:MOD:2024-02-23",
       "reference_id": "A125",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -19105,7 +19103,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AFRM:2024-03-01",
+      "signal_id": "MTR-LM2-v2.0:AFRM:2024-03-01",
       "reference_id": "A126",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -19185,7 +19183,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:APP:2024-04-01",
+      "signal_id": "MTR-LM2-v2.0:APP:2024-04-01",
       "reference_id": "A127",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -19265,7 +19263,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DELL:2024-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:DELL:2024-04-02",
       "reference_id": "A128",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -19345,7 +19343,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ROOT:2024-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:ROOT:2024-04-02",
       "reference_id": "A129",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -19425,7 +19423,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:OUST:2024-05-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:OUST:2024-05-02",
       "reference_id": "A130",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -19525,7 +19523,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CADL:2024-05-07",
+      "signal_id": "MTR-Weekly-Cross-v2.0:CADL:2024-05-07",
       "reference_id": "A131",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -19605,7 +19603,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MOD:2024-05-14",
+      "signal_id": "MTR-Weekly-Cross-v2.0:MOD:2024-05-14",
       "reference_id": "A132",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -19685,7 +19683,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CLS:2024-05-21",
+      "signal_id": "MTR-Weekly-Cross-v2.0:CLS:2024-05-21",
       "reference_id": "A133",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -19765,7 +19763,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CATX:2024-07-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:CATX:2024-07-03",
       "reference_id": "A134",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -19865,7 +19863,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:WGS:2024-09-06",
+      "signal_id": "MTR-Swing-Retest-v2.0:WGS:2024-09-06",
       "reference_id": "A135",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -19945,7 +19943,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:FIP:2024-09-10",
+      "signal_id": "MTR-Weekly-Cross-v2.0:FIP:2024-09-10",
       "reference_id": "A136",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -20025,7 +20023,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ARM:2024-09-24",
+      "signal_id": "MTR-Weekly-Cross-v2.0:ARM:2024-09-24",
       "reference_id": "A137",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -20105,7 +20103,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:HROW:2024-10-01",
+      "signal_id": "MTR-LM2-v2.0:HROW:2024-10-01",
       "reference_id": "A138",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -20205,7 +20203,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:ALT:2024-10-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:ALT:2024-10-02",
       "reference_id": "A139",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -20285,7 +20283,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:LUNR:2024-11-01",
+      "signal_id": "MTR-LM2-v2.0:LUNR:2024-11-01",
       "reference_id": "A140",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -20365,7 +20363,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DYN:2024-11-19",
+      "signal_id": "MTR-Weekly-Cross-v2.0:DYN:2024-11-19",
       "reference_id": "A141",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -20445,7 +20443,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DJT:2024-12-02",
+      "signal_id": "MTR-LM2-v2.0:DJT:2024-12-02",
       "reference_id": "A142",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -20525,7 +20523,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TPL:2024-12-26",
+      "signal_id": "MTR-Weekly-Cross-v2.0:TPL:2024-12-26",
       "reference_id": "A143",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -20605,7 +20603,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CADL:2025-01-02",
+      "signal_id": "MTR-LM2-v2.0:CADL:2025-01-02",
       "reference_id": "A144",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -20685,7 +20683,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:APP:2025-01-03",
+      "signal_id": "MTR-Weekly-Cross-v2.0:APP:2025-01-03",
       "reference_id": "A145",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -20765,7 +20763,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:PPTA:2025-01-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:PPTA:2025-01-03",
       "reference_id": "A146",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -20865,7 +20863,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:EBS:2025-01-16",
+      "signal_id": "MTR-Weekly-Cross-v2.0:EBS:2025-01-16",
       "reference_id": "A147",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -20945,7 +20943,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:RUM:2025-02-03",
+      "signal_id": "MTR-LM2-v2.0:RUM:2025-02-03",
       "reference_id": "A148",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21025,7 +21023,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CVNA:2025-02-11",
+      "signal_id": "MTR-Weekly-Cross-v2.0:CVNA:2025-02-11",
       "reference_id": "A149",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21105,7 +21103,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:LTBR:2025-03-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:LTBR:2025-03-04",
       "reference_id": "A150",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21185,7 +21183,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:COMP:2025-03-18",
+      "signal_id": "MTR-Weekly-Cross-v2.0:COMP:2025-03-18",
       "reference_id": "A151",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21265,7 +21263,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:APP:2025-04-29",
+      "signal_id": "MTR-Weekly-Cross-v2.0:APP:2025-04-29",
       "reference_id": "A152",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21345,7 +21343,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:EOSE:2025-04-29",
+      "signal_id": "MTR-Weekly-Cross-v2.0:EOSE:2025-04-29",
       "reference_id": "A153",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21425,7 +21423,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CORZ:2025-05-06",
+      "signal_id": "MTR-Weekly-Cross-v2.0:CORZ:2025-05-06",
       "reference_id": "A154",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21505,7 +21503,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CVNA:2025-05-06",
+      "signal_id": "MTR-Weekly-Cross-v2.0:CVNA:2025-05-06",
       "reference_id": "A155",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21585,7 +21583,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:GDS:2025-05-15",
+      "signal_id": "MTR-Weekly-Cross-v2.0:GDS:2025-05-15",
       "reference_id": "A156",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21665,7 +21663,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:QBTS:2025-06-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:QBTS:2025-06-03",
       "reference_id": "A157",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21745,7 +21743,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:APPS:2025-07-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:APPS:2025-07-03",
       "reference_id": "A158",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21825,7 +21823,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:GRRR:2025-07-07",
+      "signal_id": "MTR-Swing-Retest-v2.0:GRRR:2025-07-07",
       "reference_id": "A159",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21905,7 +21903,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MP:2025-08-01",
+      "signal_id": "MTR-LM2-v2.0:MP:2025-08-01",
       "reference_id": "A160",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -21985,7 +21983,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:QUBT:2025-08-01",
+      "signal_id": "MTR-LM2-v2.0:QUBT:2025-08-01",
       "reference_id": "A161",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -22065,7 +22063,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:LTBR:2025-08-04",
+      "signal_id": "MTR-LM2-v2.0:LTBR:2025-08-04",
       "reference_id": "A162",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -22145,7 +22143,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:APP:2025-08-12",
+      "signal_id": "MTR-Weekly-Cross-v2.0:APP:2025-08-12",
       "reference_id": "A163",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -22225,7 +22223,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:RDDT:2025-08-26",
+      "signal_id": "MTR-Weekly-Cross-v2.0:RDDT:2025-08-26",
       "reference_id": "A164",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -22305,7 +22303,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MP:2025-08-27",
+      "signal_id": "MTR-Weekly-Cross-v2.0:MP:2025-08-27",
       "reference_id": "A165",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -22385,7 +22383,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:RDDT:2025-09-04",
+      "signal_id": "MTR-LM2-v2.0:RDDT:2025-09-04",
       "reference_id": "A166",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -22461,11 +22459,11 @@
       },
       "cooldown_sessions": 10,
       "actionable": false,
-      "suppressed_by_cooldown": "MTR-Multitemporal-v2.0:RDDT:2025-08-26",
+      "suppressed_by_cooldown": "MTR-Weekly-Cross-v2.0:RDDT:2025-08-26",
       "cooldown_gap_sessions": 6
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CLS:2025-10-01",
+      "signal_id": "MTR-LM2-v2.0:CLS:2025-10-01",
       "reference_id": "A167",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -22545,7 +22543,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:LASR:2025-12-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:LASR:2025-12-05",
       "reference_id": "A168",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -22625,7 +22623,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NKTR:2025-12-09",
+      "signal_id": "MTR-Weekly-Cross-v2.0:NKTR:2025-12-09",
       "reference_id": "A169",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -22705,7 +22703,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:GRAL:2026-01-02",
+      "signal_id": "MTR-LM2-v2.0:GRAL:2026-01-02",
       "reference_id": "A170",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -22785,7 +22783,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:PL:2026-01-02",
+      "signal_id": "MTR-LM2-v2.0:PL:2026-01-02",
       "reference_id": "A171",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -22865,7 +22863,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:BIOA:2026-02-02",
+      "signal_id": "MTR-LM2-v2.0:BIOA:2026-02-02",
       "reference_id": "A172",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -22945,7 +22943,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NVTS:2026-02-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:NVTS:2026-02-03",
       "reference_id": "A173",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23025,7 +23023,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TMC:2026-02-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:TMC:2026-02-03",
       "reference_id": "A174",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23105,7 +23103,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:BIOA:2026-02-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:BIOA:2026-02-04",
       "reference_id": "A175",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23181,11 +23179,11 @@
       },
       "cooldown_sessions": 10,
       "actionable": false,
-      "suppressed_by_cooldown": "MTR-Multitemporal-v2.0:BIOA:2026-02-02",
+      "suppressed_by_cooldown": "MTR-LM2-v2.0:BIOA:2026-02-02",
       "cooldown_gap_sessions": 2
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:GRAL:2026-03-24",
+      "signal_id": "MTR-Weekly-Cross-v2.0:GRAL:2026-03-24",
       "reference_id": "A176",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23265,7 +23263,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CDE:2026-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:CDE:2026-04-02",
       "reference_id": "A177",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23345,7 +23343,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NBIS:2026-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:NBIS:2026-04-02",
       "reference_id": "A178",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23425,7 +23423,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NVTS:2026-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:NVTS:2026-04-02",
       "reference_id": "A179",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23505,7 +23503,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:STOK:2026-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:STOK:2026-04-02",
       "reference_id": "A180",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23585,7 +23583,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TTMI:2026-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:TTMI:2026-04-02",
       "reference_id": "A181",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23665,7 +23663,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:DNTH:2026-04-07",
+      "signal_id": "MTR-Weekly-Cross-v2.0:DNTH:2026-04-07",
       "reference_id": "A182",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23745,7 +23743,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:HUT:2026-05-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:HUT:2026-05-04",
       "reference_id": "A183",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23825,7 +23823,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TYRA:2026-05-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:TYRA:2026-05-04",
       "reference_id": "A184",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23905,7 +23903,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CRVS:2026-05-12",
+      "signal_id": "MTR-Weekly-Cross-v2.0:CRVS:2026-05-12",
       "reference_id": "A185",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -23985,7 +23983,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:HUT:2026-06-04",
+      "signal_id": "MTR-LM2-v2.0:HUT:2026-06-04",
       "reference_id": "A186",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -24065,7 +24063,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AGX:2026-08-03",
+      "signal_id": "MTR-LM2-v2.0:AGX:2026-08-03",
       "reference_id": "A187",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -24145,7 +24143,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TER:2026-08-03",
+      "signal_id": "MTR-LM2-v2.0:TER:2026-08-03",
       "reference_id": "A188",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -24225,7 +24223,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MU:2026-08-04",
+      "signal_id": "MTR-LM2-v2.0:MU:2026-08-04",
       "reference_id": "A189",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -24305,7 +24303,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:RLAY:2026-08-04",
+      "signal_id": "MTR-LM2-v2.0:RLAY:2026-08-04",
       "reference_id": "A190",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -24385,7 +24383,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:PRAX:2026-08-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:PRAX:2026-08-05",
       "reference_id": "A191",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -24505,7 +24503,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MRVL:2026-08-26",
+      "signal_id": "MTR-Weekly-Cross-v2.0:MRVL:2026-08-26",
       "method_version": "MTR-Multitemporal-v2.0",
       "grade": "A",
       "ticker": "MRVL",
@@ -24607,7 +24605,7 @@
       "reference_complete": false
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CYTK:2020-04-06",
+      "signal_id": "MTR-Swing-Retest-v2.0:CYTK:2020-04-06",
       "reference_id": "B001",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -24687,7 +24685,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:TSLA:2020-05-06",
+      "signal_id": "MTR-Swing-Retest-v2.0:TSLA:2020-05-06",
       "reference_id": "B002",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -24767,7 +24765,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NIU:2020-08-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:NIU:2020-08-04",
       "reference_id": "B003",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -24847,7 +24845,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CLF:2021-07-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:CLF:2021-07-02",
       "reference_id": "B004",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -24927,7 +24925,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CYH:2021-07-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:CYH:2021-07-02",
       "reference_id": "B005",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25007,7 +25005,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:NOV:2022-12-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:NOV:2022-12-02",
       "reference_id": "B006",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25087,7 +25085,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:IMVT:2023-02-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:IMVT:2023-02-02",
       "reference_id": "B007",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25167,7 +25165,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:VRDN:2023-02-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:VRDN:2023-02-02",
       "reference_id": "B008",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25247,7 +25245,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:FDMT:2023-06-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:FDMT:2023-06-02",
       "reference_id": "B009",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25327,7 +25325,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AMSC:2024-02-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:AMSC:2024-02-02",
       "reference_id": "B010",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25407,7 +25405,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AAOI:2024-05-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:AAOI:2024-05-02",
       "reference_id": "B011",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25487,7 +25485,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SMCI:2024-07-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:SMCI:2024-07-03",
       "reference_id": "B012",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25567,7 +25565,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CDE:2024-10-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:CDE:2024-10-02",
       "reference_id": "B013",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25647,7 +25645,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:LUMN:2025-01-08",
+      "signal_id": "MTR-Swing-Retest-v2.0:LUMN:2025-01-08",
       "reference_id": "B014",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25727,7 +25725,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:CRMD:2025-02-05",
+      "signal_id": "MTR-Swing-Retest-v2.0:CRMD:2025-02-05",
       "reference_id": "B015",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25807,7 +25805,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AGX:2025-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:AGX:2025-04-02",
       "reference_id": "B016",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25887,7 +25885,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:QUBT:2025-05-06",
+      "signal_id": "MTR-Swing-Retest-v2.0:QUBT:2025-05-06",
       "reference_id": "B017",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -25967,7 +25965,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:SRRK:2025-07-07",
+      "signal_id": "MTR-Swing-Retest-v2.0:SRRK:2025-07-07",
       "reference_id": "B018",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -26047,7 +26045,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AMLX:2025-08-06",
+      "signal_id": "MTR-Swing-Retest-v2.0:AMLX:2025-08-06",
       "reference_id": "B019",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -26127,7 +26125,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:VSTM:2025-10-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:VSTM:2025-10-02",
       "reference_id": "B020",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -26207,7 +26205,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AEVA:2026-02-03",
+      "signal_id": "MTR-Swing-Retest-v2.0:AEVA:2026-02-03",
       "reference_id": "B021",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -26287,7 +26285,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:AG:2026-04-02",
+      "signal_id": "MTR-Swing-Retest-v2.0:AG:2026-04-02",
       "reference_id": "B022",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
@@ -26367,7 +26365,7 @@
       "cooldown_gap_sessions": null
     },
     {
-      "signal_id": "MTR-Multitemporal-v2.0:MXL:2026-06-04",
+      "signal_id": "MTR-Swing-Retest-v2.0:MXL:2026-06-04",
       "reference_id": "B023",
       "reference_complete": true,
       "method_version": "MTR-Multitemporal-v2.0",
