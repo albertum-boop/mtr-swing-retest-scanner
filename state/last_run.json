@@ -1,16 +1,17 @@
 {
   "status": "ok",
-  "generated_at": "2026-09-03T23:32:41+00:00",
-  "cutoff": "2026-09-03",
+  "generated_at": "2026-09-04T23:35:05+00:00",
+  "cutoff": "2026-09-04",
   "monthly_formation_date": "2026-08-31",
   "lm2_formation_date": "2026-08-28",
   "weekly_formation_dates": [
-    "2026-08-28"
+    "2026-08-28",
+    "2026-09-04"
   ],
   "signals": 4,
   "source_counts": {
     "monthly_candidates": 36,
-    "weekly_crossing_candidates": 12,
+    "weekly_crossing_candidates": 19,
     "lm2_candidates": 37,
     "monthly_signals": 4,
     "lm2_signals": 0,
@@ -18,17 +19,9 @@
     "confluence_signals": 0,
     "cooldown_suppressed": 0
   },
-  "pending_alerts": 3,
+  "pending_alerts": 0,
   "alert_result": {
-    "status": "not_configured",
-    "sent": 0,
-    "missing": [
-      "SMTP_HOST",
-      "SMTP_PORT",
-      "SMTP_USERNAME",
-      "SMTP_PASSWORD",
-      "ALERT_FROM",
-      "ALERT_TO"
-    ]
+    "status": "nothing_to_send",
+    "sent": 0
   }
 }

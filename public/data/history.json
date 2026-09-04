@@ -1,6 +1,6 @@
 {
   "method_version": "MTR-Multitemporal-v2.0",
-  "updated_at": "2026-09-03T23:32:41+00:00",
+  "updated_at": "2026-09-04T23:35:05+00:00",
   "signals": [
     {
       "signal_id": "MTR-Weekly-Cross-v2.0:QNST:2019-01-17",
@@ -8981,87 +8981,6 @@
       "actionable": true,
       "suppressed_by_cooldown": null,
       "cooldown_gap_sessions": null
-    },
-    {
-      "signal_id": "MTR-Swing-Retest-v2.0:TXG:2026-09-03",
-      "method_version": "MTR-Multitemporal-v2.0",
-      "grade": "A+",
-      "ticker": "TXG",
-      "formation_date": "2026-08-31",
-      "event_date": "2026-09-03",
-      "event_day": 3,
-      "formation_close": 62.45000076293945,
-      "atr_abs20": 3.9598505020141603,
-      "adv20": 190554824.35544968,
-      "universe_momentum_percentile": 0.9771205357142857,
-      "swing_score": 0.8166666666666667,
-      "swing_rank_percentile": 0.9555555555555556,
-      "momentum_percentile_d10": 0.7722222222222223,
-      "atr_percentile_d10": 0.7,
-      "return_volume_percentile_d10": 0.9777777777777777,
-      "sma200_slope_percentile_d10": 0.9944444444444445,
-      "expansion_peak_atr": 0.26263640887411077,
-      "pullback_from_peak_atr": -0.06818450788138021,
-      "close_vs_level_atr": 0.19445190099273055,
-      "close_location": 0.8107350294723004,
-      "event_volume_ratio": 0.6688021499517461,
-      "event_volume_change": -0.33119785004825386,
-      "event_body_atr": 0.25506067355743245,
-      "event_body_return": 0.016235366518154493,
-      "event_open": 62.209999084472656,
-      "event_high": 63.88999938964844,
-      "event_low": 60.349998474121094,
-      "event_close": 63.220001220703125,
-      "entry_rule": "Apertura ajustada de la siguiente sesión",
-      "entry_date": null,
-      "entry_open": null,
-      "r5": null,
-      "mfe5": null,
-      "mae5": null,
-      "r10": null,
-      "mfe10": null,
-      "mae10": null,
-      "source": "monthly",
-      "signal_sources": [
-        "monthly"
-      ],
-      "is_confluence": false,
-      "monthly_grade": "A+",
-      "lm2_grade": null,
-      "weekly_grade": null,
-      "source_grades": {
-        "monthly": "A+"
-      },
-      "formation_dates": {
-        "monthly": "2026-08-31"
-      },
-      "source_method_versions": {
-        "monthly": "MTR-Swing-Retest-v2.0"
-      },
-      "source_signal_ids": {
-        "monthly": "MTR-Swing-Retest-v2.0:TXG:2026-09-03"
-      },
-      "source_details": {
-        "monthly": {
-          "formation_date": "2026-08-31",
-          "formation_close": 62.45000076293945,
-          "atr_abs20": 3.9598505020141603,
-          "adv20": 190554824.35544968,
-          "universe_momentum_percentile": 0.9771205357142857,
-          "swing_score": 0.8166666666666667,
-          "swing_rank_percentile": 0.9555555555555556,
-          "momentum_percentile_d10": 0.7722222222222223,
-          "atr_percentile_d10": 0.7,
-          "return_volume_percentile_d10": 0.9777777777777777,
-          "sma200_slope_percentile_d10": 0.9944444444444445,
-          "close_vs_level_atr": 0.19445190099273055,
-          "close_location": 0.8107350294723004,
-          "event_volume_ratio": 0.6688021499517461
-        }
-      },
-      "cooldown_sessions": 10,
-      "suppressed_by_cooldown": null,
-      "actionable": true
     },
     {
       "signal_id": "MTR-Weekly-Cross-v2.0:SKY:2019-01-10",
@@ -24788,17 +24707,17 @@
       "pullback_from_peak_atr": -0.48979496622895907,
       "close_vs_level_atr": 0.5537377704390875,
       "close_location": 0.8207544259753186,
-      "event_volume_ratio": 0.42782602416078563,
-      "event_volume_change": -0.5721739758392144,
-      "event_body_atr": 0.18371384859634546,
-      "event_body_return": 0.01937826596246084,
-      "event_open": 146.0399932861328,
+      "event_volume_ratio": 0.4284676423979345,
+      "event_volume_change": -0.5715323576020654,
+      "event_body_atr": 0.1898800059586377,
+      "event_body_return": 0.02004171192009907,
+      "event_open": 145.94500732421875,
       "event_high": 150.1999969482422,
       "event_low": 142.77999877929688,
       "event_close": 148.8699951171875,
       "entry_rule": "Apertura ajustada de la siguiente sesión",
-      "entry_date": null,
-      "entry_open": null,
+      "entry_date": "2026-09-04",
+      "entry_open": 153.0,
       "r5": null,
       "mfe5": null,
       "mae5": null,
@@ -24840,7 +24759,7 @@
           "sma200_slope_percentile_d10": 0.9722222222222222,
           "close_vs_level_atr": 0.5537377704390875,
           "close_location": 0.8207544259753186,
-          "event_volume_ratio": 0.42782602416078563
+          "event_volume_ratio": 0.4284676423979345
         }
       },
       "cooldown_sessions": 10,
@@ -24869,8 +24788,8 @@
       "pullback_from_peak_atr": -0.35207697443579206,
       "close_vs_level_atr": 0.3129581396663278,
       "close_location": 0.8541671633725135,
-      "event_volume_ratio": 0.4824366335363102,
-      "event_volume_change": -0.5175633664636898,
+      "event_volume_ratio": 0.48242545669803083,
+      "event_volume_change": -0.5175745433019692,
       "event_body_atr": 0.11736023506369962,
       "event_body_return": 0.006319159593456414,
       "event_open": 18.989999771118164,
@@ -24878,8 +24797,8 @@
       "event_low": 18.700000762939453,
       "event_close": 19.110000610351562,
       "entry_rule": "Apertura ajustada de la siguiente sesión",
-      "entry_date": null,
-      "entry_open": null,
+      "entry_date": "2026-09-04",
+      "entry_open": 18.922300338745117,
       "r5": null,
       "mfe5": null,
       "mae5": null,
@@ -24921,7 +24840,88 @@
           "sma200_slope_percentile_d10": 0.6444444444444445,
           "close_vs_level_atr": 0.3129581396663278,
           "close_location": 0.8541671633725135,
-          "event_volume_ratio": 0.4824366335363102
+          "event_volume_ratio": 0.48242545669803083
+        }
+      },
+      "cooldown_sessions": 10,
+      "suppressed_by_cooldown": null,
+      "actionable": true
+    },
+    {
+      "signal_id": "MTR-Swing-Retest-v2.0:TXG:2026-09-03",
+      "method_version": "MTR-Multitemporal-v2.0",
+      "grade": "A",
+      "ticker": "TXG",
+      "formation_date": "2026-08-31",
+      "event_date": "2026-09-03",
+      "event_day": 3,
+      "formation_close": 62.45000076293945,
+      "atr_abs20": 3.9598505020141603,
+      "adv20": 190554824.35544968,
+      "universe_momentum_percentile": 0.9771205357142857,
+      "swing_score": 0.8166666666666667,
+      "swing_rank_percentile": 0.9555555555555556,
+      "momentum_percentile_d10": 0.7722222222222223,
+      "atr_percentile_d10": 0.7,
+      "return_volume_percentile_d10": 0.9777777777777777,
+      "sma200_slope_percentile_d10": 0.9944444444444445,
+      "expansion_peak_atr": 0.26263640887411077,
+      "pullback_from_peak_atr": -0.06818450788138021,
+      "close_vs_level_atr": 0.19445190099273055,
+      "close_location": 0.8107350294723004,
+      "event_volume_ratio": 0.6688430926181603,
+      "event_volume_change": -0.33115690738183967,
+      "event_body_atr": 0.21970595762125572,
+      "event_body_return": 0.013953532764610088,
+      "event_open": 62.349998474121094,
+      "event_high": 63.88999938964844,
+      "event_low": 60.349998474121094,
+      "event_close": 63.220001220703125,
+      "entry_rule": "Apertura ajustada de la siguiente sesión",
+      "entry_date": "2026-09-04",
+      "entry_open": 62.72999954223633,
+      "r5": null,
+      "mfe5": null,
+      "mae5": null,
+      "r10": null,
+      "mfe10": null,
+      "mae10": null,
+      "source": "monthly",
+      "signal_sources": [
+        "monthly"
+      ],
+      "is_confluence": false,
+      "monthly_grade": "A",
+      "lm2_grade": null,
+      "weekly_grade": null,
+      "source_grades": {
+        "monthly": "A"
+      },
+      "formation_dates": {
+        "monthly": "2026-08-31"
+      },
+      "source_method_versions": {
+        "monthly": "MTR-Swing-Retest-v2.0"
+      },
+      "source_signal_ids": {
+        "monthly": "MTR-Swing-Retest-v2.0:TXG:2026-09-03"
+      },
+      "source_details": {
+        "monthly": {
+          "formation_date": "2026-08-31",
+          "formation_close": 62.45000076293945,
+          "atr_abs20": 3.9598505020141603,
+          "adv20": 190554824.35544968,
+          "universe_momentum_percentile": 0.9771205357142857,
+          "swing_score": 0.8166666666666667,
+          "swing_rank_percentile": 0.9555555555555556,
+          "momentum_percentile_d10": 0.7722222222222223,
+          "atr_percentile_d10": 0.7,
+          "return_volume_percentile_d10": 0.9777777777777777,
+          "sma200_slope_percentile_d10": 0.9944444444444445,
+          "close_vs_level_atr": 0.19445190099273055,
+          "close_location": 0.8107350294723004,
+          "event_volume_ratio": 0.6688430926181603
         }
       },
       "cooldown_sessions": 10,
