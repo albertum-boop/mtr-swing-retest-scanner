@@ -150,6 +150,13 @@ La unión queda distribuida en 109 A+, 191 A y 23 B; tras cooldown quedan 107 A+
 se ordenan primero por calidad y, dentro de cada calidad, por fecha. Las referencias v1 se
 mantienen sin modificación como trazabilidad.
 
+La interfaz separa además las 22 confluencias accionables en las que el mismo ticker y la
+misma fecha de retest fueron detectados por dos o tres marcos. `public/data/metrics.json`
+publica el total y las cuatro combinaciones exactas —mensual+LM2, mensual+semanal,
+LM2+semanal y mensual+LM2+semanal— con N, desglose A+/A y medias de R5, MFE5, MAE5,
+R10, MFE10 y MAE10. Las combinaciones son disjuntas; el total no suma un mismo evento dos
+veces y excluye las señales suprimidas por cooldown.
+
 El perfil aislado LM2 que justificó el filtro es:
 
 | Grado LM2 | n | R5 | MFE5 | MAE5 | R10 | MFE10 | MAE10 |

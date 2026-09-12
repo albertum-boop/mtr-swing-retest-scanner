@@ -201,14 +201,66 @@ def _profiles(frame: pd.DataFrame, grade_column: str) -> list[dict[str, Any]]:
         result.append(
             {
                 "grade": grade,
-                "count": len(group),
-                **{
-                    metric: float(group[metric].mean()) if len(group) else None
-                    for metric in METRICS
-                },
+                **_metric_profile(group),
             }
         )
     return result
+
+
+def _metric_profile(frame: pd.DataFrame) -> dict[str, Any]:
+    return {
+        "count": len(frame),
+        **{
+            metric: float(frame[metric].mean()) if len(frame) else None
+            for metric in METRICS
+        },
+    }
+
+
+def _confluence_profiles(frame: pd.DataFrame) -> dict[str, Any]:
+    grouped = frame.copy()
+    grouped["_source_key"] = grouped["sources"].map(
+        lambda value: "+".join(_source_list(value))
+    )
+    confluence = grouped.loc[
+        grouped["_source_key"].map(lambda value: len(value.split("+")) >= 2)
+    ]
+
+    def with_grades(group: pd.DataFrame) -> dict[str, Any]:
+        return {
+            **_metric_profile(group),
+            "grade_counts": {
+                grade: int(group["master_grade"].eq(grade).sum())
+                for grade in ["A+", "A", "B"]
+            },
+            "grade_profiles": [
+                profile
+                for profile in _profiles(group, "master_grade")
+                if profile["count"]
+            ],
+        }
+
+    source_keys = sorted(
+        confluence["_source_key"].unique(),
+        key=lambda value: (
+            len(value.split("+")),
+            tuple(SOURCE_ORDER[source] for source in value.split("+")),
+        ),
+    )
+    return {
+        "definition": "Same ticker and retest event date detected by at least two sources",
+        "overall": with_grades(confluence),
+        "combinations": [
+            {
+                "source_key": source_key,
+                "sources": source_key.split("+"),
+                **with_grades(
+                    confluence.loc[confluence["_source_key"].eq(source_key)]
+                ),
+            }
+            for source_key in source_keys
+        ],
+    }
 
 
 def main() -> None:
@@ -282,6 +334,7 @@ def main() -> None:
             "cross_source_cooldown_sessions": 10,
             "outcome_definition": "Next-session adjusted open; exact 5/10-session R, MFE and MAE",
             "grade_profiles": _profiles(actionable, "master_grade"),
+            "confluence_profiles": _confluence_profiles(actionable),
             "source_grade_profiles": {
                 source_name: _profiles(group, "source_grade")
                 for source_name, group in source.groupby("source", sort=False)

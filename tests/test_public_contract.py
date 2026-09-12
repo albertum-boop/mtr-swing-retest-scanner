@@ -56,3 +56,29 @@ def test_public_history_separates_complete_reference_from_later_live_signals():
     assert [(row["ticker"], row["event_date"]) for row in later] == [
         ("MRVL", "2026-08-26")
     ]
+
+
+def test_public_metrics_distinguish_every_actionable_confluence_combination():
+    metrics = json.loads((ROOT / "public" / "data" / "metrics.json").read_text())
+    confluence = metrics["confluence_profiles"]
+
+    assert confluence["overall"]["count"] == 22
+    assert confluence["overall"]["grade_counts"] == {"A+": 12, "A": 10, "B": 0}
+    assert {
+        row["source_key"]: row["count"]
+        for row in confluence["combinations"]
+    } == {
+        "monthly+lm2": 7,
+        "monthly+weekly": 11,
+        "lm2+weekly": 2,
+        "monthly+lm2+weekly": 2,
+    }
+    assert all(
+        row["count"] == sum(row["grade_counts"].values())
+        for row in [confluence["overall"], *confluence["combinations"]]
+    )
+    assert all(
+        metric in row
+        for row in [confluence["overall"], *confluence["combinations"]]
+        for metric in ["r5", "mfe5", "mae5", "r10", "mfe10", "mae10"]
+    )

@@ -118,6 +118,24 @@
           <div id="grade-profile" class="profile-list"></div>
         </article>
       </section>
+
+      <section class="panel confluence-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Coincidencia exacta de marcos</p>
+            <h2>Resultados de las confluencias</h2>
+            <p class="muted">Mismo ticker y misma fecha de retest detectados simultáneamente por dos o tres formaciones activas.</p>
+          </div>
+          <div id="confluence-summary" class="confluence-summary"></div>
+        </div>
+        <div class="table-wrap">
+          <table class="confluence-table">
+            <thead><tr><th>Marcos</th><th>Grado</th><th>N</th><th>R5 medio</th><th>MFE5</th><th>MAE5</th><th>R10 medio</th><th>MFE10</th><th>MAE10</th></tr></thead>
+            <tbody id="confluence-profile"></tbody>
+          </table>
+        </div>
+        <p class="confluence-note">Solo eventos accionables después del cooldown. Las combinaciones exactas dividen el total sin duplicarlo. Con N=1, la “media” es el resultado de una única señal.</p>
+      </section>
     </main>
 
     <aside id="drawer" class="drawer" aria-hidden="true">

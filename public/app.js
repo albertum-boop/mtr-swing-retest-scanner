@@ -210,7 +210,7 @@ function renderProfile() {
   const profiles = state.metrics?.grade_profiles || [];
   document.querySelector("#grade-profile").innerHTML = profiles.map(row => `
     <div class="profile-row">
-      <span class="grade ${gradeClass(row.grade)}">${row.grade}</span>
+      <div class="profile-grade"><span class="grade ${gradeClass(row.grade)}">${row.grade}</span><small>N=${row.count ?? 0}</small></div>
       <div class="profile-metrics-grid">
         <div class="profile-metric"><span>R5 medio</span><strong>${fmtPct(row.r5)}</strong></div>
         <div class="profile-metric"><span>MFE5</span><strong>${fmtPct(row.mfe5)}</strong></div>
@@ -220,6 +220,51 @@ function renderProfile() {
         <div class="profile-metric"><span>MAE10</span><strong>${fmtPct(row.mae10)}</strong></div>
       </div>
     </div>`).join("");
+}
+
+function confluenceMetricCells(row) {
+  return `
+    <td class="${signClass(row.r5)}">${fmtPct(row.r5)}</td>
+    <td class="${signClass(row.mfe5)}">${fmtPct(row.mfe5)}</td>
+    <td class="${signClass(row.mae5)}">${fmtPct(row.mae5)}</td>
+    <td class="${signClass(row.r10)}">${fmtPct(row.r10)}</td>
+    <td class="${signClass(row.mfe10)}">${fmtPct(row.mfe10)}</td>
+    <td class="${signClass(row.mae10)}">${fmtPct(row.mae10)}</td>`;
+}
+
+function confluenceRows(label, profile, rowClass = "") {
+  const total = `<tr class="${rowClass}">
+    <td>${label}</td>
+    <td><span class="all-grades">Todas</span></td>
+    <td class="sample-size">${profile.count ?? 0}</td>
+    ${confluenceMetricCells(profile)}
+  </tr>`;
+  const grades = (profile.grade_profiles || []).map(row => `<tr class="confluence-grade-row ${rowClass}">
+    <td><span class="grade-indent">↳</span></td>
+    <td><span class="grade ${gradeClass(row.grade)}">${row.grade}</span></td>
+    <td class="sample-size ${row.count <= 2 ? "sample-small" : ""}">${row.count}</td>
+    ${confluenceMetricCells(row)}
+  </tr>`).join("");
+  return total + grades;
+}
+
+function renderConfluenceProfile() {
+  const profiles = state.metrics?.confluence_profiles;
+  const body = document.querySelector("#confluence-profile");
+  const summary = document.querySelector("#confluence-summary");
+  if (!profiles?.overall?.count) {
+    body.innerHTML = `<tr><td colspan="9" class="empty-table">No hay confluencias auditadas.</td></tr>`;
+    summary.textContent = "0 confluencias";
+    return;
+  }
+
+  const counts = profiles.overall.grade_counts || {};
+  summary.innerHTML = `<strong>${profiles.overall.count}</strong><span>confluencias accionables</span><small>${counts["A+"] ?? 0} A+ · ${counts.A ?? 0} A · ${counts.B ?? 0} B</small>`;
+  const overallLabel = `<span class="source-badge source-confluence">2+ marcos</span>`;
+  const exactRows = (profiles.combinations || []).map(group =>
+    confluenceRows(sourceBadge({ signal_sources: group.sources }), group, "confluence-combination")
+  ).join("");
+  body.innerHTML = confluenceRows(overallLabel, profiles.overall, "confluence-overall") + exactRows;
 }
 
 function detailItem(label, value, cls = "") {
@@ -399,6 +444,7 @@ async function init() {
   renderCurrent();
   renderHistory();
   renderProfile();
+  renderConfluenceProfile();
   bindEvents();
 }
 
