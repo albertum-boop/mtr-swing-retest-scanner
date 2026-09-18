@@ -1,16 +1,17 @@
 {
   "status": "ok",
-  "generated_at": "2026-09-17T23:32:32+00:00",
-  "cutoff": "2026-09-17",
+  "generated_at": "2026-09-18T23:36:18+00:00",
+  "cutoff": "2026-09-18",
   "monthly_formation_date": "2026-08-31",
   "lm2_formation_date": null,
   "weekly_formation_dates": [
-    "2026-09-11"
+    "2026-09-11",
+    "2026-09-18"
   ],
   "signals": 4,
   "source_counts": {
     "monthly_candidates": 36,
-    "weekly_crossing_candidates": 7,
+    "weekly_crossing_candidates": 18,
     "lm2_candidates": 0,
     "monthly_signals": 4,
     "lm2_signals": 0,
