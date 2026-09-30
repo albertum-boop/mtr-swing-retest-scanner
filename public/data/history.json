@@ -1,6 +1,6 @@
 {
   "method_version": "MTR-Multitemporal-v2.0",
-  "updated_at": "2026-09-29T02:37:35+00:00",
+  "updated_at": "2026-09-30T02:16:07+00:00",
   "signals": [
     {
       "signal_id": "MTR-Weekly-Cross-v2.0:QNST:2019-01-17",
@@ -24922,6 +24922,106 @@
           "close_vs_level_atr": 0.19445190099273055,
           "close_location": 0.8107350294723004,
           "event_volume_ratio": 0.6688430926181603
+        }
+      },
+      "cooldown_sessions": 10,
+      "suppressed_by_cooldown": null,
+      "actionable": true
+    },
+    {
+      "signal_id": "MTR-Weekly-Cross-v2.0:DMRA:2026-09-29",
+      "method_version": "MTR-Multitemporal-v2.0",
+      "grade": "A",
+      "ticker": "DMRA",
+      "formation_date": "2026-09-25",
+      "event_date": "2026-09-29",
+      "event_day": 2,
+      "formation_close": 20.65999984741211,
+      "atr_abs20": 1.9547500610351562,
+      "adv20": 19373898.00095558,
+      "universe_momentum_percentile": 0.9972375690607734,
+      "swing_score": 0.7071823204419888,
+      "swing_rank_percentile": 0.8397790055248618,
+      "momentum_percentile_d10": 0.9723756906077348,
+      "atr_percentile_d10": 0.9834254143646409,
+      "return_volume_percentile_d10": 0.16574585635359115,
+      "sma200_slope_percentile_d10": 0.055248618784530384,
+      "expansion_peak_atr": 0.4732058872890915,
+      "pullback_from_peak_atr": -0.4732058872890915,
+      "close_vs_level_atr": 0.0,
+      "close_location": 0.7575759327225963,
+      "event_volume_ratio": 0.4700622545254732,
+      "event_volume_change": -0.5299377454745269,
+      "event_body_atr": 0.005115860631583877,
+      "event_body_return": -0.00048380400797898293,
+      "event_open": 20.670000076293945,
+      "event_high": 20.81999969482422,
+      "event_low": 20.15999984741211,
+      "event_close": 20.65999984741211,
+      "entry_rule": "Apertura ajustada de la siguiente sesión",
+      "entry_date": null,
+      "entry_open": null,
+      "r5": null,
+      "mfe5": null,
+      "mae5": null,
+      "r10": null,
+      "mfe10": null,
+      "mae10": null,
+      "base_retest_grade": "A",
+      "weekly_grade": "A",
+      "weekly_quality_points": 2,
+      "weekly_quality_checks": {
+        "momentum": true,
+        "controlled_atr": false,
+        "swing_rank": false,
+        "retest_extension": true
+      },
+      "weekly_formation_volume_confirmation": true,
+      "formation_relative_volume5_20": 0.08588876608658191,
+      "source": "weekly",
+      "signal_sources": [
+        "weekly"
+      ],
+      "is_confluence": false,
+      "monthly_grade": null,
+      "lm2_grade": null,
+      "source_grades": {
+        "weekly": "A"
+      },
+      "formation_dates": {
+        "weekly": "2026-09-25"
+      },
+      "source_method_versions": {
+        "weekly": "MTR-Weekly-Cross-v2.0"
+      },
+      "source_signal_ids": {
+        "weekly": "MTR-Weekly-Cross-v2.0:DMRA:2026-09-29"
+      },
+      "source_details": {
+        "weekly": {
+          "formation_date": "2026-09-25",
+          "formation_close": 20.65999984741211,
+          "atr_abs20": 1.9547500610351562,
+          "adv20": 19373898.00095558,
+          "universe_momentum_percentile": 0.9972375690607734,
+          "swing_score": 0.7071823204419888,
+          "swing_rank_percentile": 0.8397790055248618,
+          "momentum_percentile_d10": 0.9723756906077348,
+          "atr_percentile_d10": 0.9834254143646409,
+          "return_volume_percentile_d10": 0.16574585635359115,
+          "sma200_slope_percentile_d10": 0.055248618784530384,
+          "formation_relative_volume5_20": 0.08588876608658191,
+          "weekly_quality_points": 2,
+          "weekly_quality_checks": {
+            "momentum": true,
+            "controlled_atr": false,
+            "swing_rank": false,
+            "retest_extension": true
+          },
+          "weekly_formation_volume_confirmation": true,
+          "close_vs_level_atr": 0.0,
+          "close_location": 0.7575759327225963,
+          "event_volume_ratio": 0.4700622545254732
         }
       },
       "cooldown_sessions": 10,
