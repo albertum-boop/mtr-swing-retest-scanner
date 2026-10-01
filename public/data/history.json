@@ -1,6 +1,6 @@
 {
   "method_version": "MTR-Multitemporal-v2.0",
-  "updated_at": "2026-09-30T02:16:07+00:00",
+  "updated_at": "2026-10-01T02:17:49+00:00",
   "signals": [
     {
       "signal_id": "MTR-Weekly-Cross-v2.0:QNST:2019-01-17",
@@ -24959,8 +24959,8 @@
       "event_low": 20.15999984741211,
       "event_close": 20.65999984741211,
       "entry_rule": "Apertura ajustada de la siguiente sesión",
-      "entry_date": null,
-      "entry_open": null,
+      "entry_date": "2026-09-30",
+      "entry_open": 20.780000686645508,
       "r5": null,
       "mfe5": null,
       "mae5": null,
