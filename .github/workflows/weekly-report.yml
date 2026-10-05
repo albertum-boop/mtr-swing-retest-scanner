@@ -12,8 +12,7 @@ on:
     - cron: "30 3 * * 6"
 
 permissions:
-  contents: read
-  issues: write
+  contents: write
 
 concurrency:
   group: mtr-weekly-report
@@ -36,15 +35,27 @@ jobs:
       - name: Install scanner
         run: pip install -e .
 
-      - name: Build weekly signal report
+      - name: Send weekly signal report
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          ALERT_FROM: ${{ secrets.ALERT_FROM }}
+          ALERT_TO: ${{ secrets.ALERT_TO }}
         run: |
-          args=(weekly --output mtr-weekly-report.md)
+          args=(--send)
           if [[ -n "${{ inputs.as_of }}" ]]; then args+=(--as-of "${{ inputs.as_of }}"); fi
-          python -m mtr_scanner.github_reports "${args[@]}"
+          python -m mtr_scanner.weekly_report "${args[@]}"
 
-      - name: Publish weekly GitHub notification
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const postReport = require('./.github/scripts/post-report.js');
-            await postReport({ github, context, core }, 'mtr-weekly-report.md');
+      - name: Commit weekly report receipt
+        run: |
+          git config user.name "mtr-signal-bot"
+          git config user.email "mtr-signal-bot@users.noreply.github.com"
+          git add state/weekly_reports.json
+          if git diff --cached --quiet; then
+            echo "Weekly report already registered"
+          else
+            git commit -m "state: register weekly MTR report [skip ci]"
+            git push
+          fi

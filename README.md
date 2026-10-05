@@ -197,27 +197,36 @@ python -m mtr_scanner --as-of 2026-08-27 --prices-dir /ruta/a/prices
 
 Cada CSV debe contener `Date, Open, High, Low, Close, Adj Close, Volume`.
 
-## Notificaciones de señales
+## Alertas por correo
 
-Las alertas no necesitan dominio, servicio SMTP ni secretos. Los workflows publican los
-informes en un único issue de GitHub, asignan y mencionan al propietario del repositorio y
-GitHub entrega su notificación por web y por correo según las preferencias de la cuenta.
+El workflow reconoce estos secretos de GitHub:
 
-El informe inmediato solo se publica cuando existen señales accionables confirmadas en la
-sesión de corte: A+, A y B mensuales; las B LM2/semanales y los eventos suprimidos por
-cooldown quedan excluidos. La alerta indica que la entrada reglada será la apertura siguiente.
+| Secreto | Ejemplo |
+|---|---|
+| `SMTP_HOST` | `smtp.gmail.com` |
+| `SMTP_PORT` | `465` |
+| `SMTP_USERNAME` | cuenta SMTP |
+| `SMTP_PASSWORD` | contraseña de aplicación |
+| `ALERT_FROM` | remitente |
+| `ALERT_TO` | destinatarios separados por coma |
 
-Como red de seguridad, `.github/workflows/weekly-report.yml` publica cada sábado todas las
-señales accionables confirmadas entre el lunes y el último cierre disponible, incluso si el
-resultado es cero. Incluye grado, ticker, marco, fecha de confirmación, fecha y precio de
-entrada, confluencia, SwingScore y volumen. Identificadores ocultos en cada comentario
-impiden duplicar un informe si GitHub reintenta el workflow.
+El correo incluye grado y marco temporal. Solo se envían señales accionables confirmadas en
+la sesión de corte, nunca señales atrasadas, B LM2/semanales ni eventos suprimidos por
+cooldown. Un identificador se registra como
+enviado únicamente después de un envío SMTP correcto.
+
+Como red de seguridad, `.github/workflows/weekly-report.yml` envía cada sábado un informe
+con todas las señales accionables confirmadas entre el lunes y el último cierre disponible.
+El resumen se envía incluso cuando la semana no produjo señales e incluye grado, ticker,
+marco, fecha de confirmación, fecha y precio de entrada, confluencia, SwingScore y volumen.
+No sustituye la alerta diaria: al llegar el sábado algunas entradas ya habrán ocurrido.
+`state/weekly_reports.json` impide duplicar el mismo informe si GitHub reintenta el workflow.
 
 ## Automatización y despliegue
 
 `.github/workflows/daily-scan.yml` se ejecuta de lunes a viernes a las 23:30 UTC. Descarga
 el universo una sola vez cuando necesita congelar una formación, actualiza los ciclos activos,
-publica alertas en GitHub y versiona:
+envía alertas y versiona:
 
 - `state/formations/` para formaciones mensuales;
 - `state/lm2_formations/` para la penúltima sesión mensual;
@@ -226,8 +235,8 @@ publica alertas en GitHub y versiona:
 - el registro de alertas y el resultado de la última ejecución.
 
 `.github/workflows/weekly-report.yml` se ejecuta los sábados a las 03:30 UTC, después del
-escaneo del viernes. No requiere claves externas: publica el resumen en el mismo hilo de
-notificaciones que las alertas inmediatas.
+escaneo del viernes. Reutiliza los mismos seis secretos SMTP y falla de forma visible si el
+correo no está configurado, en lugar de registrar como enviado un informe que no salió.
 
 `vercel.json` declara `public/` como salida estática. Cada commit de datos despliega la web
 sin servidor ni base de datos adicional.

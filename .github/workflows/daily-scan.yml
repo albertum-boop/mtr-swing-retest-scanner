@@ -22,7 +22,6 @@ on:
 
 permissions:
   contents: write
-  issues: write
 
 concurrency:
   group: mtr-daily-scan
@@ -46,13 +45,17 @@ jobs:
         run: pip install -e .
 
       - name: Run multitemporal v2.0 scanner
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          ALERT_FROM: ${{ secrets.ALERT_FROM }}
+          ALERT_TO: ${{ secrets.ALERT_TO }}
         run: |
-          args=()
+          args=(--send-alerts)
           if [[ -n "${{ inputs.as_of }}" ]]; then args+=(--as-of "${{ inputs.as_of }}"); fi
           python -m mtr_scanner "${args[@]}"
-
-      - name: Build immediate signal report
-        run: python -m mtr_scanner.github_reports daily --output mtr-daily-report.md
 
       - name: Validate generated JSON
         run: |
@@ -74,9 +77,22 @@ jobs:
             git push
           fi
 
-      - name: Publish immediate GitHub notification
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const postReport = require('./.github/scripts/post-report.js');
-            await postReport({ github, context, core }, 'mtr-daily-report.md');
+      - name: Verify signal email delivery
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(Path("state/last_run.json").read_text())
+          pending = int(result.get("pending_alerts", 0))
+          alert = result.get("alert_result", {})
+          status = alert.get("status")
+          if pending and status != "sent":
+              missing = ", ".join(alert.get("missing", [])) or "error SMTP desconocido"
+              print(
+                  f"::error title=Las alertas MTR no se enviaron::"
+                  f"{pending} señal(es) pendientes; estado={status}; detalle={missing}"
+              )
+              raise SystemExit(1)
+          print(f"Entrega de alertas verificada: pending={pending}, status={status}")
+          PY
