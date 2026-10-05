@@ -4,7 +4,9 @@ import html
 import os
 import smtplib
 import ssl
+from collections import Counter
 from collections.abc import Iterable
+from datetime import date
 from email.message import EmailMessage
 from typing import Any
 
@@ -68,6 +70,103 @@ def build_email(signals: Iterable[dict[str, Any]]) -> tuple[str, str, str]:
     return subject, "\n".join(plain_lines), body_html
 
 
+def build_weekly_email(
+    signals: Iterable[dict[str, Any]],
+    *,
+    week_start: date,
+    week_end: date,
+    app_url: str = "https://mtr-swing-retest-scanner.vercel.app/",
+) -> tuple[str, str, str]:
+    """Build the weekly safety-net report, including weeks with zero signals."""
+
+    ordered = sorted(
+        signals,
+        key=lambda row: (
+            GRADE_ORDER.get(row.get("grade", "B"), 9),
+            row.get("event_date", ""),
+            row.get("ticker", ""),
+        ),
+    )
+    grades = Counter(str(signal.get("grade", "N/D")) for signal in ordered)
+    period = f"{week_start.isoformat()} a {week_end.isoformat()}"
+    subject = (
+        f"MTR semanal {week_start.strftime('%d/%m')}-{week_end.strftime('%d/%m')}: "
+        f"{len(ordered)} señal{'es' if len(ordered) != 1 else ''}"
+    )
+    summary = (
+        f"A+ {grades.get('A+', 0)} · A {grades.get('A', 0)} · "
+        f"B mensual {grades.get('B', 0)}"
+    )
+    plain_lines = [
+        subject,
+        f"Periodo: {period}",
+        summary,
+        "",
+        "Este informe resume señales accionables ya confirmadas durante la semana.",
+        "La entrada reglada es la apertura de la sesión posterior al evento.",
+        "",
+    ]
+    rows = []
+    for signal in ordered:
+        entry_open = (
+            "N/D"
+            if signal.get("entry_open") is None
+            else f"${float(signal['entry_open']):.2f}"
+        )
+        entry_date = str(signal.get("entry_date") or "Pendiente")
+        confluence = "Sí" if signal.get("is_confluence") else "No"
+        plain_lines.append(
+            f"{signal['grade']} · {signal['ticker']} · {_source(signal)} · "
+            f"señal {signal['event_date']} · entrada {entry_date} {entry_open} · "
+            f"confluencia {confluence}"
+        )
+        rows.append(
+            "<tr>"
+            f"<td><strong>{html.escape(str(signal['grade']))}</strong></td>"
+            f"<td><strong>{html.escape(str(signal['ticker']))}</strong></td>"
+            f"<td>{html.escape(_source(signal))}</td>"
+            f"<td>{html.escape(str(signal['event_date']))}</td>"
+            f"<td>{html.escape(entry_date)}</td>"
+            f"<td>{html.escape(entry_open)}</td>"
+            f"<td>{confluence}</td>"
+            f"<td>{_number(signal.get('swing_score'), 3)}</td>"
+            f"<td>{_pct(signal.get('event_volume_change'))}</td>"
+            "</tr>"
+        )
+
+    if not ordered:
+        plain_lines.append("No hubo señales accionables confirmadas esta semana.")
+        table_body = (
+            '<tr><td colspan="9" style="text-align:center;color:#667587">'
+            "No hubo señales accionables confirmadas esta semana.</td></tr>"
+        )
+    else:
+        table_body = "".join(rows)
+    plain_lines.extend(["", f"Aplicación: {app_url}"])
+
+    body_html = f"""
+    <html><body style="font-family:Arial,sans-serif;color:#182432">
+      <h2>{html.escape(subject)}</h2>
+      <p><strong>Periodo:</strong> {html.escape(period)}<br>
+      <strong>Resumen:</strong> {html.escape(summary)}</p>
+      <p>Este informe resume todas las señales accionables confirmadas durante la semana,
+      aunque ya se hubiera enviado su alerta diaria. La entrada reglada es la apertura de la
+      sesión posterior al evento; una fecha pasada no constituye una entrada nueva.</p>
+      <table cellpadding="7" cellspacing="0" border="1"
+             style="border-collapse:collapse;border-color:#ccd6e0">
+        <thead><tr style="background:#173f5f;color:white"><th>Grado</th><th>Ticker</th>
+        <th>Marco</th><th>Señal</th><th>Entrada</th><th>Precio</th><th>Confluencia</th>
+        <th>Swing</th><th>Volumen</th></tr></thead>
+        <tbody>{table_body}</tbody>
+      </table>
+      <p><a href="{html.escape(app_url)}">Abrir MTR Swing Retest Scanner</a></p>
+      <p style="color:#667587;font-size:12px">MTR Multitemporal v2.0 · informe de
+      investigación, no recomendación financiera.</p>
+    </body></html>
+    """
+    return subject, "\n".join(plain_lines), body_html
+
+
 def email_configuration() -> tuple[dict[str, str], list[str]]:
     names = [
         "SMTP_HOST", "SMTP_PORT", "SMTP_USERNAME", "SMTP_PASSWORD", "ALERT_FROM", "ALERT_TO"
@@ -77,17 +176,22 @@ def email_configuration() -> tuple[dict[str, str], list[str]]:
     return values, missing
 
 
-def send_signal_email(signals: list[dict[str, Any]]) -> dict[str, Any]:
-    if not signals:
-        return {"status": "nothing_to_send", "sent": 0}
+def _send_email(
+    *,
+    subject: str,
+    plain: str,
+    body_html: str,
+    signal_count: int,
+) -> dict[str, Any]:
     config, missing = email_configuration()
     if missing:
         return {"status": "not_configured", "sent": 0, "missing": missing}
-    subject, plain, body_html = build_email(signals)
+    recipients = [item.strip() for item in config["ALERT_TO"].split(",") if item.strip()]
+    if not recipients:
+        return {"status": "not_configured", "sent": 0, "missing": ["ALERT_TO"]}
     message = EmailMessage()
     message["Subject"] = subject
     message["From"] = config["ALERT_FROM"]
-    recipients = [item.strip() for item in config["ALERT_TO"].split(",") if item.strip()]
     message["To"] = ", ".join(recipients)
     message.set_content(plain)
     message.add_alternative(body_html, subtype="html")
@@ -104,4 +208,41 @@ def send_signal_email(signals: list[dict[str, Any]]) -> dict[str, Any]:
             server.starttls(context=context)
             server.login(config["SMTP_USERNAME"], config["SMTP_PASSWORD"])
             server.send_message(message)
-    return {"status": "sent", "sent": len(signals), "recipients": len(recipients)}
+    return {
+        "status": "sent",
+        "sent": signal_count,
+        "recipients": len(recipients),
+    }
+
+
+def send_signal_email(signals: list[dict[str, Any]]) -> dict[str, Any]:
+    if not signals:
+        return {"status": "nothing_to_send", "sent": 0}
+    subject, plain, body_html = build_email(signals)
+    return _send_email(
+        subject=subject,
+        plain=plain,
+        body_html=body_html,
+        signal_count=len(signals),
+    )
+
+
+def send_weekly_report_email(
+    signals: list[dict[str, Any]],
+    *,
+    week_start: date,
+    week_end: date,
+) -> dict[str, Any]:
+    """Send a weekly report even when the week contains no signals."""
+
+    subject, plain, body_html = build_weekly_email(
+        signals,
+        week_start=week_start,
+        week_end=week_end,
+    )
+    return _send_email(
+        subject=subject,
+        plain=plain,
+        body_html=body_html,
+        signal_count=len(signals),
+    )

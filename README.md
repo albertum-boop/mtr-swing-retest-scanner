@@ -215,6 +215,13 @@ la sesión de corte, nunca señales atrasadas, B LM2/semanales ni eventos suprim
 cooldown. Un identificador se registra como
 enviado únicamente después de un envío SMTP correcto.
 
+Como red de seguridad, `.github/workflows/weekly-report.yml` envía cada sábado un informe
+con todas las señales accionables confirmadas entre el lunes y el último cierre disponible.
+El resumen se envía incluso cuando la semana no produjo señales e incluye grado, ticker,
+marco, fecha de confirmación, fecha y precio de entrada, confluencia, SwingScore y volumen.
+No sustituye la alerta diaria: al llegar el sábado algunas entradas ya habrán ocurrido.
+`state/weekly_reports.json` impide duplicar el mismo informe si GitHub reintenta el workflow.
+
 ## Automatización y despliegue
 
 `.github/workflows/daily-scan.yml` se ejecuta de lunes a viernes a las 23:30 UTC. Descarga
@@ -226,6 +233,10 @@ envía alertas y versiona:
 - `state/weekly_formations/` para cierres semanales y su conjunto seleccionado completo;
 - `public/data/current.json` y `public/data/history.json`;
 - el registro de alertas y el resultado de la última ejecución.
+
+`.github/workflows/weekly-report.yml` se ejecuta los sábados a las 03:30 UTC, después del
+escaneo del viernes. Reutiliza los mismos seis secretos SMTP y falla de forma visible si el
+correo no está configurado, en lugar de registrar como enviado un informe que no salió.
 
 `vercel.json` declara `public/` como salida estática. Cada commit de datos despliega la web
 sin servidor ni base de datos adicional.

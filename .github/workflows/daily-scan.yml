@@ -76,3 +76,23 @@ jobs:
             git commit -m "data: update MTR signals [skip ci]"
             git push
           fi
+
+      - name: Verify signal email delivery
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(Path("state/last_run.json").read_text())
+          pending = int(result.get("pending_alerts", 0))
+          alert = result.get("alert_result", {})
+          status = alert.get("status")
+          if pending and status != "sent":
+              missing = ", ".join(alert.get("missing", [])) or "error SMTP desconocido"
+              print(
+                  f"::error title=Las alertas MTR no se enviaron::"
+                  f"{pending} señal(es) pendientes; estado={status}; detalle={missing}"
+              )
+              raise SystemExit(1)
+          print(f"Entrega de alertas verificada: pending={pending}, status={status}")
+          PY
