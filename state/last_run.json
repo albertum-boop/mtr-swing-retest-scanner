@@ -1,6 +1,6 @@
 {
   "status": "ok",
-  "generated_at": "2026-10-05T04:56:28+00:00",
+  "generated_at": "2026-10-05T05:25:10+00:00",
   "cutoff": "2026-10-02",
   "monthly_formation_date": "2026-09-30",
   "lm2_formation_date": "2026-09-29",
@@ -21,7 +21,7 @@
   },
   "pending_alerts": 0,
   "alert_result": {
-    "status": "nothing_to_send",
+    "status": "disabled",
     "sent": 0
   }
 }
