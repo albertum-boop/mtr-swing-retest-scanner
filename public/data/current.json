@@ -5,7 +5,7 @@
     "lm2": "MTR-LM2-v2.0",
     "weekly": "MTR-Weekly-Cross-v2.0"
   },
-  "generated_at": "2026-10-05T05:25:10+00:00",
+  "generated_at": "2026-10-05T05:27:42+00:00",
   "cutoff": "2026-10-02",
   "formation_date": "2026-09-30",
   "monthly_formation_date": "2026-09-30",
@@ -6396,7 +6396,7 @@
   "lm2_b_policy": "computed_for_audit_but_never_published_or_alerted",
   "cross_source_cooldown_sessions": 10,
   "alert_result": {
-    "status": "disabled",
+    "status": "nothing_to_send",
     "sent": 0
   }
 }
