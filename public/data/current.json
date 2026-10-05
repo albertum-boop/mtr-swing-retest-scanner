@@ -5,7 +5,7 @@
     "lm2": "MTR-LM2-v2.0",
     "weekly": "MTR-Weekly-Cross-v2.0"
   },
-  "generated_at": "2026-10-03T02:11:54+00:00",
+  "generated_at": "2026-10-05T04:56:28+00:00",
   "cutoff": "2026-10-02",
   "formation_date": "2026-09-30",
   "monthly_formation_date": "2026-09-30",
@@ -96,7 +96,7 @@
     }
   },
   "candidate_download_errors": 0,
-  "universe_size": 2336,
+  "universe_size": null,
   "candidates": [
     {
       "ticker": "BFLY",
