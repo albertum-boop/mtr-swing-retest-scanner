@@ -172,9 +172,8 @@ def email_configuration() -> tuple[dict[str, str], list[str]]:
     values = {
         "RESEND_API_KEY": os.environ.get("RESEND_API_KEY", "").strip(),
         "ALERT_TO": os.environ.get("ALERT_TO", "").strip(),
-        "ALERT_FROM": os.environ.get(
-            "ALERT_FROM", "MTR Signals <onboarding@resend.dev>"
-        ).strip(),
+        "ALERT_FROM": os.environ.get("ALERT_FROM", "").strip()
+        or "MTR Signals <onboarding@resend.dev>",
     }
     missing = [name for name in ("RESEND_API_KEY", "ALERT_TO") if not values[name]]
     return values, missing

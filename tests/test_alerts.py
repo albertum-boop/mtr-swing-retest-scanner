@@ -31,7 +31,8 @@ def _signal() -> dict[str, object]:
 def test_resend_delivery_uses_api_and_default_sender(monkeypatch) -> None:
     monkeypatch.setenv("RESEND_API_KEY", "re_test")
     monkeypatch.setenv("ALERT_TO", "owner@example.com")
-    monkeypatch.delenv("ALERT_FROM", raising=False)
+    # GitHub exposes an unset secret as an empty environment variable.
+    monkeypatch.setenv("ALERT_FROM", "")
     captured = {}
 
     def fake_urlopen(request, timeout):

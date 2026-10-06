@@ -1,6 +1,11 @@
 name: MTR weekly signal report
 
 on:
+  push:
+    branches: [main]
+    paths:
+      # Also smoke-test email delivery whenever this workflow itself changes.
+      - ".github/workflows/weekly-report.yml"
   workflow_dispatch:
     inputs:
       as_of:
