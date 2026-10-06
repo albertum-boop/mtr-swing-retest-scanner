@@ -5,7 +5,7 @@
     "lm2": "MTR-LM2-v2.0",
     "weekly": "MTR-Weekly-Cross-v2.0"
   },
-  "generated_at": "2026-10-06T03:10:06+00:00",
+  "generated_at": "2026-10-06T05:01:56+00:00",
   "cutoff": "2026-10-05",
   "formation_date": "2026-09-30",
   "monthly_formation_date": "2026-09-30",
@@ -58,9 +58,8 @@
   "scan_status": {
     "expanded_waiting_retest": 17,
     "waiting_expansion": 15,
-    "rejected_first_contact": 41,
-    "signal": 6,
-    "missing_prices": 1
+    "rejected_first_contact": 42,
+    "signal": 6
   },
   "scan_status_by_source": {
     "monthly": {
@@ -70,18 +69,17 @@
       "signal": 2
     },
     "lm2": {
-      "rejected_first_contact": 24,
+      "rejected_first_contact": 25,
       "waiting_expansion": 5,
       "signal": 4,
-      "expanded_waiting_retest": 3,
-      "missing_prices": 1
+      "expanded_waiting_retest": 3
     },
     "weekly": {
       "expanded_waiting_retest": 3,
       "waiting_expansion": 3
     }
   },
-  "candidate_download_errors": 1,
+  "candidate_download_errors": 0,
   "universe_size": null,
   "candidates": [
     {
@@ -4716,22 +4714,63 @@
       "contact_band_high": 27.057737374305724,
       "max_valid_close": 28.013212275505065,
       "max_event_volume": 464124.0,
-      "status": "missing_prices",
-      "complete_days": 0,
-      "sessions_remaining": 5,
-      "expansion_seen": false,
-      "expansion_date": null,
-      "expansion_peak": null,
-      "expansion_peak_atr": null,
-      "first_contact_date": null,
-      "latest_session": null,
-      "checks": null,
-      "failed_conditions": [],
+      "status": "rejected_first_contact",
+      "complete_days": 2,
+      "sessions_remaining": 0,
+      "expansion_seen": true,
+      "expansion_date": "2026-09-30",
+      "expansion_peak": 27.40999984741211,
+      "expansion_peak_atr": 0.43433894635233944,
+      "first_contact_date": "2026-10-01",
+      "latest_session": {
+        "date": "2026-10-01",
+        "day": 2,
+        "open": 25.5,
+        "high": 26.489999771118164,
+        "low": 25.1200008392334,
+        "close": 25.309999465942383,
+        "volume": 575800.0,
+        "close_location": 0.1386852371100722,
+        "close_vs_level_atr": -0.664591218549817,
+        "volume_ratio": 0.9924933853883876,
+        "expansion_seen_before": true,
+        "expansion_reached_today": false,
+        "eligible_retest_day": true,
+        "checks": {
+          "contact": true,
+          "hold": false,
+          "strong_close": false,
+          "not_extended": true,
+          "volume_contraction": false
+        }
+      },
+      "checks": {
+        "contact": true,
+        "hold": false,
+        "strong_close": false,
+        "not_extended": true,
+        "volume_contraction": false
+      },
+      "failed_conditions": [
+        "hold",
+        "strong_close",
+        "volume_contraction"
+      ],
       "grade": null,
       "event_date": null,
       "entry_date": null,
       "entry_open": null,
-      "next_step": "No se puede evaluar: faltan precios posteriores a la formación",
+      "next_step": "Primer contacto rechazado; no puede reactivarse este ciclo",
+      "lm2_grade": "A",
+      "lm2_quality_points": 2,
+      "lm2_quality_checks": {
+        "non_negative_formation_gap": false,
+        "high_atr_percentile": true,
+        "strong_sma200_slope": true
+      },
+      "formation_gap": -0.008252037307338811,
+      "formation_atr_percentile_d10": 0.9010989010989011,
+      "formation_sma200_slope20": 0.08161715643722145,
       "candidate_id": "lm2:2026-09-29:ANRO",
       "source": "lm2",
       "formation_frequency": "lm2",
@@ -6043,11 +6082,7 @@
     "status": "not_configured",
     "sent": 0,
     "missing": [
-      "SMTP_HOST",
-      "SMTP_PORT",
-      "SMTP_USERNAME",
-      "SMTP_PASSWORD",
-      "ALERT_FROM",
+      "RESEND_API_KEY",
       "ALERT_TO"
     ]
   }
