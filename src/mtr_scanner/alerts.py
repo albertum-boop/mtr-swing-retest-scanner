@@ -1,14 +1,15 @@
 from __future__ import annotations
 
+import hashlib
 import html
+import json
 import os
-import smtplib
-import ssl
 from collections import Counter
 from collections.abc import Iterable
 from datetime import date
-from email.message import EmailMessage
 from typing import Any
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 
 GRADE_ORDER = {"A+": 0, "A": 1, "B": 2}
 
@@ -168,11 +169,14 @@ def build_weekly_email(
 
 
 def email_configuration() -> tuple[dict[str, str], list[str]]:
-    names = [
-        "SMTP_HOST", "SMTP_PORT", "SMTP_USERNAME", "SMTP_PASSWORD", "ALERT_FROM", "ALERT_TO"
-    ]
-    values = {name: os.environ.get(name, "").strip() for name in names}
-    missing = [name for name, value in values.items() if not value]
+    values = {
+        "RESEND_API_KEY": os.environ.get("RESEND_API_KEY", "").strip(),
+        "ALERT_TO": os.environ.get("ALERT_TO", "").strip(),
+        "ALERT_FROM": os.environ.get(
+            "ALERT_FROM", "MTR Signals <onboarding@resend.dev>"
+        ).strip(),
+    }
+    missing = [name for name in ("RESEND_API_KEY", "ALERT_TO") if not values[name]]
     return values, missing
 
 
@@ -189,29 +193,45 @@ def _send_email(
     recipients = [item.strip() for item in config["ALERT_TO"].split(",") if item.strip()]
     if not recipients:
         return {"status": "not_configured", "sent": 0, "missing": ["ALERT_TO"]}
-    message = EmailMessage()
-    message["Subject"] = subject
-    message["From"] = config["ALERT_FROM"]
-    message["To"] = ", ".join(recipients)
-    message.set_content(plain)
-    message.add_alternative(body_html, subtype="html")
-    host = config["SMTP_HOST"]
-    port = int(config["SMTP_PORT"])
-    context = ssl.create_default_context()
-    if port == 465:
-        with smtplib.SMTP_SSL(host, port, context=context, timeout=30) as server:
-            server.login(config["SMTP_USERNAME"], config["SMTP_PASSWORD"])
-            server.send_message(message)
-    else:
-        with smtplib.SMTP(host, port, timeout=30) as server:
-            server.ehlo()
-            server.starttls(context=context)
-            server.login(config["SMTP_USERNAME"], config["SMTP_PASSWORD"])
-            server.send_message(message)
+    payload = json.dumps(
+        {
+            "from": config["ALERT_FROM"],
+            "to": recipients,
+            "subject": subject,
+            "text": plain,
+            "html": body_html,
+        }
+    ).encode("utf-8")
+    digest = hashlib.sha256(payload).hexdigest()
+    request = Request(
+        "https://api.resend.com/emails",
+        data=payload,
+        method="POST",
+        headers={
+            "Authorization": f"Bearer {config['RESEND_API_KEY']}",
+            "Content-Type": "application/json",
+            "Idempotency-Key": f"mtr-{digest}",
+            "User-Agent": "mtr-swing-retest-scanner/2.0",
+        },
+    )
+    try:
+        with urlopen(request, timeout=30) as response:
+            response_payload = json.loads(response.read().decode("utf-8"))
+    except HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")
+        return {
+            "status": "error",
+            "sent": 0,
+            "detail": f"Resend HTTP {exc.code}: {detail}",
+        }
+    except URLError as exc:
+        return {"status": "error", "sent": 0, "detail": f"Resend: {exc.reason}"}
     return {
         "status": "sent",
         "sent": signal_count,
         "recipients": len(recipients),
+        "provider": "resend",
+        "provider_id": response_payload.get("id"),
     }
 
 

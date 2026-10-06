@@ -46,10 +46,7 @@ jobs:
 
       - name: Run multitemporal v2.0 scanner
         env:
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           ALERT_FROM: ${{ secrets.ALERT_FROM }}
           ALERT_TO: ${{ secrets.ALERT_TO }}
         run: |
@@ -88,7 +85,11 @@ jobs:
           alert = result.get("alert_result", {})
           status = alert.get("status")
           if pending and status != "sent":
-              missing = ", ".join(alert.get("missing", [])) or "error SMTP desconocido"
+              missing = (
+                  ", ".join(alert.get("missing", []))
+                  or alert.get("detail")
+                  or "error Resend desconocido"
+              )
               print(
                   f"::error title=Las alertas MTR no se enviaron::"
                   f"{pending} señal(es) pendientes; estado={status}; detalle={missing}"

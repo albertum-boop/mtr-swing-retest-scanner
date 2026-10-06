@@ -121,7 +121,7 @@ def run_weekly_report(
 def main() -> None:
     parser = argparse.ArgumentParser(description="MTR weekly signal report")
     parser.add_argument("--as-of", help="Última fecha de mercado incluida, YYYY-MM-DD")
-    parser.add_argument("--send", action="store_true", help="Enviar el informe por SMTP")
+    parser.add_argument("--send", action="store_true", help="Enviar el informe por Resend")
     parser.add_argument("--root", type=Path, default=ROOT)
     args = parser.parse_args()
     result = run_weekly_report(

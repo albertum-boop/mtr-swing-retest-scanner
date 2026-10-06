@@ -199,21 +199,22 @@ Cada CSV debe contener `Date, Open, High, Low, Close, Adj Close, Volume`.
 
 ## Alertas por correo
 
-El workflow reconoce estos secretos de GitHub:
+El workflow envía mediante la API de Resend y reconoce estos secretos de GitHub:
 
 | Secreto | Ejemplo |
 |---|---|
-| `SMTP_HOST` | `smtp.gmail.com` |
-| `SMTP_PORT` | `465` |
-| `SMTP_USERNAME` | cuenta SMTP |
-| `SMTP_PASSWORD` | contraseña de aplicación |
-| `ALERT_FROM` | remitente |
+| `RESEND_API_KEY` | clave de API de Resend |
 | `ALERT_TO` | destinatarios separados por coma |
+| `ALERT_FROM` | opcional; por defecto `MTR Signals <onboarding@resend.dev>` |
+
+Mientras no haya un dominio verificado, el remitente de prueba de Resend solo permite enviar
+al correo propietario de la cuenta de Resend. La clave nunca se guarda en el repositorio.
 
 El correo incluye grado y marco temporal. Solo se envían señales accionables confirmadas en
 la sesión de corte, nunca señales atrasadas, B LM2/semanales ni eventos suprimidos por
 cooldown. Un identificador se registra como
-enviado únicamente después de un envío SMTP correcto.
+enviado únicamente después de que la API de Resend acepte el correo. Cada petición usa una
+clave de idempotencia para que un reintento no duplique el mensaje.
 
 Como red de seguridad, `.github/workflows/weekly-report.yml` envía cada sábado un informe
 con todas las señales accionables confirmadas entre el lunes y el último cierre disponible.
@@ -235,7 +236,7 @@ envía alertas y versiona:
 - el registro de alertas y el resultado de la última ejecución.
 
 `.github/workflows/weekly-report.yml` se ejecuta los sábados a las 03:30 UTC, después del
-escaneo del viernes. Reutiliza los mismos seis secretos SMTP y falla de forma visible si el
+escaneo del viernes. Reutiliza los secretos de Resend y falla de forma visible si el
 correo no está configurado, en lugar de registrar como enviado un informe que no salió.
 
 `vercel.json` declara `public/` como salida estática. Cada commit de datos despliega la web
