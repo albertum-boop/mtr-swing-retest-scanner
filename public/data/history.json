@@ -1,6 +1,6 @@
 {
   "method_version": "MTR-Multitemporal-v2.0",
-  "updated_at": "2026-10-05T05:27:43+00:00",
+  "updated_at": "2026-10-06T03:10:06+00:00",
   "signals": [
     {
       "signal_id": "MTR-Weekly-Cross-v2.0:QNST:2019-01-17",
@@ -25422,6 +25422,168 @@
           "close_vs_level_atr": 0.6766000492813607,
           "close_location": 0.9849842568465895,
           "event_volume_ratio": 0.6627602859935672
+        }
+      },
+      "cooldown_sessions": 10,
+      "suppressed_by_cooldown": null,
+      "actionable": true
+    },
+    {
+      "signal_id": "MTR-Swing-Retest-v2.0:ALM:2026-10-05",
+      "method_version": "MTR-Multitemporal-v2.0",
+      "grade": "A",
+      "ticker": "ALM",
+      "formation_date": "2026-09-30",
+      "event_date": "2026-10-05",
+      "event_day": 3,
+      "formation_close": 13.15999984741211,
+      "atr_abs20": 1.1956501007080078,
+      "adv20": 102230568.11502934,
+      "universe_momentum_percentile": 0.9751381215469613,
+      "swing_score": 0.861878453038674,
+      "swing_rank_percentile": 0.9613259668508287,
+      "momentum_percentile_d10": 0.7513812154696132,
+      "atr_percentile_d10": 0.9779005524861878,
+      "return_volume_percentile_d10": 0.856353591160221,
+      "sma200_slope_percentile_d10": 0.430939226519337,
+      "expansion_peak_atr": 0.510183213291538,
+      "pullback_from_peak_atr": -0.2090912716454101,
+      "close_vs_level_atr": 0.30109194164612796,
+      "close_location": 0.7916672737507865,
+      "event_volume_ratio": 0.5775078930845482,
+      "event_volume_change": -0.4224921069154518,
+      "event_body_atr": 0.24254664082378183,
+      "event_body_return": 0.021919949022033203,
+      "event_open": 13.229999542236328,
+      "event_high": 13.670000076293945,
+      "event_low": 12.949999809265137,
+      "event_close": 13.520000457763672,
+      "entry_rule": "Apertura ajustada de la siguiente sesión",
+      "entry_date": null,
+      "entry_open": null,
+      "r5": null,
+      "mfe5": null,
+      "mae5": null,
+      "r10": null,
+      "mfe10": null,
+      "mae10": null,
+      "source": "monthly",
+      "signal_sources": [
+        "monthly"
+      ],
+      "is_confluence": false,
+      "monthly_grade": "A",
+      "lm2_grade": null,
+      "weekly_grade": null,
+      "source_grades": {
+        "monthly": "A"
+      },
+      "formation_dates": {
+        "monthly": "2026-09-30"
+      },
+      "source_method_versions": {
+        "monthly": "MTR-Swing-Retest-v2.0"
+      },
+      "source_signal_ids": {
+        "monthly": "MTR-Swing-Retest-v2.0:ALM:2026-10-05"
+      },
+      "source_details": {
+        "monthly": {
+          "formation_date": "2026-09-30",
+          "formation_close": 13.15999984741211,
+          "atr_abs20": 1.1956501007080078,
+          "adv20": 102230568.11502934,
+          "universe_momentum_percentile": 0.9751381215469613,
+          "swing_score": 0.861878453038674,
+          "swing_rank_percentile": 0.9613259668508287,
+          "momentum_percentile_d10": 0.7513812154696132,
+          "atr_percentile_d10": 0.9779005524861878,
+          "return_volume_percentile_d10": 0.856353591160221,
+          "sma200_slope_percentile_d10": 0.430939226519337,
+          "close_vs_level_atr": 0.30109194164612796,
+          "close_location": 0.7916672737507865,
+          "event_volume_ratio": 0.5775078930845482
+        }
+      },
+      "cooldown_sessions": 10,
+      "suppressed_by_cooldown": null,
+      "actionable": true
+    },
+    {
+      "signal_id": "MTR-Swing-Retest-v2.0:HUT:2026-10-05",
+      "method_version": "MTR-Multitemporal-v2.0",
+      "grade": "A",
+      "ticker": "HUT",
+      "formation_date": "2026-09-30",
+      "event_date": "2026-10-05",
+      "event_day": 3,
+      "formation_close": 86.0999984741211,
+      "atr_abs20": 7.620399093627929,
+      "adv20": 428060324.07390594,
+      "universe_momentum_percentile": 0.943646408839779,
+      "swing_score": 0.7679558011049723,
+      "swing_rank_percentile": 0.8867403314917127,
+      "momentum_percentile_d10": 0.43646408839779005,
+      "atr_percentile_d10": 0.9668508287292817,
+      "return_volume_percentile_d10": 0.9005524861878453,
+      "sma200_slope_percentile_d10": 0.6132596685082873,
+      "expansion_peak_atr": 0.905464588022508,
+      "pullback_from_peak_atr": -0.4894761168155314,
+      "close_vs_level_atr": 0.41598847120697663,
+      "close_location": 0.7813299536301915,
+      "event_volume_ratio": 0.7671331362480055,
+      "event_volume_change": -0.2328668637519945,
+      "event_body_atr": 0.09054675915638334,
+      "event_body_return": -0.0076701028060075505,
+      "event_open": 89.95999908447266,
+      "event_high": 90.53500366210938,
+      "event_low": 84.75,
+      "event_close": 89.2699966430664,
+      "entry_rule": "Apertura ajustada de la siguiente sesión",
+      "entry_date": null,
+      "entry_open": null,
+      "r5": null,
+      "mfe5": null,
+      "mae5": null,
+      "r10": null,
+      "mfe10": null,
+      "mae10": null,
+      "source": "monthly",
+      "signal_sources": [
+        "monthly"
+      ],
+      "is_confluence": false,
+      "monthly_grade": "A",
+      "lm2_grade": null,
+      "weekly_grade": null,
+      "source_grades": {
+        "monthly": "A"
+      },
+      "formation_dates": {
+        "monthly": "2026-09-30"
+      },
+      "source_method_versions": {
+        "monthly": "MTR-Swing-Retest-v2.0"
+      },
+      "source_signal_ids": {
+        "monthly": "MTR-Swing-Retest-v2.0:HUT:2026-10-05"
+      },
+      "source_details": {
+        "monthly": {
+          "formation_date": "2026-09-30",
+          "formation_close": 86.0999984741211,
+          "atr_abs20": 7.620399093627929,
+          "adv20": 428060324.07390594,
+          "universe_momentum_percentile": 0.943646408839779,
+          "swing_score": 0.7679558011049723,
+          "swing_rank_percentile": 0.8867403314917127,
+          "momentum_percentile_d10": 0.43646408839779005,
+          "atr_percentile_d10": 0.9668508287292817,
+          "return_volume_percentile_d10": 0.9005524861878453,
+          "sma200_slope_percentile_d10": 0.6132596685082873,
+          "close_vs_level_atr": 0.41598847120697663,
+          "close_location": 0.7813299536301915,
+          "event_volume_ratio": 0.7671331362480055
         }
       },
       "cooldown_sessions": 10,
