@@ -1,7 +1,7 @@
 {
   "status": "ok",
-  "generated_at": "2026-10-06T05:01:56+00:00",
-  "cutoff": "2026-10-05",
+  "generated_at": "2026-10-07T02:31:55+00:00",
+  "cutoff": "2026-10-06",
   "monthly_formation_date": "2026-09-30",
   "lm2_formation_date": "2026-09-29",
   "weekly_formation_dates": [
@@ -18,13 +18,9 @@
     "confluence_signals": 0,
     "cooldown_suppressed": 0
   },
-  "pending_alerts": 2,
+  "pending_alerts": 0,
   "alert_result": {
-    "status": "not_configured",
-    "sent": 0,
-    "missing": [
-      "RESEND_API_KEY",
-      "ALERT_TO"
-    ]
+    "status": "nothing_to_send",
+    "sent": 0
   }
 }

@@ -5,15 +5,15 @@
     "lm2": "MTR-LM2-v2.0",
     "weekly": "MTR-Weekly-Cross-v2.0"
   },
-  "generated_at": "2026-10-06T05:01:56+00:00",
-  "cutoff": "2026-10-05",
+  "generated_at": "2026-10-07T02:31:55+00:00",
+  "cutoff": "2026-10-06",
   "formation_date": "2026-09-30",
   "monthly_formation_date": "2026-09-30",
   "lm2_formation_date": "2026-09-29",
   "weekly_formation_dates": [
     "2026-10-02"
   ],
-  "session_after_formation": 3,
+  "session_after_formation": 4,
   "cycle_phase": "retest_window_open",
   "formation_stats": {
     "observed": 2240,
@@ -56,27 +56,28 @@
     "cooldown_suppressed": 0
   },
   "scan_status": {
-    "expanded_waiting_retest": 17,
-    "waiting_expansion": 15,
-    "rejected_first_contact": 42,
-    "signal": 6
+    "rejected_first_contact": 47,
+    "waiting_expansion": 9,
+    "expanded_waiting_retest": 11,
+    "signal": 6,
+    "expired": 7
   },
   "scan_status_by_source": {
     "monthly": {
-      "expanded_waiting_retest": 11,
+      "rejected_first_contact": 19,
       "waiting_expansion": 7,
-      "rejected_first_contact": 17,
+      "expanded_waiting_retest": 9,
       "signal": 2
     },
     "lm2": {
-      "rejected_first_contact": 25,
-      "waiting_expansion": 5,
-      "signal": 4,
-      "expanded_waiting_retest": 3
+      "rejected_first_contact": 26,
+      "expired": 7,
+      "signal": 4
     },
     "weekly": {
-      "expanded_waiting_retest": 3,
-      "waiting_expansion": 3
+      "rejected_first_contact": 2,
+      "expanded_waiting_retest": 2,
+      "waiting_expansion": 2
     }
   },
   "candidate_download_errors": 0,
@@ -98,47 +99,57 @@
       "contact_band_high": 9.117225050926208,
       "max_valid_close": 9.43167507648468,
       "max_event_volume": 4372560.0,
-      "status": "expanded_waiting_retest",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "status": "rejected_first_contact",
+      "complete_days": 4,
+      "sessions_remaining": 0,
       "expansion_seen": true,
       "expansion_date": "2026-10-05",
       "expansion_peak": 9.53499984741211,
       "expansion_peak_atr": 0.9142944228481483,
-      "first_contact_date": null,
+      "first_contact_date": "2026-10-06",
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 8.859999656677246,
-        "high": 9.53499984741211,
-        "low": 8.65999984741211,
-        "close": 9.380000114440918,
-        "volume": 5226900.0,
-        "close_location": 0.8228574480329242,
-        "close_vs_level_atr": 0.6678327908353862,
-        "volume_ratio": 0.9563093473845985,
-        "expansion_seen_before": false,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 9.510000228881836,
+        "high": 10.210000038146973,
+        "low": 8.539999961853027,
+        "close": 8.699999809265137,
+        "volume": 9235600.0,
+        "close_location": 0.0958082874865372,
+        "close_vs_level_atr": -0.4134205879297808,
+        "volume_ratio": 1.6897378194924713,
+        "expansion_seen_before": true,
         "expansion_reached_today": true,
-        "eligible_retest_day": false,
+        "eligible_retest_day": true,
         "checks": {
           "contact": true,
-          "hold": true,
-          "strong_close": true,
+          "hold": false,
+          "strong_close": false,
           "not_extended": true,
           "volume_contraction": false
         }
       },
-      "checks": null,
-      "failed_conditions": [],
+      "checks": {
+        "contact": true,
+        "hold": false,
+        "strong_close": false,
+        "not_extended": true,
+        "volume_contraction": false
+      },
+      "failed_conditions": [
+        "hold",
+        "strong_close",
+        "volume_contraction"
+      ],
       "grade": null,
       "event_date": null,
       "entry_date": null,
       "entry_open": null,
-      "next_step": "Expansión confirmada; falta el primer contacto válido",
+      "next_step": "Primer contacto rechazado; no puede reactivarse este ciclo",
       "candidate_id": "monthly:2026-09-30:BFLY",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "ALMS",
@@ -157,33 +168,33 @@
       "max_valid_close": 7.883649832010269,
       "max_event_volume": 3101904.0,
       "status": "waiting_expansion",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 6.989999771118164,
-        "high": 7.170000076293945,
-        "low": 6.78000020980835,
-        "close": 6.840000152587891,
-        "volume": 3869200.0,
-        "close_location": 0.15384605979540011,
-        "close_vs_level_atr": -0.8356118995873025,
-        "volume_ratio": 0.9978903280049931,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 6.889999866485596,
+        "high": 6.949999809265137,
+        "low": 6.639999866485596,
+        "close": 6.929999828338623,
+        "volume": 1745500.0,
+        "close_location": 0.9354839205866021,
+        "close_vs_level_atr": -0.6988758284294578,
+        "volume_ratio": 0.45017511824995227,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
         "checks": {
           "contact": false,
           "hold": false,
-          "strong_close": false,
+          "strong_close": true,
           "not_extended": true,
-          "volume_contraction": false
+          "volume_contraction": true
         }
       },
       "checks": null,
@@ -196,7 +207,7 @@
       "candidate_id": "monthly:2026-09-30:ALMS",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "LITE",
@@ -215,33 +226,33 @@
       "max_valid_close": 1017.1287033081055,
       "max_event_volume": 3669504.0,
       "status": "expanded_waiting_retest",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": true,
       "expansion_date": "2026-10-01",
-      "expansion_peak": 1124.4000244140625,
-      "expansion_peak_atr": 2.503995691090639,
+      "expansion_peak": 1137.2049560546875,
+      "expansion_peak_atr": 2.7133694052465582,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 1092.2900390625,
-        "high": 1124.4000244140625,
-        "low": 1072.0450439453125,
-        "close": 1091.6700439453125,
-        "volume": 3003800.0,
-        "close_location": 0.3748449493112485,
-        "close_vs_level_atr": 1.9688270726771175,
-        "volume_ratio": 0.6548677968466583,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 1099.81005859375,
+        "high": 1137.2049560546875,
+        "low": 1084.041015625,
+        "close": 1133.4000244140625,
+        "volume": 4249500.0,
+        "close_location": 0.9284302177402134,
+        "close_vs_level_atr": 2.6511548857110094,
+        "volume_ratio": 0.9264467350355797,
         "expansion_seen_before": true,
         "expansion_reached_today": true,
         "eligible_retest_day": true,
         "checks": {
           "contact": false,
           "hold": true,
-          "strong_close": false,
+          "strong_close": true,
           "not_extended": false,
-          "volume_contraction": true
+          "volume_contraction": false
         }
       },
       "checks": null,
@@ -254,7 +265,7 @@
       "candidate_id": "monthly:2026-09-30:LITE",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "SNDK",
@@ -322,7 +333,7 @@
       "candidate_id": "monthly:2026-09-30:SNDK",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "MRNA",
@@ -389,7 +400,7 @@
       "candidate_id": "monthly:2026-09-30:MRNA",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "DELL",
@@ -422,10 +433,10 @@
         "high": 560.5599975585938,
         "low": 546.0,
         "close": 552.2899780273438,
-        "volume": 4184800.0,
+        "volume": 4202000.0,
         "close_location": 0.432004057832497,
         "close_vs_level_atr": 0.4362034209271759,
-        "volume_ratio": 0.3880824703070264,
+        "volume_ratio": 0.389677533031477,
         "expansion_seen_before": true,
         "expansion_reached_today": true,
         "eligible_retest_day": true,
@@ -455,7 +466,7 @@
       "candidate_id": "monthly:2026-09-30:DELL",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "TWST",
@@ -523,7 +534,7 @@
       "candidate_id": "monthly:2026-09-30:TWST",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "ALM",
@@ -581,13 +592,13 @@
       "failed_conditions": [],
       "grade": "A",
       "event_date": "2026-10-05",
-      "entry_date": null,
-      "entry_open": null,
-      "next_step": "Señal confirmada; entrada en la próxima apertura",
+      "entry_date": "2026-10-06",
+      "entry_open": 13.520000457763672,
+      "next_step": "Señal del ciclo; entrada de apertura ya registrada",
       "candidate_id": "monthly:2026-09-30:ALM",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "ABSI",
@@ -654,7 +665,7 @@
       "candidate_id": "monthly:2026-09-30:ABSI",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "AAOI",
@@ -673,24 +684,24 @@
       "max_valid_close": 104.22807693481445,
       "max_event_volume": 5526300.0,
       "status": "expanded_waiting_retest",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": true,
       "expansion_date": "2026-10-01",
-      "expansion_peak": 121.91500091552734,
-      "expansion_peak_atr": 3.420087211512104,
+      "expansion_peak": 131.14999389648438,
+      "expansion_peak_atr": 4.814237866750208,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 118.5,
-        "high": 121.91500091552734,
-        "low": 112.80000305175781,
-        "close": 121.56999969482422,
-        "volume": 9307400.0,
-        "close_location": 0.9621501589073934,
-        "close_vs_level_atr": 3.368004478055455,
-        "volume_ratio": 1.3473608019832437,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 125.99500274658203,
+        "high": 131.14999389648438,
+        "low": 124.30000305175781,
+        "close": 130.16000366210938,
+        "volume": 12486500.0,
+        "close_location": 0.8554756850314421,
+        "close_vs_level_atr": 4.664785069462841,
+        "volume_ratio": 1.8075746883086332,
         "expansion_seen_before": true,
         "expansion_reached_today": true,
         "eligible_retest_day": true,
@@ -712,7 +723,7 @@
       "candidate_id": "monthly:2026-09-30:AAOI",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "HYMC",
@@ -779,7 +790,7 @@
       "candidate_id": "monthly:2026-09-30:HYMC",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "DOCN",
@@ -797,47 +808,56 @@
       "contact_band_high": 135.71112384796143,
       "max_valid_close": 140.3533727645874,
       "max_event_volume": 2245720.0,
-      "status": "expanded_waiting_retest",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "status": "rejected_first_contact",
+      "complete_days": 4,
+      "sessions_remaining": 0,
       "expansion_seen": true,
       "expansion_date": "2026-10-01",
       "expansion_peak": 149.77999877929688,
       "expansion_peak_atr": 1.765308117252017,
-      "first_contact_date": null,
+      "first_contact_date": "2026-10-06",
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 139.3800048828125,
-        "high": 141.2899932861328,
-        "low": 137.00999450683594,
-        "close": 137.22999572753906,
-        "volume": 1762700.0,
-        "close_location": 0.05140216903035359,
-        "close_vs_level_atr": 0.41359224880616324,
-        "volume_ratio": 0.6279322444472152,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 139.52999877929688,
+        "high": 143.33999633789062,
+        "low": 130.94000244140625,
+        "close": 131.00999450683594,
+        "volume": 1832200.0,
+        "close_location": 0.005644524183962021,
+        "close_vs_level_atr": -0.25634179958431724,
+        "volume_ratio": 0.6526904511693354,
         "expansion_seen_before": true,
         "expansion_reached_today": true,
         "eligible_retest_day": true,
         "checks": {
-          "contact": false,
-          "hold": true,
+          "contact": true,
+          "hold": false,
           "strong_close": false,
           "not_extended": true,
           "volume_contraction": true
         }
       },
-      "checks": null,
-      "failed_conditions": [],
+      "checks": {
+        "contact": true,
+        "hold": false,
+        "strong_close": false,
+        "not_extended": true,
+        "volume_contraction": true
+      },
+      "failed_conditions": [
+        "hold",
+        "strong_close"
+      ],
       "grade": null,
       "event_date": null,
       "entry_date": null,
       "entry_open": null,
-      "next_step": "Expansión confirmada; falta el primer contacto válido",
+      "next_step": "Primer contacto rechazado; no puede reactivarse este ciclo",
       "candidate_id": "monthly:2026-09-30:DOCN",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "MXL",
@@ -856,31 +876,31 @@
       "max_valid_close": 94.96262240409851,
       "max_event_volume": 2341032.0,
       "status": "expanded_waiting_retest",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": true,
       "expansion_date": "2026-10-01",
-      "expansion_peak": 108.33000183105469,
-      "expansion_peak_atr": 2.9048125849655664,
+      "expansion_peak": 110.31999969482422,
+      "expansion_peak_atr": 3.2255989039547623,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 105.43000030517578,
-        "high": 108.33000183105469,
-        "low": 102.87999725341797,
-        "close": 105.48999786376953,
-        "volume": 2817600.0,
-        "close_location": 0.47889879231685617,
-        "close_vs_level_atr": 2.447005853025462,
-        "volume_ratio": 0.9628574064771435,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 108.4000015258789,
+        "high": 110.31999969482422,
+        "low": 106.5999984741211,
+        "close": 109.30000305175781,
+        "volume": 2392300.0,
+        "close_location": 0.7258074439895977,
+        "close_vs_level_atr": 3.061176130208256,
+        "volume_ratio": 0.8175197946888381,
         "expansion_seen_before": true,
         "expansion_reached_today": true,
         "eligible_retest_day": true,
         "checks": {
           "contact": false,
           "hold": true,
-          "strong_close": false,
+          "strong_close": true,
           "not_extended": false,
           "volume_contraction": false
         }
@@ -895,7 +915,7 @@
       "candidate_id": "monthly:2026-09-30:MXL",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "IBRX",
@@ -914,24 +934,24 @@
       "max_valid_close": 9.867837023735046,
       "max_event_volume": 9133200.0,
       "status": "expanded_waiting_retest",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": true,
       "expansion_date": "2026-10-02",
       "expansion_peak": 10.8100004196167,
       "expansion_peak_atr": 2.401614551020705,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 10.760000228881836,
-        "high": 10.8100004196167,
-        "low": 10.125,
-        "close": 10.380000114440918,
-        "volume": 16789800.0,
-        "close_location": 0.3722627127492952,
-        "close_vs_level_atr": 1.6478230493809267,
-        "volume_ratio": 1.470660885560373,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 10.324999809265137,
+        "high": 10.359999656677246,
+        "low": 9.609999656677246,
+        "close": 9.6899995803833,
+        "volume": 16845400.0,
+        "close_location": 0.10666656494140625,
+        "close_vs_level_atr": 0.43825056201508594,
+        "volume_ratio": 1.4755310296500679,
         "expansion_seen_before": true,
         "expansion_reached_today": true,
         "eligible_retest_day": true,
@@ -939,7 +959,7 @@
           "contact": false,
           "hold": true,
           "strong_close": false,
-          "not_extended": false,
+          "not_extended": true,
           "volume_contraction": false
         }
       },
@@ -953,7 +973,7 @@
       "candidate_id": "monthly:2026-09-30:IBRX",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "IOVA",
@@ -1020,7 +1040,7 @@
       "candidate_id": "monthly:2026-09-30:IOVA",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "BAND",
@@ -1086,7 +1106,7 @@
       "candidate_id": "monthly:2026-09-30:BAND",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "PLSE",
@@ -1153,7 +1173,7 @@
       "candidate_id": "monthly:2026-09-30:PLSE",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "FSLY",
@@ -1219,7 +1239,7 @@
       "candidate_id": "monthly:2026-09-30:FSLY",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "KOD",
@@ -1287,7 +1307,7 @@
       "candidate_id": "monthly:2026-09-30:KOD",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "ACRS",
@@ -1306,24 +1326,24 @@
       "max_valid_close": 5.528612679243087,
       "max_event_volume": 2217536.0,
       "status": "waiting_expansion",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 4.340000152587891,
-        "high": 4.409999847412109,
-        "low": 4.065000057220459,
-        "close": 4.269999980926514,
-        "volume": 7015400.0,
-        "close_location": 0.5942030387675756,
-        "close_vs_level_atr": -2.7642061452025666,
-        "volume_ratio": 2.5308811221103062,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 4.21999979019165,
+        "high": 4.239999771118164,
+        "low": 3.6500000953674316,
+        "close": 3.700000047683716,
+        "volume": 3530400.0,
+        "close_location": 0.08474572846614332,
+        "close_vs_level_atr": -4.355718189253994,
+        "volume_ratio": 1.2736298305867413,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
@@ -1345,7 +1365,7 @@
       "candidate_id": "monthly:2026-09-30:ACRS",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "ERAS",
@@ -1412,7 +1432,7 @@
       "candidate_id": "monthly:2026-09-30:ERAS",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "HUT",
@@ -1470,13 +1490,13 @@
       "failed_conditions": [],
       "grade": "A",
       "event_date": "2026-10-05",
-      "entry_date": null,
-      "entry_open": null,
-      "next_step": "Señal confirmada; entrada en la próxima apertura",
+      "entry_date": "2026-10-06",
+      "entry_open": 91.8499984741211,
+      "next_step": "Señal del ciclo; entrada de apertura ya registrada",
       "candidate_id": "monthly:2026-09-30:HUT",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "OMER",
@@ -1495,24 +1515,24 @@
       "max_valid_close": 19.700375652313234,
       "max_event_volume": 1192164.0,
       "status": "waiting_expansion",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 18.81999969482422,
-        "high": 19.149999618530273,
-        "low": 18.549999237060547,
-        "close": 18.899999618530273,
-        "volume": 1068100.0,
-        "close_location": 0.5833335982426973,
-        "close_vs_level_atr": -0.15900210425803565,
-        "volume_ratio": 0.7167470247382072,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 18.950000762939453,
+        "high": 18.989999771118164,
+        "low": 18.309999465942383,
+        "close": 18.510000228881836,
+        "volume": 1035000.0,
+        "close_location": 0.2941186370317181,
+        "close_vs_level_atr": -0.6019317409366786,
+        "volume_ratio": 0.6945353156109394,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
@@ -1534,7 +1554,7 @@
       "candidate_id": "monthly:2026-09-30:OMER",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "STX",
@@ -1553,24 +1573,24 @@
       "max_valid_close": 957.6146817709598,
       "max_event_volume": 3020792.8847396523,
       "status": "expanded_waiting_retest",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": true,
       "expansion_date": "2026-10-01",
       "expansion_peak": 946.3599853515625,
       "expansion_peak_atr": 0.5107057436913144,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 876.0,
-        "high": 903.0,
-        "low": 875.0,
-        "close": 887.0900268554688,
-        "volume": 5585800.0,
-        "close_location": 0.4317866734095982,
-        "close_vs_level_atr": -0.7494757939755171,
-        "volume_ratio": 1.4792937385990734,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 857.1199951171875,
+        "high": 863.5,
+        "low": 798.6199951171875,
+        "close": 805.6300048828125,
+        "volume": 7264600.0,
+        "close_location": 0.10804576507487343,
+        "close_vs_level_atr": -2.481456351286712,
+        "volume_ratio": 1.9238922434435226,
         "expansion_seen_before": true,
         "expansion_reached_today": false,
         "eligible_retest_day": true,
@@ -1592,7 +1612,7 @@
       "candidate_id": "monthly:2026-09-30:STX",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "WDC",
@@ -1611,24 +1631,24 @@
       "max_valid_close": 472.6267179453846,
       "max_event_volume": 5344849.251524851,
       "status": "expanded_waiting_retest",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": true,
       "expansion_date": "2026-10-01",
       "expansion_peak": 463.54998779296875,
       "expansion_peak_atr": 0.3752738423763738,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 430.5,
-        "high": 447.7099914550781,
-        "low": 429.44000244140625,
-        "close": 441.6400146484375,
-        "volume": 11277200.0,
-        "close_location": 0.6677624271093806,
-        "close_vs_level_atr": -0.529263354634138,
-        "volume_ratio": 1.687935351483702,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 426.6000061035156,
+        "high": 430.3299865722656,
+        "low": 406.80999755859375,
+        "close": 411.0400085449219,
+        "volume": 14002200.0,
+        "close_location": 0.17984748988910124,
+        "close_vs_level_atr": -1.7925621988085427,
+        "volume_ratio": 2.0958046659228438,
         "expansion_seen_before": true,
         "expansion_reached_today": false,
         "eligible_retest_day": true,
@@ -1650,7 +1670,7 @@
       "candidate_id": "monthly:2026-09-30:WDC",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "TXG",
@@ -1716,7 +1736,7 @@
       "candidate_id": "monthly:2026-09-30:TXG",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "ATEX",
@@ -1735,31 +1755,31 @@
       "max_valid_close": 81.59007444381714,
       "max_event_volume": 243932.0,
       "status": "expanded_waiting_retest",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": true,
       "expansion_date": "2026-10-01",
-      "expansion_peak": 85.88999938964844,
-      "expansion_peak_atr": 1.7936459599949743,
+      "expansion_peak": 86.5,
+      "expansion_peak_atr": 1.941700793650867,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 84.88999938964844,
-        "high": 85.88999938964844,
-        "low": 83.19000244140625,
-        "close": 85.61000061035156,
-        "volume": 189700.0,
-        "close_location": 0.8962966311946515,
-        "close_vs_level_atr": 1.7256867284972222,
-        "volume_ratio": 0.622140596559697,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 86.11000061035156,
+        "high": 86.5,
+        "low": 82.5999984741211,
+        "close": 83.41000366210938,
+        "volume": 219100.0,
+        "close_location": 0.20769355668540107,
+        "close_vs_level_atr": 1.1917197509433046,
+        "volume_ratio": 0.7185609104176574,
         "expansion_seen_before": true,
         "expansion_reached_today": true,
         "eligible_retest_day": true,
         "checks": {
           "contact": false,
           "hold": true,
-          "strong_close": true,
+          "strong_close": false,
           "not_extended": false,
           "volume_contraction": true
         }
@@ -1774,7 +1794,7 @@
       "candidate_id": "monthly:2026-09-30:ATEX",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "CMPS",
@@ -1793,24 +1813,24 @@
       "max_valid_close": 13.067337119579316,
       "max_event_volume": 2318140.0,
       "status": "waiting_expansion",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 12.0,
-        "high": 12.057000160217285,
-        "low": 11.270000457763672,
-        "close": 11.600000381469727,
-        "volume": 3772300.0,
-        "close_location": 0.4193139116536137,
-        "close_vs_level_atr": -1.004243106498262,
-        "volume_ratio": 1.3018368174484716,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 11.720000267028809,
+        "high": 11.800000190734863,
+        "low": 11.170000076293945,
+        "close": 11.5600004196167,
+        "volume": 2796000.0,
+        "close_location": 0.6190480515528994,
+        "close_vs_level_atr": -1.052064206807703,
+        "volume_ratio": 0.9649115238941566,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
@@ -1832,7 +1852,7 @@
       "candidate_id": "monthly:2026-09-30:CMPS",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "INTC",
@@ -1900,7 +1920,7 @@
       "candidate_id": "monthly:2026-09-30:INTC",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "BE",
@@ -1919,24 +1939,24 @@
       "max_valid_close": 292.54150104522705,
       "max_event_volume": 14230556.0,
       "status": "expanded_waiting_retest",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": true,
       "expansion_date": "2026-10-01",
-      "expansion_peak": 297.5899963378906,
-      "expansion_peak_atr": 0.9933167681993552,
+      "expansion_peak": 300.79998779296875,
+      "expansion_peak_atr": 1.1480251915056345,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 289.989990234375,
-        "high": 291.9599914550781,
-        "low": 282.3399963378906,
-        "close": 286.6499938964844,
-        "volume": 7481800.0,
-        "close_location": 0.4480249216440164,
-        "close_vs_level_atr": 0.46605351770088443,
-        "volume_ratio": 0.42060478873769935,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 295.25,
+        "high": 300.79998779296875,
+        "low": 285.6400146484375,
+        "close": 295.7799987792969,
+        "volume": 12308900.0,
+        "close_location": 0.668865573453686,
+        "close_vs_level_atr": 0.9060823090436255,
+        "volume_ratio": 0.691970152114928,
         "expansion_seen_before": true,
         "expansion_reached_today": true,
         "eligible_retest_day": true,
@@ -1944,7 +1964,7 @@
           "contact": false,
           "hold": true,
           "strong_close": false,
-          "not_extended": true,
+          "not_extended": false,
           "volume_contraction": true
         }
       },
@@ -1958,7 +1978,7 @@
       "candidate_id": "monthly:2026-09-30:BE",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "SLS",
@@ -1977,24 +1997,24 @@
       "max_valid_close": 12.968875336647034,
       "max_event_volume": 5127128.0,
       "status": "waiting_expansion",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 11.770000457763672,
-        "high": 11.770000457763672,
-        "low": 11.350000381469727,
-        "close": 11.630000114440918,
-        "volume": 4512400.0,
-        "close_location": 0.666665909782426,
-        "close_vs_level_atr": -0.7740471153166628,
-        "volume_ratio": 0.7040822854432345,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 11.630000114440918,
+        "high": 11.670000076293945,
+        "low": 11.109999656677246,
+        "close": 11.34000015258789,
+        "volume": 3952700.0,
+        "close_location": 0.4107148635139807,
+        "close_vs_level_atr": -1.1041552523361766,
+        "volume_ratio": 0.6167507423259181,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
@@ -2016,7 +2036,7 @@
       "candidate_id": "monthly:2026-09-30:SLS",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "VSAT",
@@ -2083,7 +2103,7 @@
       "candidate_id": "monthly:2026-09-30:VSAT",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "TNGX",
@@ -2151,7 +2171,7 @@
       "candidate_id": "monthly:2026-09-30:TNGX",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "LBRX",
@@ -2170,24 +2190,24 @@
       "max_valid_close": 39.994938659667966,
       "max_event_volume": 282256.0,
       "status": "waiting_expansion",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 36.40999984741211,
-        "high": 36.880001068115234,
-        "low": 34.470001220703125,
-        "close": 34.619998931884766,
-        "volume": 494500.0,
-        "close_location": 0.0622397181239286,
-        "close_vs_level_atr": -1.7461985013683836,
-        "volume_ratio": 1.4015645371577574,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 35.25,
+        "high": 35.59000015258789,
+        "low": 33.72700119018555,
+        "close": 34.2599983215332,
+        "volume": 432800.0,
+        "close_location": 0.2860963114334506,
+        "close_vs_level_atr": -1.9133879080525584,
+        "volume_ratio": 1.2266878294881243,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
@@ -2209,7 +2229,7 @@
       "candidate_id": "monthly:2026-09-30:LBRX",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "REPL",
@@ -2276,7 +2296,7 @@
       "candidate_id": "monthly:2026-09-30:REPL",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "FCEL",
@@ -2295,24 +2315,24 @@
       "max_valid_close": 17.42350001335144,
       "max_event_volume": 5290016.0,
       "status": "expanded_waiting_retest",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": true,
       "expansion_date": "2026-10-01",
-      "expansion_peak": 18.540000915527344,
-      "expansion_peak_atr": 1.5844551361780008,
+      "expansion_peak": 21.059999465942383,
+      "expansion_peak_atr": 3.4678622426629437,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 18.110000610351562,
-        "high": 18.18000030517578,
-        "low": 16.860000610351562,
-        "close": 18.06999969482422,
-        "volume": 5490300.0,
-        "close_location": 0.9166661850128601,
-        "close_vs_level_atr": 1.2331836487467591,
-        "volume_ratio": 0.8302886040420293,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 18.5,
+        "high": 21.059999465942383,
+        "low": 18.309999465942383,
+        "close": 20.649999618530273,
+        "volume": 12776900.0,
+        "close_location": 0.8509091463955966,
+        "close_vs_level_atr": 3.161434833747756,
+        "volume_ratio": 1.9322285603673033,
         "expansion_seen_before": true,
         "expansion_reached_today": true,
         "eligible_retest_day": true,
@@ -2334,7 +2354,7 @@
       "candidate_id": "monthly:2026-09-30:FCEL",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "DMRA",
@@ -2353,24 +2373,24 @@
       "max_valid_close": 22.665625786781312,
       "max_event_volume": 653112.0,
       "status": "waiting_expansion",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 3,
-        "open": 20.639999389648438,
-        "high": 20.69499969482422,
-        "low": 19.542999267578125,
-        "close": 20.219999313354492,
-        "volume": 556100.0,
-        "close_location": 0.587673432895129,
-        "close_vs_level_atr": -0.5737490103855254,
-        "volume_ratio": 0.6811695390683374,
+        "date": "2026-10-06",
+        "day": 4,
+        "open": 20.420000076293945,
+        "high": 20.479999542236328,
+        "low": 18.19499969482422,
+        "close": 19.549999237060547,
+        "volume": 1171600.0,
+        "close_location": 0.5929976510812205,
+        "close_vs_level_atr": -0.9364012582202461,
+        "volume_ratio": 1.4350984210977598,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
@@ -2379,7 +2399,7 @@
           "hold": false,
           "strong_close": false,
           "not_extended": true,
-          "volume_contraction": true
+          "volume_contraction": false
         }
       },
       "checks": null,
@@ -2392,7 +2412,7 @@
       "candidate_id": "monthly:2026-09-30:DMRA",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "BFLY",
@@ -2470,7 +2490,7 @@
       "candidate_id": "lm2:2026-09-29:BFLY",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "SNDK",
@@ -2546,7 +2566,7 @@
       "candidate_id": "lm2:2026-09-29:SNDK",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "MRNA",
@@ -2564,32 +2584,32 @@
       "contact_band_high": 206.47973136901857,
       "max_valid_close": 212.5191806793213,
       "max_event_volume": 12018236.0,
-      "status": "waiting_expansion",
-      "complete_days": 4,
-      "sessions_remaining": 1,
-      "expansion_seen": false,
-      "expansion_date": null,
-      "expansion_peak": null,
-      "expansion_peak_atr": null,
+      "status": "expired",
+      "complete_days": 5,
+      "sessions_remaining": 0,
+      "expansion_seen": true,
+      "expansion_date": "2026-10-06",
+      "expansion_peak": 212.22000122070312,
+      "expansion_peak_atr": 0.7252312302623526,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 4,
-        "open": 191.41000366210938,
-        "high": 205.77000427246094,
-        "low": 185.89999389648438,
-        "close": 203.2100067138672,
-        "volume": 19274700.0,
-        "close_location": 0.8711627467649004,
-        "close_vs_level_atr": -0.02069725128527227,
-        "volume_ratio": 1.2830302217396963,
+        "date": "2026-10-06",
+        "day": 5,
+        "open": 202.08999633789062,
+        "high": 212.22000122070312,
+        "low": 186.63999938964844,
+        "close": 187.4600067138672,
+        "volume": 18759000.0,
+        "close_location": 0.03205657801100088,
+        "close_vs_level_atr": -1.3246240822574253,
+        "volume_ratio": 1.2487023886034523,
         "expansion_seen_before": false,
-        "expansion_reached_today": false,
+        "expansion_reached_today": true,
         "eligible_retest_day": false,
         "checks": {
           "contact": true,
           "hold": false,
-          "strong_close": true,
+          "strong_close": false,
           "not_extended": true,
           "volume_contraction": false
         }
@@ -2600,7 +2620,7 @@
       "event_date": null,
       "entry_date": null,
       "entry_open": null,
-      "next_step": "Falta alcanzar el nivel mínimo de expansión",
+      "next_step": "Ventana cerrada: no hubo contacto con la banda",
       "lm2_grade": "A",
       "lm2_quality_points": 2,
       "lm2_quality_checks": {
@@ -2614,7 +2634,7 @@
       "candidate_id": "lm2:2026-09-29:MRNA",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "LITE",
@@ -2691,7 +2711,7 @@
       "candidate_id": "lm2:2026-09-29:LITE",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "TWST",
@@ -2768,7 +2788,7 @@
       "candidate_id": "lm2:2026-09-29:TWST",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "ALM",
@@ -2845,7 +2865,7 @@
       "candidate_id": "lm2:2026-09-29:ALM",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "DELL",
@@ -2919,7 +2939,7 @@
       "candidate_id": "lm2:2026-09-29:DELL",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "ABSI",
@@ -2937,43 +2957,52 @@
       "contact_band_high": 10.313550329208374,
       "max_valid_close": 10.660650300979615,
       "max_event_volume": 3035820.0,
-      "status": "expanded_waiting_retest",
-      "complete_days": 4,
-      "sessions_remaining": 1,
+      "status": "rejected_first_contact",
+      "complete_days": 5,
+      "sessions_remaining": 0,
       "expansion_seen": true,
       "expansion_date": "2026-09-30",
       "expansion_peak": 11.800000190734863,
       "expansion_peak_atr": 2.391241691754082,
-      "first_contact_date": null,
+      "first_contact_date": "2026-10-06",
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 4,
-        "open": 11.104999542236328,
-        "high": 11.800000190734863,
-        "low": 10.869999885559082,
-        "close": 11.529999732971191,
-        "volume": 4283700.0,
-        "close_location": 0.7096770224041609,
-        "close_vs_level_atr": 2.0023040949201385,
-        "volume_ratio": 1.1288416309267348,
+        "date": "2026-10-06",
+        "day": 5,
+        "open": 11.770000457763672,
+        "high": 11.890000343322754,
+        "low": 10.210000038146973,
+        "close": 10.270000457763672,
+        "volume": 5876200.0,
+        "close_location": 0.03571452899850591,
+        "close_vs_level_atr": 0.18726609768582156,
+        "volume_ratio": 1.5484976052598638,
         "expansion_seen_before": true,
         "expansion_reached_today": true,
         "eligible_retest_day": true,
         "checks": {
-          "contact": false,
+          "contact": true,
           "hold": true,
-          "strong_close": true,
-          "not_extended": false,
+          "strong_close": false,
+          "not_extended": true,
           "volume_contraction": false
         }
       },
-      "checks": null,
-      "failed_conditions": [],
+      "checks": {
+        "contact": true,
+        "hold": true,
+        "strong_close": false,
+        "not_extended": true,
+        "volume_contraction": false
+      },
+      "failed_conditions": [
+        "strong_close",
+        "volume_contraction"
+      ],
       "grade": null,
       "event_date": null,
       "entry_date": null,
       "entry_open": null,
-      "next_step": "Expansión confirmada; falta el primer contacto válido",
+      "next_step": "Primer contacto rechazado; no puede reactivarse este ciclo",
       "lm2_grade": "A+",
       "lm2_quality_points": 3,
       "lm2_quality_checks": {
@@ -2987,7 +3016,7 @@
       "candidate_id": "lm2:2026-09-29:ABSI",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "AAOI",
@@ -3064,7 +3093,7 @@
       "candidate_id": "lm2:2026-09-29:AAOI",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "HYMC",
@@ -3141,7 +3170,7 @@
       "candidate_id": "lm2:2026-09-29:HYMC",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "DOCN",
@@ -3215,7 +3244,7 @@
       "candidate_id": "lm2:2026-09-29:DOCN",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "NUAI",
@@ -3293,7 +3322,7 @@
       "candidate_id": "lm2:2026-09-29:NUAI",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "HUT",
@@ -3311,34 +3340,34 @@
       "contact_band_high": 94.723850440979,
       "max_valid_close": 98.45155010223388,
       "max_event_volume": 3487596.0,
-      "status": "waiting_expansion",
-      "complete_days": 4,
-      "sessions_remaining": 1,
+      "status": "expired",
+      "complete_days": 5,
+      "sessions_remaining": 0,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 4,
-        "open": 89.95999908447266,
-        "high": 90.53500366210938,
-        "low": 84.75,
-        "close": 89.2699966430664,
-        "volume": 3478500.0,
-        "close_location": 0.7813299536301915,
-        "close_vs_level_atr": -0.48153074194778706,
-        "volume_ratio": 0.7979135197998851,
+        "date": "2026-10-06",
+        "day": 5,
+        "open": 91.8499984741211,
+        "high": 93.80000305175781,
+        "low": 88.62999725341797,
+        "close": 92.22000122070312,
+        "volume": 5711900.0,
+        "close_location": 0.6943907042498779,
+        "close_vs_level_atr": -0.0858437438375856,
+        "volume_ratio": 1.310220564537865,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
         "checks": {
-          "contact": false,
+          "contact": true,
           "hold": false,
-          "strong_close": true,
+          "strong_close": false,
           "not_extended": true,
-          "volume_contraction": true
+          "volume_contraction": false
         }
       },
       "checks": null,
@@ -3347,7 +3376,7 @@
       "event_date": null,
       "entry_date": null,
       "entry_open": null,
-      "next_step": "Falta alcanzar el nivel mínimo de expansión",
+      "next_step": "Ventana cerrada: no hubo expansión",
       "lm2_grade": "A",
       "lm2_quality_points": 2,
       "lm2_quality_checks": {
@@ -3361,7 +3390,7 @@
       "candidate_id": "lm2:2026-09-29:HUT",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "FSLY",
@@ -3435,7 +3464,7 @@
       "candidate_id": "lm2:2026-09-29:FSLY",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "BAND",
@@ -3511,7 +3540,7 @@
       "candidate_id": "lm2:2026-09-29:BAND",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "MXL",
@@ -3588,7 +3617,7 @@
       "candidate_id": "lm2:2026-09-29:MXL",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "IOVA",
@@ -3666,7 +3695,7 @@
       "candidate_id": "lm2:2026-09-29:IOVA",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "IBRX",
@@ -3684,25 +3713,25 @@
       "contact_band_high": 8.960112398862838,
       "max_valid_close": 9.220337349176408,
       "max_event_volume": 8302680.0,
-      "status": "expanded_waiting_retest",
-      "complete_days": 4,
-      "sessions_remaining": 1,
+      "status": "expired",
+      "complete_days": 5,
+      "sessions_remaining": 0,
       "expansion_seen": true,
       "expansion_date": "2026-09-30",
       "expansion_peak": 10.8100004196167,
       "expansion_peak_atr": 3.804401717676891,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 4,
-        "open": 10.760000228881836,
-        "high": 10.8100004196167,
-        "low": 10.125,
-        "close": 10.380000114440918,
-        "volume": 16789800.0,
-        "close_location": 0.3722627127492952,
-        "close_vs_level_atr": 2.9781928844008436,
-        "volume_ratio": 1.617771611094249,
+        "date": "2026-10-06",
+        "day": 5,
+        "open": 10.324999809265137,
+        "high": 10.359999656677246,
+        "low": 9.609999656677246,
+        "close": 9.6899995803833,
+        "volume": 16845400.0,
+        "close_location": 0.10666656494140625,
+        "close_vs_level_atr": 1.6524158341484094,
+        "volume_ratio": 1.6231289174098003,
         "expansion_seen_before": true,
         "expansion_reached_today": true,
         "eligible_retest_day": true,
@@ -3720,7 +3749,7 @@
       "event_date": null,
       "entry_date": null,
       "entry_open": null,
-      "next_step": "Expansión confirmada; falta el primer contacto válido",
+      "next_step": "Ventana cerrada: no hubo contacto con la banda",
       "lm2_grade": "A",
       "lm2_quality_points": 2,
       "lm2_quality_checks": {
@@ -3734,7 +3763,7 @@
       "candidate_id": "lm2:2026-09-29:IBRX",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "PLSE",
@@ -3752,32 +3781,32 @@
       "contact_band_high": 51.94247450828552,
       "max_valid_close": 54.047424745559695,
       "max_event_volume": 568760.0,
-      "status": "waiting_expansion",
-      "complete_days": 4,
-      "sessions_remaining": 1,
+      "status": "expired",
+      "complete_days": 5,
+      "sessions_remaining": 0,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 4,
-        "open": 47.88999938964844,
-        "high": 50.9900016784668,
-        "low": 47.470001220703125,
-        "close": 50.5,
-        "volume": 433400.0,
-        "close_location": 0.8607949958114196,
-        "close_vs_level_atr": -0.09263862459605501,
-        "volume_ratio": 0.6096068640551375,
+        "date": "2026-10-06",
+        "day": 5,
+        "open": 51.2599983215332,
+        "high": 51.2599983215332,
+        "low": 48.619998931884766,
+        "close": 49.75,
+        "volume": 421400.0,
+        "close_location": 0.4280308065774644,
+        "close_vs_level_atr": -0.27079010455009456,
+        "volume_ratio": 0.5927280399465504,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
         "checks": {
           "contact": true,
           "hold": false,
-          "strong_close": true,
+          "strong_close": false,
           "not_extended": true,
           "volume_contraction": true
         }
@@ -3788,7 +3817,7 @@
       "event_date": null,
       "entry_date": null,
       "entry_open": null,
-      "next_step": "Falta alcanzar el nivel mínimo de expansión",
+      "next_step": "Ventana cerrada: no hubo expansión",
       "lm2_grade": "A",
       "lm2_quality_points": 2,
       "lm2_quality_checks": {
@@ -3802,7 +3831,7 @@
       "candidate_id": "lm2:2026-09-29:PLSE",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "STX",
@@ -3876,7 +3905,7 @@
       "candidate_id": "lm2:2026-09-29:STX",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "TXG",
@@ -3954,7 +3983,7 @@
       "candidate_id": "lm2:2026-09-29:TXG",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "ACRS",
@@ -3972,25 +4001,25 @@
       "contact_band_high": 5.370850193500519,
       "max_valid_close": 5.5525501608848575,
       "max_event_volume": 2186480.0,
-      "status": "expanded_waiting_retest",
-      "complete_days": 4,
-      "sessions_remaining": 1,
+      "status": "expired",
+      "complete_days": 5,
+      "sessions_remaining": 0,
       "expansion_seen": true,
       "expansion_date": "2026-09-30",
       "expansion_peak": 5.394999980926514,
       "expansion_peak_atr": 0.3164551231726761,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 4,
-        "open": 4.340000152587891,
-        "high": 4.409999847412109,
-        "low": 4.065000057220459,
-        "close": 4.269999980926514,
-        "volume": 7015400.0,
-        "close_location": 0.5942030387675756,
-        "close_vs_level_atr": -2.7793076779850123,
-        "volume_ratio": 2.566828875635725,
+        "date": "2026-10-06",
+        "day": 5,
+        "open": 4.21999979019165,
+        "high": 4.239999771118164,
+        "low": 3.6500000953674316,
+        "close": 3.700000047683716,
+        "volume": 3530400.0,
+        "close_location": 0.08474572846614332,
+        "close_vs_level_atr": -4.347827313536496,
+        "volume_ratio": 1.2917200248801728,
         "expansion_seen_before": true,
         "expansion_reached_today": false,
         "eligible_retest_day": true,
@@ -4008,7 +4037,7 @@
       "event_date": null,
       "entry_date": null,
       "entry_open": null,
-      "next_step": "Expansión confirmada; falta el primer contacto válido",
+      "next_step": "Ventana cerrada: no hubo contacto con la banda",
       "lm2_grade": "B",
       "lm2_quality_points": 1,
       "lm2_quality_checks": {
@@ -4022,7 +4051,7 @@
       "candidate_id": "lm2:2026-09-29:ACRS",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "WDC",
@@ -4098,7 +4127,7 @@
       "candidate_id": "lm2:2026-09-29:WDC",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "OMER",
@@ -4116,30 +4145,30 @@
       "contact_band_high": 19.472374939918517,
       "max_valid_close": 19.917124819755553,
       "max_event_volume": 1219240.0,
-      "status": "waiting_expansion",
-      "complete_days": 4,
-      "sessions_remaining": 1,
+      "status": "expired",
+      "complete_days": 5,
+      "sessions_remaining": 0,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 4,
-        "open": 18.81999969482422,
-        "high": 19.149999618530273,
-        "low": 18.549999237060547,
-        "close": 18.899999618530273,
-        "volume": 1068100.0,
-        "close_location": 0.5833335982426973,
-        "close_vs_level_atr": -0.39348001802493193,
-        "volume_ratio": 0.7008300252616384,
+        "date": "2026-10-06",
+        "day": 5,
+        "open": 18.950000762939453,
+        "high": 18.989999771118164,
+        "low": 18.309999465942383,
+        "close": 18.510000228881836,
+        "volume": 1035000.0,
+        "close_location": 0.2941186370317181,
+        "close_vs_level_atr": -0.8319280169219073,
+        "volume_ratio": 0.6791115777041435,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
         "checks": {
-          "contact": true,
+          "contact": false,
           "hold": false,
           "strong_close": false,
           "not_extended": true,
@@ -4152,7 +4181,7 @@
       "event_date": null,
       "entry_date": null,
       "entry_open": null,
-      "next_step": "Falta alcanzar el nivel mínimo de expansión",
+      "next_step": "Ventana cerrada: no hubo expansión",
       "lm2_grade": "B",
       "lm2_quality_points": 1,
       "lm2_quality_checks": {
@@ -4166,7 +4195,7 @@
       "candidate_id": "lm2:2026-09-29:OMER",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "KOD",
@@ -4243,7 +4272,7 @@
       "candidate_id": "lm2:2026-09-29:KOD",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "ERAS",
@@ -4319,7 +4348,7 @@
       "candidate_id": "lm2:2026-09-29:ERAS",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "ATEX",
@@ -4397,7 +4426,7 @@
       "candidate_id": "lm2:2026-09-29:ATEX",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "CMPS",
@@ -4415,25 +4444,25 @@
       "contact_band_high": 13.164862561225892,
       "max_valid_close": 13.574587607383728,
       "max_event_volume": 2271852.0,
-      "status": "waiting_expansion",
-      "complete_days": 4,
-      "sessions_remaining": 1,
+      "status": "expired",
+      "complete_days": 5,
+      "sessions_remaining": 0,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 4,
-        "open": 12.0,
-        "high": 12.057000160217285,
-        "low": 11.270000457763672,
-        "close": 11.600000381469727,
-        "volume": 3772300.0,
-        "close_location": 0.4193139116536137,
-        "close_vs_level_atr": -1.659649159150181,
-        "volume_ratio": 1.3283611784570475,
+        "date": "2026-10-06",
+        "day": 5,
+        "open": 11.720000267028809,
+        "high": 11.800000190734863,
+        "low": 11.170000076293945,
+        "close": 11.5600004196167,
+        "volume": 2796000.0,
+        "close_location": 0.6190480515528994,
+        "close_vs_level_atr": -1.708462335484071,
+        "volume_ratio": 0.9845711780520914,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
@@ -4451,7 +4480,7 @@
       "event_date": null,
       "entry_date": null,
       "entry_open": null,
-      "next_step": "Falta alcanzar el nivel mínimo de expansión",
+      "next_step": "Ventana cerrada: no hubo expansión",
       "lm2_grade": "A",
       "lm2_quality_points": 2,
       "lm2_quality_checks": {
@@ -4465,7 +4494,7 @@
       "candidate_id": "lm2:2026-09-29:CMPS",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "TNGX",
@@ -4542,7 +4571,7 @@
       "candidate_id": "lm2:2026-09-29:TNGX",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "BE",
@@ -4619,7 +4648,7 @@
       "candidate_id": "lm2:2026-09-29:BE",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "INTC",
@@ -4696,7 +4725,7 @@
       "candidate_id": "lm2:2026-09-29:INTC",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "ANRO",
@@ -4774,7 +4803,7 @@
       "candidate_id": "lm2:2026-09-29:ANRO",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "VIAV",
@@ -4851,7 +4880,7 @@
       "candidate_id": "lm2:2026-09-29:VIAV",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "DMRA",
@@ -4928,7 +4957,7 @@
       "candidate_id": "lm2:2026-09-29:DMRA",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "SLS",
@@ -5006,7 +5035,7 @@
       "candidate_id": "lm2:2026-09-29:SLS",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "FCEL",
@@ -5083,7 +5112,7 @@
       "candidate_id": "lm2:2026-09-29:FCEL",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "VSAT",
@@ -5159,7 +5188,7 @@
       "candidate_id": "lm2:2026-09-29:VSAT",
       "source": "lm2",
       "formation_frequency": "lm2",
-      "session_after_formation": 4
+      "session_after_formation": 5
     },
     {
       "ticker": "KOD",
@@ -5177,47 +5206,56 @@
       "contact_band_high": 96.09249691963196,
       "max_valid_close": 99.3774968624115,
       "max_event_volume": 2806384.0,
-      "status": "expanded_waiting_retest",
-      "complete_days": 1,
-      "sessions_remaining": 4,
+      "status": "rejected_first_contact",
+      "complete_days": 2,
+      "sessions_remaining": 0,
       "expansion_seen": true,
       "expansion_date": "2026-10-05",
       "expansion_peak": 96.63999938964844,
       "expansion_peak_atr": 0.33333371073870105,
-      "first_contact_date": null,
+      "first_contact_date": "2026-10-06",
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 1,
+        "date": "2026-10-06",
+        "day": 2,
         "open": 92.86000061035156,
-        "high": 96.63999938964844,
-        "low": 87.58000183105469,
-        "close": 93.80999755859375,
-        "volume": 3234600.0,
-        "close_location": 0.6876376828192052,
-        "close_vs_level_atr": -0.09741238977114167,
-        "volume_ratio": 0.9220691109983523,
-        "expansion_seen_before": false,
-        "expansion_reached_today": true,
-        "eligible_retest_day": false,
+        "high": 95.54000091552734,
+        "low": 89.69999694824219,
+        "close": 92.33999633789062,
+        "volume": 1479600.0,
+        "close_location": 0.45205438291434835,
+        "close_vs_level_atr": -0.321156871705487,
+        "volume_ratio": 0.4217811960159408,
+        "expansion_seen_before": true,
+        "expansion_reached_today": false,
+        "eligible_retest_day": true,
         "checks": {
           "contact": true,
           "hold": false,
           "strong_close": false,
           "not_extended": true,
-          "volume_contraction": false
+          "volume_contraction": true
         }
       },
-      "checks": null,
-      "failed_conditions": [],
+      "checks": {
+        "contact": true,
+        "hold": false,
+        "strong_close": false,
+        "not_extended": true,
+        "volume_contraction": true
+      },
+      "failed_conditions": [
+        "hold",
+        "strong_close"
+      ],
       "grade": null,
       "event_date": null,
       "entry_date": null,
       "entry_open": null,
-      "next_step": "Expansión confirmada; falta el primer contacto válido",
+      "next_step": "Primer contacto rechazado; no puede reactivarse este ciclo",
       "candidate_id": "weekly:2026-10-02:KOD",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 1
+      "session_after_formation": 2
     },
     {
       "ticker": "REPL",
@@ -5235,25 +5273,92 @@
       "contact_band_high": 13.261337196826934,
       "max_valid_close": 13.644012200832368,
       "max_event_volume": 1732372.0,
-      "status": "expanded_waiting_retest",
-      "complete_days": 1,
-      "sessions_remaining": 4,
+      "status": "rejected_first_contact",
+      "complete_days": 2,
+      "sessions_remaining": 0,
       "expansion_seen": true,
       "expansion_date": "2026-10-05",
       "expansion_peak": 13.289999961853027,
       "expansion_peak_atr": 0.28745053207824056,
+      "first_contact_date": "2026-10-06",
+      "latest_session": {
+        "date": "2026-10-06",
+        "day": 2,
+        "open": 13.170000076293945,
+        "high": 13.510000228881836,
+        "low": 12.869999885559082,
+        "close": 13.25,
+        "volume": 2617000.0,
+        "close_location": 0.5937498603016887,
+        "close_vs_level_atr": 0.2351869122515592,
+        "volume_ratio": 1.2085164156428296,
+        "expansion_seen_before": true,
+        "expansion_reached_today": true,
+        "eligible_retest_day": true,
+        "checks": {
+          "contact": true,
+          "hold": true,
+          "strong_close": false,
+          "not_extended": true,
+          "volume_contraction": false
+        }
+      },
+      "checks": {
+        "contact": true,
+        "hold": true,
+        "strong_close": false,
+        "not_extended": true,
+        "volume_contraction": false
+      },
+      "failed_conditions": [
+        "strong_close",
+        "volume_contraction"
+      ],
+      "grade": null,
+      "event_date": null,
+      "entry_date": null,
+      "entry_open": null,
+      "next_step": "Primer contacto rechazado; no puede reactivarse este ciclo",
+      "candidate_id": "weekly:2026-10-02:REPL",
+      "source": "weekly",
+      "formation_frequency": "weekly",
+      "session_after_formation": 2
+    },
+    {
+      "ticker": "VSAT",
+      "candidate_rank": 31,
+      "formation_date": "2026-10-02",
+      "swing_score": 0.7108655616942909,
+      "swing_rank_percentile": 0.8370165745856354,
+      "universe_momentum_percentile": 0.9563053097345132,
+      "sma200_slope_percentile_d10": 0.585635359116022,
+      "formation_close": 72.0,
+      "atr_abs20": 3.943498992919922,
+      "prior_adj_volume20": 1659405.0,
+      "expansion_threshold": 72.98587474822997,
+      "contact_band_low": 71.01412525177003,
+      "contact_band_high": 72.98587474822997,
+      "max_valid_close": 74.95762424468994,
+      "max_event_volume": 1327524.0,
+      "status": "expanded_waiting_retest",
+      "complete_days": 2,
+      "sessions_remaining": 3,
+      "expansion_seen": true,
+      "expansion_date": "2026-10-06",
+      "expansion_peak": 75.93000030517578,
+      "expansion_peak_atr": 0.9965769770023079,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 1,
-        "open": 13.140000343322754,
-        "high": 13.289999961853027,
-        "low": 12.510000228881836,
-        "close": 13.149999618530273,
-        "volume": 2275800.0,
-        "close_location": 0.8205123189088006,
-        "close_vs_level_atr": 0.10452723965336272,
-        "volume_ratio": 1.0509521049751438,
+        "date": "2026-10-06",
+        "day": 2,
+        "open": 70.2300033569336,
+        "high": 75.93000030517578,
+        "low": 70.19999694824219,
+        "close": 74.37999725341797,
+        "volume": 2226000.0,
+        "close_location": 0.729493517681411,
+        "close_vs_level_atr": 0.6035242452682168,
+        "volume_ratio": 1.3414446744465636,
         "expansion_seen_before": false,
         "expansion_reached_today": true,
         "eligible_retest_day": false,
@@ -5272,68 +5377,10 @@
       "entry_date": null,
       "entry_open": null,
       "next_step": "Expansión confirmada; falta el primer contacto válido",
-      "candidate_id": "weekly:2026-10-02:REPL",
-      "source": "weekly",
-      "formation_frequency": "weekly",
-      "session_after_formation": 1
-    },
-    {
-      "ticker": "VSAT",
-      "candidate_rank": 31,
-      "formation_date": "2026-10-02",
-      "swing_score": 0.7108655616942909,
-      "swing_rank_percentile": 0.8370165745856354,
-      "universe_momentum_percentile": 0.9563053097345132,
-      "sma200_slope_percentile_d10": 0.585635359116022,
-      "formation_close": 72.0,
-      "atr_abs20": 3.943498992919922,
-      "prior_adj_volume20": 1659405.0,
-      "expansion_threshold": 72.98587474822997,
-      "contact_band_low": 71.01412525177003,
-      "contact_band_high": 72.98587474822997,
-      "max_valid_close": 74.95762424468994,
-      "max_event_volume": 1327524.0,
-      "status": "waiting_expansion",
-      "complete_days": 1,
-      "sessions_remaining": 4,
-      "expansion_seen": false,
-      "expansion_date": null,
-      "expansion_peak": null,
-      "expansion_peak_atr": null,
-      "first_contact_date": null,
-      "latest_session": {
-        "date": "2026-10-05",
-        "day": 1,
-        "open": 71.66000366210938,
-        "high": 72.27999877929688,
-        "low": 69.66999816894531,
-        "close": 69.79000091552734,
-        "volume": 2251400.0,
-        "close_location": 0.045978053072511384,
-        "close_vs_level_atr": -0.5604157851797208,
-        "volume_ratio": 1.3567513657003565,
-        "expansion_seen_before": false,
-        "expansion_reached_today": false,
-        "eligible_retest_day": false,
-        "checks": {
-          "contact": true,
-          "hold": false,
-          "strong_close": false,
-          "not_extended": true,
-          "volume_contraction": false
-        }
-      },
-      "checks": null,
-      "failed_conditions": [],
-      "grade": null,
-      "event_date": null,
-      "entry_date": null,
-      "entry_open": null,
-      "next_step": "Falta alcanzar el nivel mínimo de expansión",
       "candidate_id": "weekly:2026-10-02:VSAT",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 1
+      "session_after_formation": 2
     },
     {
       "ticker": "MU",
@@ -5352,24 +5399,24 @@
       "max_valid_close": 1108.5732727050781,
       "max_event_volume": 21091596.0,
       "status": "waiting_expansion",
-      "complete_days": 1,
-      "sessions_remaining": 4,
+      "complete_days": 2,
+      "sessions_remaining": 3,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 1,
-        "open": 1069.6800537109375,
-        "high": 1074.8800048828125,
-        "low": 1055.56005859375,
-        "close": 1063.9599609375,
-        "volume": 18207100.0,
-        "close_location": 0.43477876273938676,
-        "close_vs_level_atr": -0.24337135883406585,
-        "volume_ratio": 0.6905916460755269,
+        "date": "2026-10-06",
+        "day": 2,
+        "open": 1064.47998046875,
+        "high": 1074.31005859375,
+        "low": 1045.260009765625,
+        "close": 1045.56005859375,
+        "volume": 21681800.0,
+        "close_location": 0.010328685844910033,
+        "close_vs_level_atr": -0.6530682692281558,
+        "volume_ratio": 0.8223863191766048,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
@@ -5378,7 +5425,7 @@
           "hold": false,
           "strong_close": false,
           "not_extended": true,
-          "volume_contraction": true
+          "volume_contraction": false
         }
       },
       "checks": null,
@@ -5391,7 +5438,7 @@
       "candidate_id": "weekly:2026-10-02:MU",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 1
+      "session_after_formation": 2
     },
     {
       "ticker": "SLS",
@@ -5410,24 +5457,24 @@
       "max_valid_close": 12.386874735355377,
       "max_event_volume": 5049700.0,
       "status": "waiting_expansion",
-      "complete_days": 1,
-      "sessions_remaining": 4,
+      "complete_days": 2,
+      "sessions_remaining": 3,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 1,
-        "open": 11.770000457763672,
-        "high": 11.770000457763672,
-        "low": 11.350000381469727,
-        "close": 11.630000114440918,
-        "volume": 4512400.0,
-        "close_location": 0.666665909782426,
-        "close_vs_level_atr": -0.12753584087956973,
-        "volume_ratio": 0.7148781115709845,
+        "date": "2026-10-06",
+        "day": 2,
+        "open": 11.630000114440918,
+        "high": 11.670000076293945,
+        "low": 11.109999656677246,
+        "close": 11.34000015258789,
+        "volume": 3952700.0,
+        "close_location": 0.4107148635139807,
+        "close_vs_level_atr": -0.4637676992979022,
+        "volume_ratio": 0.6262074974750975,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
@@ -5449,7 +5496,7 @@
       "candidate_id": "weekly:2026-10-02:SLS",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 1
+      "session_after_formation": 2
     },
     {
       "ticker": "SYRE",
@@ -5468,33 +5515,33 @@
       "max_valid_close": 96.4787145614624,
       "max_event_volume": 1033320.0,
       "status": "expanded_waiting_retest",
-      "complete_days": 1,
-      "sessions_remaining": 4,
+      "complete_days": 2,
+      "sessions_remaining": 3,
       "expansion_seen": true,
       "expansion_date": "2026-10-05",
       "expansion_peak": 95.01000213623047,
       "expansion_peak_atr": 0.41505602232367417,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-05",
-        "day": 1,
-        "open": 93.0199966430664,
-        "high": 95.01000213623047,
-        "low": 89.48999786376953,
-        "close": 92.72000122070312,
-        "volume": 642800.0,
-        "close_location": 0.5851450827761023,
-        "close_vs_level_atr": -0.10718509333110161,
-        "volume_ratio": 0.4976580342972167,
-        "expansion_seen_before": false,
-        "expansion_reached_today": true,
-        "eligible_retest_day": false,
+        "date": "2026-10-06",
+        "day": 2,
+        "open": 92.08000183105469,
+        "high": 92.08000183105469,
+        "low": 79.36000061035156,
+        "close": 80.11000061035156,
+        "volume": 4252300.0,
+        "close_location": 0.05896225849249896,
+        "close_vs_level_atr": -2.9829310122539754,
+        "volume_ratio": 3.2921457051058725,
+        "expansion_seen_before": true,
+        "expansion_reached_today": false,
+        "eligible_retest_day": true,
         "checks": {
-          "contact": true,
+          "contact": false,
           "hold": false,
           "strong_close": false,
           "not_extended": true,
-          "volume_contraction": true
+          "volume_contraction": false
         }
       },
       "checks": null,
@@ -5507,7 +5554,7 @@
       "candidate_id": "weekly:2026-10-02:SYRE",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 1
+      "session_after_formation": 2
     }
   ],
   "signals": [
@@ -5942,8 +5989,8 @@
       "event_low": 12.949999809265137,
       "event_close": 13.520000457763672,
       "entry_rule": "Apertura ajustada de la siguiente sesión",
-      "entry_date": null,
-      "entry_open": null,
+      "entry_date": "2026-10-06",
+      "entry_open": 13.520000457763672,
       "r5": null,
       "mfe5": null,
       "mae5": null,
@@ -6023,8 +6070,8 @@
       "event_low": 84.75,
       "event_close": 89.2699966430664,
       "entry_rule": "Apertura ajustada de la siguiente sesión",
-      "entry_date": null,
-      "entry_open": null,
+      "entry_date": "2026-10-06",
+      "entry_open": 91.8499984741211,
       "r5": null,
       "mfe5": null,
       "mae5": null,
@@ -6079,11 +6126,7 @@
   "lm2_b_policy": "computed_for_audit_but_never_published_or_alerted",
   "cross_source_cooldown_sessions": 10,
   "alert_result": {
-    "status": "not_configured",
-    "sent": 0,
-    "missing": [
-      "RESEND_API_KEY",
-      "ALERT_TO"
-    ]
+    "status": "nothing_to_send",
+    "sent": 0
   }
 }

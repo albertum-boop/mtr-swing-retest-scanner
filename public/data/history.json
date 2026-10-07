@@ -1,6 +1,6 @@
 {
   "method_version": "MTR-Multitemporal-v2.0",
-  "updated_at": "2026-10-06T05:01:56+00:00",
+  "updated_at": "2026-10-07T02:31:55+00:00",
   "signals": [
     {
       "signal_id": "MTR-Weekly-Cross-v2.0:QNST:2019-01-17",
@@ -25459,8 +25459,8 @@
       "event_low": 12.949999809265137,
       "event_close": 13.520000457763672,
       "entry_rule": "Apertura ajustada de la siguiente sesión",
-      "entry_date": null,
-      "entry_open": null,
+      "entry_date": "2026-10-06",
+      "entry_open": 13.520000457763672,
       "r5": null,
       "mfe5": null,
       "mae5": null,
@@ -25540,8 +25540,8 @@
       "event_low": 84.75,
       "event_close": 89.2699966430664,
       "entry_rule": "Apertura ajustada de la siguiente sesión",
-      "entry_date": null,
-      "entry_open": null,
+      "entry_date": "2026-10-06",
+      "entry_open": 91.8499984741211,
       "r5": null,
       "mfe5": null,
       "mae5": null,
