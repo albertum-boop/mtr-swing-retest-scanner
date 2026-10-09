@@ -1,11 +1,27 @@
 {
   "method_version": "MTR-Multitemporal-v2.0",
+  "operational_version": "MTR-Multitemporal-v2.1",
+  "trend_policy": {
+    "version": "MTR-TrendGate-v1.0",
+    "fast_sma_sessions": 50,
+    "slow_sma_sessions": 200,
+    "slope_sessions": 20,
+    "drawdown_sessions": 20,
+    "max_drawdown": 0.15,
+    "evaluated_at": "event_close"
+  },
+  "reference_contract": {
+    "unique_events": 323,
+    "source_observations": 348,
+    "actionable_after_cooldown": 313,
+    "last_complete_outcome_event": "2026-08-05"
+  },
   "source_method_versions": {
     "monthly": "MTR-Swing-Retest-v2.0",
     "lm2": "MTR-LM2-v2.0",
     "weekly": "MTR-Weekly-Cross-v2.0"
   },
-  "generated_at": "2026-10-09T02:59:52+00:00",
+  "generated_at": "2026-10-09T05:18:06+00:00",
   "cutoff": "2026-10-08",
   "formation_date": "2026-09-30",
   "monthly_formation_date": "2026-09-30",
@@ -53,7 +69,7 @@
   "scan_status": {
     "rejected_first_contact": 24,
     "expired": 15,
-    "signal": 2,
+    "rejected_current_trend": 2,
     "waiting_expansion": 1,
     "expanded_waiting_retest": 1
   },
@@ -61,7 +77,7 @@
     "monthly": {
       "rejected_first_contact": 20,
       "expired": 15,
-      "signal": 2
+      "rejected_current_trend": 2
     },
     "lm2": {},
     "weekly": {
@@ -585,10 +601,6 @@
       "entry_date": "2026-10-06",
       "entry_open": 13.520000457763672,
       "next_step": "Retest registrado; entrada bloqueada por tendencia insuficiente",
-      "candidate_id": "monthly:2026-09-30:ALM",
-      "source": "monthly",
-      "formation_frequency": "monthly",
-      "session_after_formation": 6,
       "trend_gate": {
         "policy_version": "MTR-TrendGate-v1.0",
         "as_of": "2026-10-05",
@@ -608,14 +620,18 @@
           "drawdown20_within_limit"
         ],
         "close": 13.520000457763672,
-        "sma50": 14.993300106811523,
-        "sma200": 15.725050061416626,
-        "sma50_slope20": -0.016671584650990834,
-        "sma200_slope20": 0.051624746831353985,
+        "sma50": 14.993300094604493,
+        "sma200": 15.725050058364868,
+        "sma50_slope20": -0.016671585451583093,
+        "sma200_slope20": 0.05162474662726524,
         "max_close20": 19.1200008392334,
         "drawdown20": -0.2928870363843694,
         "return20": -0.23050650582843202
-      }
+      },
+      "candidate_id": "monthly:2026-09-30:ALM",
+      "source": "monthly",
+      "formation_frequency": "monthly",
+      "session_after_formation": 6
     },
     {
       "ticker": "ABSI",
@@ -1519,10 +1535,6 @@
       "entry_date": "2026-10-06",
       "entry_open": 91.8499984741211,
       "next_step": "Retest registrado; entrada bloqueada por tendencia insuficiente",
-      "candidate_id": "monthly:2026-09-30:HUT",
-      "source": "monthly",
-      "formation_frequency": "monthly",
-      "session_after_formation": 6,
       "trend_gate": {
         "policy_version": "MTR-TrendGate-v1.0",
         "as_of": "2026-10-05",
@@ -1541,14 +1553,18 @@
           "drawdown20_within_limit"
         ],
         "close": 89.2699966430664,
-        "sma50": 91.48729927368164,
-        "sma200": 80.5137248046875,
-        "sma50_slope20": -0.04506958213108392,
-        "sma200_slope20": 0.07178539878200696,
+        "sma50": 91.48729919433593,
+        "sma200": 80.51372478485108,
+        "sma50_slope20": -0.04506958295928232,
+        "sma200_slope20": 0.07178539851794796,
         "max_close20": 106.61000061035156,
         "drawdown20": -0.1626489435138554,
-        "return20": -0.04569994772096875
-      }
+        "return20": -0.04569994772096864
+      },
+      "candidate_id": "monthly:2026-09-30:HUT",
+      "source": "monthly",
+      "formation_frequency": "monthly",
+      "session_after_formation": 6
     },
     {
       "ticker": "OMER",
@@ -2893,6 +2909,34 @@
       "r10": null,
       "mfe10": null,
       "mae10": null,
+      "operational_version": "MTR-Multitemporal-v2.1",
+      "trend_gate": {
+        "policy_version": "MTR-TrendGate-v1.0",
+        "as_of": "2026-10-05",
+        "status": "rejected",
+        "passed": false,
+        "checks": {
+          "price_above_sma50": false,
+          "sma50_above_sma200": false,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": false
+        },
+        "failed_conditions": [
+          "price_above_sma50",
+          "sma50_above_sma200",
+          "sma50_rising20",
+          "drawdown20_within_limit"
+        ],
+        "close": 13.520000457763672,
+        "sma50": 14.993300094604493,
+        "sma200": 15.725050058364868,
+        "sma50_slope20": -0.016671585451583093,
+        "sma200_slope20": 0.05162474662726524,
+        "max_close20": 19.1200008392334,
+        "drawdown20": -0.2928870363843694,
+        "return20": -0.23050650582843202
+      },
       "source": "monthly",
       "signal_sources": [
         "monthly"
@@ -2934,34 +2978,6 @@
       "cooldown_sessions": 10,
       "suppressed_by_cooldown": null,
       "actionable": true,
-      "operational_version": "MTR-Multitemporal-v2.1",
-      "trend_gate": {
-        "policy_version": "MTR-TrendGate-v1.0",
-        "as_of": "2026-10-05",
-        "status": "rejected",
-        "passed": false,
-        "checks": {
-          "price_above_sma50": false,
-          "sma50_above_sma200": false,
-          "sma50_rising20": false,
-          "sma200_rising20": true,
-          "drawdown20_within_limit": false
-        },
-        "failed_conditions": [
-          "price_above_sma50",
-          "sma50_above_sma200",
-          "sma50_rising20",
-          "drawdown20_within_limit"
-        ],
-        "close": 13.520000457763672,
-        "sma50": 14.993300106811523,
-        "sma200": 15.725050061416626,
-        "sma50_slope20": -0.016671584650990834,
-        "sma200_slope20": 0.051624746831353985,
-        "max_close20": 19.1200008392334,
-        "drawdown20": -0.2928870363843694,
-        "return20": -0.23050650582843202
-      },
       "operational_actionable": false,
       "operational_suppressed_by_cooldown": null,
       "operational_cooldown_gap_sessions": null,
@@ -3007,6 +3023,33 @@
       "r10": null,
       "mfe10": null,
       "mae10": null,
+      "operational_version": "MTR-Multitemporal-v2.1",
+      "trend_gate": {
+        "policy_version": "MTR-TrendGate-v1.0",
+        "as_of": "2026-10-05",
+        "status": "rejected",
+        "passed": false,
+        "checks": {
+          "price_above_sma50": false,
+          "sma50_above_sma200": true,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": false
+        },
+        "failed_conditions": [
+          "price_above_sma50",
+          "sma50_rising20",
+          "drawdown20_within_limit"
+        ],
+        "close": 89.2699966430664,
+        "sma50": 91.48729919433593,
+        "sma200": 80.51372478485108,
+        "sma50_slope20": -0.04506958295928232,
+        "sma200_slope20": 0.07178539851794796,
+        "max_close20": 106.61000061035156,
+        "drawdown20": -0.1626489435138554,
+        "return20": -0.04569994772096864
+      },
       "source": "monthly",
       "signal_sources": [
         "monthly"
@@ -3048,33 +3091,6 @@
       "cooldown_sessions": 10,
       "suppressed_by_cooldown": null,
       "actionable": true,
-      "operational_version": "MTR-Multitemporal-v2.1",
-      "trend_gate": {
-        "policy_version": "MTR-TrendGate-v1.0",
-        "as_of": "2026-10-05",
-        "status": "rejected",
-        "passed": false,
-        "checks": {
-          "price_above_sma50": false,
-          "sma50_above_sma200": true,
-          "sma50_rising20": false,
-          "sma200_rising20": true,
-          "drawdown20_within_limit": false
-        },
-        "failed_conditions": [
-          "price_above_sma50",
-          "sma50_rising20",
-          "drawdown20_within_limit"
-        ],
-        "close": 89.2699966430664,
-        "sma50": 91.48729927368164,
-        "sma200": 80.5137248046875,
-        "sma50_slope20": -0.04506958213108392,
-        "sma200_slope20": 0.07178539878200696,
-        "max_close20": 106.61000061035156,
-        "drawdown20": -0.1626489435138554,
-        "return20": -0.04569994772096875
-      },
       "operational_actionable": false,
       "operational_suppressed_by_cooldown": null,
       "operational_cooldown_gap_sessions": null,
@@ -3089,21 +3105,5 @@
   "alert_result": {
     "status": "nothing_to_send",
     "sent": 0
-  },
-  "operational_version": "MTR-Multitemporal-v2.1",
-  "trend_policy": {
-    "version": "MTR-TrendGate-v1.0",
-    "fast_sma_sessions": 50,
-    "slow_sma_sessions": 200,
-    "slope_sessions": 20,
-    "drawdown_sessions": 20,
-    "max_drawdown": 0.15,
-    "evaluated_at": "event_close"
-  },
-  "reference_contract": {
-    "unique_events": 323,
-    "source_observations": 348,
-    "actionable_after_cooldown": 313,
-    "last_complete_outcome_event": "2026-08-05"
   }
 }

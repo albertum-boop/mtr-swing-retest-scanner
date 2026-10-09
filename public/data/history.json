@@ -1,6 +1,8 @@
 {
   "method_version": "MTR-Multitemporal-v2.0",
-  "updated_at": "2026-10-09T02:59:52+00:00",
+  "operational_version": "MTR-Multitemporal-v2.1",
+  "reference_signals": 323,
+  "updated_at": "2026-10-09T05:18:06+00:00",
   "signals": [
     {
       "signal_id": "MTR-Weekly-Cross-v2.0:QNST:2019-01-17",
@@ -12151,16 +12153,31 @@
       "trend_gate": {
         "policy_version": "MTR-TrendGate-v1.0",
         "as_of": "2026-10-01",
-        "status": "unknown",
+        "status": "rejected",
         "passed": false,
-        "checks": {},
-        "failed_conditions": [],
-        "reason": "missing_event_or_220_valid_sessions"
+        "checks": {
+          "price_above_sma50": true,
+          "sma50_above_sma200": true,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": true
+        },
+        "failed_conditions": [
+          "sma50_rising20"
+        ],
+        "close": 139.8000030517578,
+        "sma50": 124.55919982910156,
+        "sma200": 104.93904972076416,
+        "sma50_slope20": -0.012539931329194953,
+        "sma200_slope20": 0.08802969914237702,
+        "max_close20": 146.16000366210938,
+        "drawdown20": -0.04351396039271127,
+        "return20": 0.33307904443927594
       },
       "operational_actionable": false,
       "operational_suppressed_by_cooldown": null,
       "operational_cooldown_gap_sessions": null,
-      "operational_reason": "trend_unknown",
+      "operational_reason": "trend_rejected",
       "reference_complete": false
     },
     {
@@ -32505,14 +32522,14 @@
           "drawdown20_within_limit": true
         },
         "failed_conditions": [],
-        "close": 127.76000213623048,
+        "close": 127.76000213623047,
         "sma50": 85.03060020446777,
         "sma200": 55.161099910736084,
         "sma50_slope20": 0.39867223701896326,
         "sma200_slope20": 0.19588581139194883,
         "max_close20": 133.02000427246094,
-        "drawdown20": -0.039542940665199144,
-        "return20": 0.1727556386364748
+        "drawdown20": -0.039542940665199255,
+        "return20": 0.17275563863647436
       },
       "operational_actionable": true,
       "operational_suppressed_by_cooldown": null,
@@ -32836,12 +32853,12 @@
         ],
         "close": 892.6699829101562,
         "sma50": 969.3191052246094,
-        "sma200": 524.6542473602295,
+        "sma200": 524.6542478179931,
         "sma50_slope20": 0.11283478349401488,
-        "sma200_slope20": 0.16028076244464207,
-        "max_close20": 991.6400146484376,
-        "drawdown20": -0.0998043950186589,
-        "return20": -0.04871163253139066
+        "sma200_slope20": 0.16028076208661268,
+        "max_close20": 991.6400146484375,
+        "drawdown20": -0.09980439501865879,
+        "return20": -0.04871163253139077
       },
       "operational_actionable": false,
       "operational_suppressed_by_cooldown": null,
@@ -33337,8 +33354,8 @@
         "sma200": 189.9064507293701,
         "sma50_slope20": -0.10549319856363137,
         "sma200_slope20": 0.05273385597141789,
-        "max_close20": 237.16000366210935,
-        "drawdown20": -0.08382528493774288,
+        "max_close20": 237.16000366210938,
+        "drawdown20": -0.083825284937743,
         "return20": -0.07276064916369684
       },
       "operational_actionable": false,
@@ -33550,14 +33567,14 @@
           "drawdown20_within_limit": true
         },
         "failed_conditions": [],
-        "close": 19.11000061035156,
+        "close": 19.110000610351562,
         "sma50": 13.338600063323975,
         "sma200": 12.090650000572204,
         "sma50_slope20": 0.28088270188675235,
         "sma200_slope20": 0.09208619013396824,
         "max_close20": 19.31999969482422,
-        "drawdown20": -0.010869518001541123,
-        "return20": 0.45323202773502547
+        "drawdown20": -0.010869518001540901,
+        "return20": 0.4532320277350257
       },
       "operational_actionable": true,
       "operational_suppressed_by_cooldown": null,
@@ -33666,7 +33683,7 @@
         "sma200_slope20": 0.19318399231318995,
         "max_close20": 65.12000274658203,
         "drawdown20": -0.02917692637810332,
-        "return20": 0.386403581933928
+        "return20": 0.38640358193392776
       },
       "operational_actionable": true,
       "operational_suppressed_by_cooldown": null,
@@ -33777,16 +33794,33 @@
       "trend_gate": {
         "policy_version": "MTR-TrendGate-v1.0",
         "as_of": "2026-09-29",
-        "status": "unknown",
+        "status": "rejected",
         "passed": false,
-        "checks": {},
-        "failed_conditions": [],
-        "reason": "missing_event_or_220_valid_sessions"
+        "checks": {
+          "price_above_sma50": false,
+          "sma50_above_sma200": true,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": false
+        },
+        "failed_conditions": [
+          "price_above_sma50",
+          "sma50_rising20",
+          "drawdown20_within_limit"
+        ],
+        "close": 20.65999984741211,
+        "sma50": 27.992800025939943,
+        "sma200": 26.279350032806395,
+        "sma50_slope20": -0.04077415780728333,
+        "sma200_slope20": 0.011308229664378944,
+        "max_close20": 30.059999465942383,
+        "drawdown20": -0.3127079103637497,
+        "return20": -0.2668559395431406
       },
       "operational_actionable": false,
       "operational_suppressed_by_cooldown": null,
       "operational_cooldown_gap_sessions": null,
-      "operational_reason": "trend_unknown",
+      "operational_reason": "trend_rejected",
       "reference_complete": false
     },
     {
@@ -33892,16 +33926,29 @@
       "trend_gate": {
         "policy_version": "MTR-TrendGate-v1.0",
         "as_of": "2026-10-01",
-        "status": "unknown",
-        "passed": false,
-        "checks": {},
+        "status": "pass",
+        "passed": true,
+        "checks": {
+          "price_above_sma50": true,
+          "sma50_above_sma200": true,
+          "sma50_rising20": true,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": true
+        },
         "failed_conditions": [],
-        "reason": "missing_event_or_220_valid_sessions"
+        "close": 541.739990234375,
+        "sma50": 486.49260192871094,
+        "sma200": 290.466706161499,
+        "sma50_slope20": 0.11769593686937574,
+        "sma200_slope20": 0.16704538947169723,
+        "max_close20": 588.4000244140625,
+        "drawdown20": -0.07929985085597546,
+        "return20": 0.10065009508066813
       },
-      "operational_actionable": false,
+      "operational_actionable": true,
       "operational_suppressed_by_cooldown": null,
       "operational_cooldown_gap_sessions": null,
-      "operational_reason": "trend_unknown",
+      "operational_reason": null,
       "reference_complete": false
     },
     {
@@ -34007,16 +34054,29 @@
       "trend_gate": {
         "policy_version": "MTR-TrendGate-v1.0",
         "as_of": "2026-10-01",
-        "status": "unknown",
-        "passed": false,
-        "checks": {},
+        "status": "pass",
+        "passed": true,
+        "checks": {
+          "price_above_sma50": true,
+          "sma50_above_sma200": true,
+          "sma50_rising20": true,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": true
+        },
         "failed_conditions": [],
-        "reason": "missing_event_or_220_valid_sessions"
+        "close": 26.389999389648438,
+        "sma50": 24.16160011291504,
+        "sma200": 19.885674982070924,
+        "sma50_slope20": 0.0974514115800631,
+        "sma200_slope20": 0.07223380712069405,
+        "max_close20": 29.649999618530273,
+        "drawdown20": -0.10994941891481314,
+        "return20": 0.2917278020286047
       },
-      "operational_actionable": false,
+      "operational_actionable": true,
       "operational_suppressed_by_cooldown": null,
       "operational_cooldown_gap_sessions": null,
-      "operational_reason": "trend_unknown",
+      "operational_reason": null,
       "reference_complete": false
     },
     {
@@ -34122,16 +34182,31 @@
       "trend_gate": {
         "policy_version": "MTR-TrendGate-v1.0",
         "as_of": "2026-10-01",
-        "status": "unknown",
+        "status": "rejected",
         "passed": false,
-        "checks": {},
-        "failed_conditions": [],
-        "reason": "missing_event_or_220_valid_sessions"
+        "checks": {
+          "price_above_sma50": true,
+          "sma50_above_sma200": true,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": true
+        },
+        "failed_conditions": [
+          "sma50_rising20"
+        ],
+        "close": 945.5700073242188,
+        "sma50": 855.4062841796875,
+        "sma200": 646.9053271484376,
+        "sma50_slope20": -0.00562898938822376,
+        "sma200_slope20": 0.10264672538803454,
+        "max_close20": 945.5700073242188,
+        "drawdown20": 0.0,
+        "return20": 0.17041586799176933
       },
       "operational_actionable": false,
       "operational_suppressed_by_cooldown": null,
       "operational_cooldown_gap_sessions": null,
-      "operational_reason": "trend_unknown",
+      "operational_reason": "trend_rejected",
       "reference_complete": false
     },
     {
@@ -34173,6 +34248,34 @@
       "r10": null,
       "mfe10": null,
       "mae10": null,
+      "operational_version": "MTR-Multitemporal-v2.1",
+      "trend_gate": {
+        "policy_version": "MTR-TrendGate-v1.0",
+        "as_of": "2026-10-05",
+        "status": "rejected",
+        "passed": false,
+        "checks": {
+          "price_above_sma50": false,
+          "sma50_above_sma200": false,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": false
+        },
+        "failed_conditions": [
+          "price_above_sma50",
+          "sma50_above_sma200",
+          "sma50_rising20",
+          "drawdown20_within_limit"
+        ],
+        "close": 13.520000457763672,
+        "sma50": 14.993300094604493,
+        "sma200": 15.725050058364868,
+        "sma50_slope20": -0.016671585451583093,
+        "sma200_slope20": 0.05162474662726524,
+        "max_close20": 19.1200008392334,
+        "drawdown20": -0.2928870363843694,
+        "return20": -0.23050650582843202
+      },
       "source": "monthly",
       "signal_sources": [
         "monthly"
@@ -34214,34 +34317,6 @@
       "cooldown_sessions": 10,
       "suppressed_by_cooldown": null,
       "actionable": true,
-      "operational_version": "MTR-Multitemporal-v2.1",
-      "trend_gate": {
-        "policy_version": "MTR-TrendGate-v1.0",
-        "as_of": "2026-10-05",
-        "status": "rejected",
-        "passed": false,
-        "checks": {
-          "price_above_sma50": false,
-          "sma50_above_sma200": false,
-          "sma50_rising20": false,
-          "sma200_rising20": true,
-          "drawdown20_within_limit": false
-        },
-        "failed_conditions": [
-          "price_above_sma50",
-          "sma50_above_sma200",
-          "sma50_rising20",
-          "drawdown20_within_limit"
-        ],
-        "close": 13.520000457763672,
-        "sma50": 14.993300106811523,
-        "sma200": 15.725050061416626,
-        "sma50_slope20": -0.016671584650990834,
-        "sma200_slope20": 0.051624746831353985,
-        "max_close20": 19.1200008392334,
-        "drawdown20": -0.2928870363843694,
-        "return20": -0.23050650582843202
-      },
       "operational_actionable": false,
       "operational_suppressed_by_cooldown": null,
       "operational_cooldown_gap_sessions": null,
@@ -34287,6 +34362,33 @@
       "r10": null,
       "mfe10": null,
       "mae10": null,
+      "operational_version": "MTR-Multitemporal-v2.1",
+      "trend_gate": {
+        "policy_version": "MTR-TrendGate-v1.0",
+        "as_of": "2026-10-05",
+        "status": "rejected",
+        "passed": false,
+        "checks": {
+          "price_above_sma50": false,
+          "sma50_above_sma200": true,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": false
+        },
+        "failed_conditions": [
+          "price_above_sma50",
+          "sma50_rising20",
+          "drawdown20_within_limit"
+        ],
+        "close": 89.2699966430664,
+        "sma50": 91.48729919433593,
+        "sma200": 80.51372478485108,
+        "sma50_slope20": -0.04506958295928232,
+        "sma200_slope20": 0.07178539851794796,
+        "max_close20": 106.61000061035156,
+        "drawdown20": -0.1626489435138554,
+        "return20": -0.04569994772096864
+      },
       "source": "monthly",
       "signal_sources": [
         "monthly"
@@ -34328,33 +34430,6 @@
       "cooldown_sessions": 10,
       "suppressed_by_cooldown": null,
       "actionable": true,
-      "operational_version": "MTR-Multitemporal-v2.1",
-      "trend_gate": {
-        "policy_version": "MTR-TrendGate-v1.0",
-        "as_of": "2026-10-05",
-        "status": "rejected",
-        "passed": false,
-        "checks": {
-          "price_above_sma50": false,
-          "sma50_above_sma200": true,
-          "sma50_rising20": false,
-          "sma200_rising20": true,
-          "drawdown20_within_limit": false
-        },
-        "failed_conditions": [
-          "price_above_sma50",
-          "sma50_rising20",
-          "drawdown20_within_limit"
-        ],
-        "close": 89.2699966430664,
-        "sma50": 91.48729927368164,
-        "sma200": 80.5137248046875,
-        "sma50_slope20": -0.04506958213108392,
-        "sma200_slope20": 0.07178539878200696,
-        "max_close20": 106.61000061035156,
-        "drawdown20": -0.1626489435138554,
-        "return20": -0.04569994772096875
-      },
       "operational_actionable": false,
       "operational_suppressed_by_cooldown": null,
       "operational_cooldown_gap_sessions": null,
@@ -36859,7 +36934,5 @@
       "operational_cooldown_gap_sessions": null,
       "operational_reason": null
     }
-  ],
-  "operational_version": "MTR-Multitemporal-v2.1",
-  "reference_signals": 323
+  ]
 }

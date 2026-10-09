@@ -1,6 +1,6 @@
 {
   "status": "ok",
-  "generated_at": "2026-10-09T02:59:52+00:00",
+  "generated_at": "2026-10-09T05:18:06+00:00",
   "cutoff": "2026-10-08",
   "monthly_formation_date": "2026-09-30",
   "lm2_formation_date": null,
@@ -16,7 +16,9 @@
     "lm2_signals": 0,
     "weekly_signals": 0,
     "confluence_signals": 0,
-    "cooldown_suppressed": 0
+    "cooldown_suppressed": 0,
+    "trend_blocked": 2,
+    "operational_signals": 0
   },
   "pending_alerts": 0,
   "alert_result": {
