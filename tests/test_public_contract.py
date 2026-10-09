@@ -40,7 +40,7 @@ def test_public_history_preserves_every_original_monthly_event():
     monthly_events = {
         (row["ticker"], row["event_date"])
         for row in history
-        if "monthly" in row.get("signal_sources", [])
+        if row.get("reference_complete") and "monthly" in row.get("signal_sources", [])
     }
     assert len(monthly_events) == 154
 
@@ -53,9 +53,8 @@ def test_public_history_separates_complete_reference_from_later_live_signals():
     assert history["method_version"] == "MTR-Multitemporal-v2.0"
     assert history["reference_signals"] == 323
     assert len(complete) == 323
-    assert [(row["ticker"], row["event_date"]) for row in later] == [
-        ("MRVL", "2026-08-26")
-    ]
+    assert all(row["event_date"] > "2026-08-05" for row in later)
+    assert {("ALM", "2026-10-05"), ("HUT", "2026-10-05")} <= {(row["ticker"], row["event_date"]) for row in later}
 
 
 def test_public_metrics_distinguish_every_actionable_confluence_combination():
@@ -82,3 +81,18 @@ def test_public_metrics_distinguish_every_actionable_confluence_combination():
         for row in [confluence["overall"], *confluence["combinations"]]
         for metric in ["r5", "mfe5", "mae5", "r10", "mfe10", "mae10"]
     )
+
+
+def test_operational_gate_blocks_latest_alm_and_hut_without_erasing_a_grades():
+    current = json.loads((ROOT / "public/data/current.json").read_text())
+    assert current["operational_version"] == "MTR-Multitemporal-v2.1"
+    history = json.loads((ROOT / "public/data/history.json").read_text())
+    rows = [s for s in history["signals"] if s["ticker"] in {"ALM", "HUT"} and s["event_date"] == "2026-10-05"]
+    assert len(rows) == 2
+    assert all(s["grade"] == "A" and s["operational_actionable"] is False for s in rows)
+    assert all(s["trend_gate"]["as_of"] == s["event_date"] for s in rows)
+    audit = json.loads((ROOT / "public/data/trend_metrics.json").read_text())
+    assert audit["reference_coverage"] == 323
+    assert audit["baseline"]["count"] == 313
+    assert audit["corrected"]["count"] == 160
+    assert audit["maximum_return_reproduction_difference"] < 1e-5

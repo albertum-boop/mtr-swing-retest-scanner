@@ -33,6 +33,14 @@ from .signals import (
     signal_key,
 )
 from .storage import read_json, write_json
+from .trend import (
+    OPERATIONAL_VERSION,
+    TREND_PARAMETERS,
+    TREND_POLICY_VERSION,
+    annotate_trend,
+    apply_operational_cooldown,
+    is_operationally_actionable,
+)
 from .universe import load_universe
 from .weekly import (
     MULTITEMPORAL_METHOD_VERSION,
@@ -43,6 +51,12 @@ from .weekly import (
 )
 
 ROOT = Path(__file__).resolve().parents[2]
+REFERENCE_CONTRACT = {
+    "unique_events": 323,
+    "source_observations": 348,
+    "actionable_after_cooldown": 313,
+    "last_complete_outcome_event": "2026-08-05",
+}
 
 
 def _iso_now() -> str:
@@ -71,7 +85,7 @@ def _new_alert_candidates(
         for signal in signals
         if signal["signal_id"] not in sent_ids
         and signal.get("event_date") == cutoff_iso
-        and signal.get("actionable", True)
+        and is_operationally_actionable(signal)
     ]
 
 
@@ -328,6 +342,17 @@ def _scan_source_candidates(
                 result = apply_lm2_grade(result, candidate, lm2_config)
                 monitor = result["monitor"]
 
+            if result.get("signal"):
+                result["signal"] = annotate_trend(result["signal"], raw)
+                gate = result["signal"]["trend_gate"]
+                monitor["trend_gate"] = gate
+                if not gate["passed"]:
+                    monitor.update(
+                        status="rejected_current_trend",
+                        next_step="Retest registrado; entrada bloqueada por tendencia insuficiente",
+                    )
+                    result["status"] = "rejected_current_trend"
+
         monitor = _decorate_monitor(
             monitor,
             source=source,
@@ -455,7 +480,7 @@ def run_pipeline(
             prices = load_price_directory(
                 prices_dir,
                 candidate_tickers,
-                start=earliest_active - pd.Timedelta(days=45),
+                start=earliest_active - pd.Timedelta(days=560),
                 cutoff=cutoff,
             )
             candidate_errors = {
@@ -466,7 +491,7 @@ def run_pipeline(
         else:
             prices, candidate_errors = download_histories(
                 candidate_tickers,
-                start=earliest_active - pd.Timedelta(days=45),
+                start=earliest_active - pd.Timedelta(days=560),
                 cutoff=cutoff,
                 batch_size=40,
             )
@@ -504,6 +529,15 @@ def run_pipeline(
             cooldown_sessions=base_config.cooldown_sessions,
         )
     )
+    all_history = apply_operational_cooldown(
+        [annotate_trend(signal, prices.get(signal["ticker"])) for signal in all_history],
+        cooldown_sessions=base_config.cooldown_sessions,
+    )
+    reference = pd.read_csv(root / "reference" / "signals_v2_0.csv")
+    reference_keys = set(zip(reference["ticker"], reference["event_date"], strict=False))
+    for signal in all_history:
+        signal["reference_complete"] = signal_key(signal) in reference_keys
+    all_history = _sort_signals(all_history)
     current_signals = _sort_signals(
         [signal for signal in all_history if signal_key(signal) in current_keys]
     )
@@ -530,10 +564,19 @@ def run_pipeline(
         "lm2_signals": sum("lm2" in row["signal_sources"] for row in current_signals),
         "weekly_signals": sum("weekly" in row["signal_sources"] for row in current_signals),
         "confluence_signals": sum(bool(row.get("is_confluence")) for row in current_signals),
-        "cooldown_suppressed": sum(not row.get("actionable", True) for row in current_signals),
+        "cooldown_suppressed": sum(
+            row.get("operational_reason") == "cooldown" for row in current_signals
+        ),
+        "trend_blocked": sum(
+            not row.get("trend_gate", {}).get("passed", False) for row in current_signals
+        ),
+        "operational_signals": sum(is_operationally_actionable(row) for row in current_signals),
     }
     current_payload = {
         "method_version": MULTITEMPORAL_METHOD_VERSION,
+        "operational_version": OPERATIONAL_VERSION,
+        "trend_policy": {"version": TREND_POLICY_VERSION, **TREND_PARAMETERS},
+        "reference_contract": REFERENCE_CONTRACT,
         "source_method_versions": {
             "monthly": base_config.method_version,
             "lm2": lm2_config.method_version,
@@ -575,7 +618,7 @@ def run_pipeline(
             ),
         ),
         "signals": current_signals,
-        "alert_scope": "A+, A and monthly B confirmed on cutoff; actionable after global cooldown",
+        "alert_scope": "Confirmed on cutoff; trend gate passed and operational cooldown cleared",
         "weekly_b_policy": "computed_for_audit_but_never_published_or_alerted",
         "lm2_b_policy": "computed_for_audit_but_never_published_or_alerted",
         "cross_source_cooldown_sessions": base_config.cooldown_sessions,
@@ -586,6 +629,8 @@ def run_pipeline(
         history_path,
         {
             "method_version": MULTITEMPORAL_METHOD_VERSION,
+            "operational_version": OPERATIONAL_VERSION,
+            "reference_signals": len(reference_keys),
             "updated_at": _iso_now(),
             "signals": all_history,
         },

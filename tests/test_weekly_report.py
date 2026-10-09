@@ -1,6 +1,7 @@
 from datetime import date
 
 from mtr_scanner.alerts import build_weekly_email
+from mtr_scanner.trend import OPERATIONAL_VERSION, TREND_POLICY_VERSION
 from mtr_scanner.weekly_report import report_window, select_week_signals
 
 
@@ -24,6 +25,9 @@ def signal(
         "swing_score": 0.83,
         "event_volume_change": -0.48,
         "actionable": actionable,
+        "operational_version": OPERATIONAL_VERSION,
+        "operational_actionable": actionable,
+        "trend_gate": {"policy_version": TREND_POLICY_VERSION, "as_of": event_date, "passed": True},
     }
 
 
@@ -40,6 +44,7 @@ def test_weekly_selection_excludes_old_and_suppressed_events():
         signal("DMRA", "2026-09-29"),
         signal("OLD", "2026-09-25"),
         signal("BLOCKED", "2026-10-01", actionable=False),
+        {**signal("BADTREND", "2026-10-01"), "trend_gate": {"passed": False}},
     ]
 
     selected = select_week_signals(

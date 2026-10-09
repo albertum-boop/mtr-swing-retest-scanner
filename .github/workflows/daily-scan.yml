@@ -10,6 +10,7 @@ on:
       - "reference/**"
       - "scripts/**"
       - "src/**"
+      - "tests/**"
   workflow_dispatch:
     inputs:
       as_of:
@@ -42,9 +43,12 @@ jobs:
           cache: pip
 
       - name: Install scanner
-        run: pip install -e .
+        run: pip install -e '.[dev]'
 
-      - name: Run multitemporal v2.0 scanner
+      - name: Verify trend eligibility and alert delivery guards
+        run: python -m pytest
+
+      - name: Run multitemporal v2.1 scanner
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           ALERT_FROM: ${{ secrets.ALERT_FROM }}

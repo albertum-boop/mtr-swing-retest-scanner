@@ -3,6 +3,8 @@ const state = {
   current: null,
   history: [],
   metrics: null,
+  trendMetrics: null,
+  showRejected: false,
   grade: "ALL",
   query: "",
   candidateStatus: "ALL",
@@ -14,6 +16,7 @@ const statusMeta = {
   waiting_expansion: ["Esperando expansión", "status-waiting"],
   expanded_waiting_retest: ["Esperando retest", "status-ready"],
   signal: ["Señal", "status-signal"],
+  rejected_current_trend: ["Descartada por tendencia", "status-rejected"],
   rejected_first_contact: ["Rechazado", "status-rejected"],
   rejected_weekly_grade: ["B semanal descartada", "status-rejected"],
   rejected_lm2_grade: ["B LM2 descartada", "status-rejected"],
@@ -41,6 +44,37 @@ const byQualityDate = (a, b) =>
   (gradeOrder[a.grade] ?? 9) - (gradeOrder[b.grade] ?? 9) ||
   String(a.event_date || "").localeCompare(String(b.event_date || "")) ||
   String(a.ticker || "").localeCompare(String(b.ticker || ""));
+
+const trendCheckLabels = {
+  price_above_sma50: "Cierre > SMA50",
+  sma50_above_sma200: "SMA50 > SMA200",
+  sma50_rising20: "SMA50 ascendente en 20 sesiones",
+  sma200_rising20: "SMA200 ascendente en 20 sesiones",
+  drawdown20_within_limit: "Caída desde máximo de cierre de 20 sesiones ≤15%",
+};
+const eligible = row => row.operational_version === "MTR-Multitemporal-v2.1"
+  && row.operational_actionable === true
+  && row.trend_gate?.policy_version === "MTR-TrendGate-v1.0"
+  && row.trend_gate?.as_of === row.event_date
+  && row.trend_gate?.passed === true;
+const blockedLabel = row => row.operational_reason === "cooldown"
+  ? "Suprimida por cooldown"
+  : row.trend_gate?.status === "unknown" ? "Bloqueada: tendencia sin datos suficientes" : "Descartada: tendencia insuficiente";
+function trendBlock(row) {
+  const gate = row.trend_gate;
+  if (!gate) return `<section class="detail-section"><h3>Tendencia</h3><p>Sin evaluación: entrada bloqueada.</p></section>`;
+  return `<section class="detail-section"><h3>Tendencia al cierre del ${fmtDate(gate.as_of)}</h3>
+    <p class="${gate.passed ? "positive" : "negative"}"><strong>${gate.passed ? "Cumple estructura de tendencia" : "Entrada bloqueada por tendencia"}</strong></p>
+    <p class="muted">El grado ${row.grade || ""} describe el retest. Esta evaluación usa únicamente datos anteriores a la apertura de referencia.</p>
+    <div class="detail-grid">
+      ${detailItem("Cierre / SMA50", `${fmtPrice(gate.close)} / ${fmtPrice(gate.sma50)}`)}
+      ${detailItem("SMA200", fmtPrice(gate.sma200))}
+      ${detailItem("Pendiente SMA50 / 20", fmtPct(gate.sma50_slope20))}
+      ${detailItem("Pendiente SMA200 / 20", fmtPct(gate.sma200_slope20))}
+      ${detailItem("Caída desde máximo20", fmtPct(gate.drawdown20))}
+    </div><div class="check-list">${Object.entries(gate.checks || {}).map(([key, passed]) => `<div class="check-row"><span>${trendCheckLabels[key] || key}</span><strong class="${passed ? "check-pass" : "check-fail"}">${passed ? "Cumple" : "Falla"}</strong></div>`).join("")}</div>
+    ${gate.status === "unknown" ? `<p>No hay 220 cierres válidos hasta la fecha del evento. No genera entrada ni aviso.</p>` : ""}</section>`;
+}
 
 const gradeClass = (grade) => grade === "A+" ? "grade-aplus" : grade === "A" ? "grade-a" : "grade-b";
 const fmtPct = (value, digits = 2) => value == null ? "N/D" : `${value >= 0 ? "+" : ""}${(100 * value).toFixed(digits)}%`;
@@ -76,12 +110,12 @@ function renderSummary() {
   const counts = state.current?.source_counts || {};
   const weeklyDates = state.current?.weekly_formation_dates || [];
   const lm2Date = state.current?.lm2_formation_date;
-  const actionable = signals.filter(signal => signal.event_date === state.current?.cutoff && signal.actionable !== false);
+  const actionable = signals.filter(signal => signal.event_date === state.current?.cutoff && eligible(signal));
   const cards = [
     ["Formaciones activas", 1 + weeklyDates.length + (lm2Date ? 1 : 0), `Mensual ${state.current?.monthly_formation_date || "N/D"}${lm2Date ? ` · LM2 ${lm2Date}` : ""}${weeklyDates.length ? ` · semanal ${weeklyDates.join(", ")}` : ""}`],
     ["Candidatos swing", (counts.monthly_candidates ?? 0) + (counts.lm2_candidates ?? 0) + (counts.weekly_crossing_candidates ?? 0), `${counts.monthly_candidates ?? 0} mensuales · ${counts.lm2_candidates ?? 0} LM2 · ${counts.weekly_crossing_candidates ?? 0} cruces semanales`],
     ["Señales confirmadas hoy", actionable.length, actionable.length ? "Entrada en la próxima apertura" : "Ninguna entrada nueva"],
-    ["Histórico operativo", state.history.length, `${state.metrics?.signals ?? 323} señales completas + posteriores`],
+    ["Histórico filtrado", state.history.filter(eligible).length, `${state.trendMetrics?.corrected?.count ?? "N/D"} eventos completos con tendencia · ${state.trendMetrics?.baseline?.count ?? 313} en referencia original`],
   ];
   document.querySelector("#summary").innerHTML = cards.map(([label, value, note]) => `
     <article class="summary-card"><span>${label}</span><strong>${value}</strong><small>${note}</small></article>
@@ -97,7 +131,7 @@ function statusPill(candidate) {
 function candidateGroup(candidate) {
   if (["waiting", "waiting_expansion", "expanded_waiting_retest"].includes(candidate.status)) return "POSSIBLE";
   if (candidate.status === "signal") return "SIGNAL";
-  if (["rejected_first_contact", "rejected_weekly_grade", "rejected_lm2_grade"].includes(candidate.status)) return "REJECTED";
+  if (["rejected_current_trend", "rejected_first_contact", "rejected_weekly_grade", "rejected_lm2_grade"].includes(candidate.status)) return "REJECTED";
   if (candidate.status === "expired") return "EXPIRED";
   return "OTHER";
 }
@@ -143,15 +177,15 @@ function renderCandidates() {
 }
 
 function signalCard(signal) {
-  const actionable = signal.event_date === state.current?.cutoff && signal.actionable !== false;
-  const timing = signal.actionable === false
-    ? `No accionable · cooldown de ${signal.cooldown_sessions ?? 10} sesiones`
+  const actionable = signal.event_date === state.current?.cutoff && eligible(signal);
+  const timing = !eligible(signal)
+    ? blockedLabel(signal)
     : actionable
     ? "Confirmada hoy · entrada en próxima apertura"
     : `Señal ${fmtDate(signal.event_date)} · entrada ${fmtDate(signal.entry_date)}`;
-  return `<article class="signal-card ${actionable ? "actionable" : ""}" data-signal="${signal.signal_id}">
-    <div class="signal-top"><span class="signal-ticker">${signal.ticker}</span><span>${sourceBadge(signal)} <span class="grade ${gradeClass(signal.grade)}">${signal.grade}</span></span></div>
-    <p class="muted">${timing}</p>
+  return `<article class="signal-card ${!eligible(signal) ? "blocked" : actionable ? "actionable" : ""}" data-signal="${signal.signal_id}">
+    <div class="signal-top"><span class="signal-ticker">${signal.ticker}</span><span>${sourceBadge(signal)} <span class="grade ${eligible(signal) ? gradeClass(signal.grade) : "grade-blocked"}">Retest ${signal.grade}</span></span></div>
+    <p class="${eligible(signal) ? "muted" : "negative"}"><strong>${timing}</strong></p>
     <div class="signal-metrics">
       <div class="metric"><span>SwingScore</span><strong>${fmtNum(signal.swing_score, 3)}</strong></div>
       <div class="metric"><span>Volumen</span><strong>${fmtPct(signal.event_volume_change)}</strong></div>
@@ -164,7 +198,7 @@ function renderCurrent() {
   const signals = [...(state.current?.signals || [])].sort(byQualityDate);
   const subtitle = document.querySelector("#current-subtitle");
   subtitle.textContent = state.current
-    ? `Unión mensual + LM2 A/A+ + cruces semanales A/A+ · corte ${state.current.cutoff}`
+    ? `Retests registrados · entrada solo con tendencia vigente y cooldown libre · corte ${state.current.cutoff}`
     : "Datos no disponibles";
   const empty = document.querySelector("#current-empty");
   const grid = document.querySelector("#current-signals");
@@ -179,9 +213,9 @@ function renderCurrent() {
 }
 
 function historyRow(signal) {
-  const entry = signal.actionable === false ? "Suprimida (cooldown)" : signal.entry_date || "N/D";
+  const entry = !eligible(signal) ? blockedLabel(signal) : signal.entry_date || "N/D";
   return `<tr data-signal="${signal.signal_id}">
-    <td><span class="grade ${gradeClass(signal.grade)}">${signal.grade}</span></td>
+    <td><span class="grade ${eligible(signal) ? gradeClass(signal.grade) : "grade-blocked"}">Retest ${signal.grade}</span></td>
     <td><strong>${signal.ticker}</strong></td>
     <td>${sourceBadge(signal)}</td>
     <td>${signal.event_date || "N/D"}</td>
@@ -199,6 +233,7 @@ function historyRow(signal) {
 function renderHistory() {
   const query = state.query.trim().toUpperCase();
   const filtered = state.history
+    .filter(row => state.showRejected || eligible(row))
     .filter(row => state.grade === "ALL" || row.grade === state.grade)
     .filter(row => !query || String(row.ticker).toUpperCase().includes(query))
     .sort(byQualityDate);
@@ -207,7 +242,7 @@ function renderHistory() {
 }
 
 function renderProfile() {
-  const profiles = state.metrics?.grade_profiles || [];
+  const profiles = state.trendMetrics?.grade_profiles || [];
   document.querySelector("#grade-profile").innerHTML = profiles.map(row => `
     <div class="profile-row">
       <div class="profile-grade"><span class="grade ${gradeClass(row.grade)}">${row.grade}</span><small>N=${row.count ?? 0}</small></div>
@@ -249,7 +284,7 @@ function confluenceRows(label, profile, rowClass = "") {
 }
 
 function renderConfluenceProfile() {
-  const profiles = state.metrics?.confluence_profiles;
+  const profiles = state.trendMetrics?.confluence_profiles;
   const body = document.querySelector("#confluence-profile");
   const summary = document.querySelector("#confluence-summary");
   if (!profiles?.overall?.count) {
@@ -277,11 +312,12 @@ function openSignalDrawer(signalId) {
   const content = document.querySelector("#drawer-content");
   content.innerHTML = `
     <p class="eyebrow">${signal.method_version || "MTR‑Multitemporal‑v2.0"}</p>
-    <div class="drawer-title"><h2>${signal.ticker}</h2><span class="grade ${gradeClass(signal.grade)}">${signal.grade}</span></div>
+    <div class="drawer-title"><h2>${signal.ticker}</h2><span class="grade ${eligible(signal) ? gradeClass(signal.grade) : "grade-blocked"}">Retest ${signal.grade}</span></div>
     <p>${sourceBadge(signal)}</p>
-    <p class="muted">Formación ${Object.entries(signal.formation_dates || { principal: signal.formation_date }).map(([source, date]) => `${sourceNames[source]?.toLowerCase() || source} ${fmtDate(date)}`).join(" · ")} · señal ${fmtDate(signal.event_date)} · entrada ${signal.actionable === false ? "suprimida por cooldown" : fmtDate(signal.entry_date)}</p>
+    <p class="muted">Formación ${Object.entries(signal.formation_dates || { principal: signal.formation_date }).map(([source, date]) => `${sourceNames[source]?.toLowerCase() || source} ${fmtDate(date)}`).join(" · ")} · señal ${fmtDate(signal.event_date)} · entrada ${!eligible(signal) ? blockedLabel(signal) : fmtDate(signal.entry_date)}</p>
     ${signal.is_confluence ? `<section class="detail-section"><h3>Confluencia</h3><p>El mismo retest fue detectado por ${sourceLabel(signal).toLowerCase()}. ${Object.entries(signal.source_grades || {}).map(([source, grade]) => `${sourceNames[source] || source}: ${grade}`).join(" · ")}. El grado maestro es el mejor grado observado, sin mejora automática por coincidencia.</p></section>` : ""}
-    ${signal.actionable === false ? `<section class="detail-section"><h3>Cooldown</h3><p>Se conserva para auditoría, pero no genera entrada ni correo porque el ticker ya confirmó otra señal en las ${signal.cooldown_sessions ?? 10} sesiones anteriores.</p><p class="muted">Bloqueada por ${signal.suppressed_by_cooldown || "una señal anterior"}.</p></section>` : ""}
+    ${signal.operational_reason === "cooldown" ? `<section class="detail-section"><h3>Cooldown</h3><p>Se conserva para auditoría, pero no genera entrada ni correo porque el ticker ya confirmó otra señal en las ${signal.cooldown_sessions ?? 10} sesiones anteriores.</p><p class="muted">Bloqueada por ${signal.operational_suppressed_by_cooldown || "una señal anterior"}.</p></section>` : ""}
+    ${trendBlock(signal)}
     <section class="detail-section"><h3>Selección</h3><div class="detail-grid">
       ${detailItem("MOM universo", fmtNum(signal.universe_momentum_percentile, 3))}
       ${detailItem("SwingScore", fmtNum(signal.swing_score, 3))}
@@ -309,7 +345,7 @@ function openSignalDrawer(signalId) {
       ${detailItem("Cuerpo", `${fmtNum(signal.event_body_atr)} ATR`)}
       ${detailItem("Cierre vs nivel", `${fmtNum(signal.close_vs_level_atr)} ATR`)}
     </div></section>
-    <section class="detail-section"><h3>Recorrido ejecutable</h3><div class="detail-grid">
+    <section class="detail-section"><h3>Recorrido de referencia del patrón</h3><div class="detail-grid">
       ${detailItem("R5", fmtPct(signal.r5), signClass(signal.r5))}
       ${detailItem("MFE5", fmtPct(signal.mfe5), signClass(signal.mfe5))}
       ${detailItem("MAE5", fmtPct(signal.mae5), signClass(signal.mae5))}
@@ -377,6 +413,7 @@ function openCandidateDrawer(candidateId) {
       ${detailItem("Cierre vs L", `${fmtNum(latest.close_vs_level_atr)} ATR`)}
       ${detailItem("Volumen vs media", fmtPct(latest.volume_ratio - 1))}
     </div></section>` : ""}
+    ${candidate.trend_gate ? trendBlock(candidate) : ""}
     ${checksBlock(candidate)}
     ${candidate.status === "signal" ? `<section class="detail-section"><h3>Entrada</h3><p>Grado ${candidate.grade}. Entrada en la apertura posterior al retest.</p><p class="muted">${candidate.entry_date ? `${fmtDate(candidate.entry_date)} a ${fmtPrice(candidate.entry_open)}` : "Precio pendiente hasta la próxima sesión."}</p></section>` : ""}`;
   showDrawer();
@@ -394,7 +431,20 @@ function closeDrawer() {
   document.querySelector("#backdrop").hidden = true;
 }
 
+function renderTrendAudit() {
+  const audit = state.trendMetrics;
+  const el = document.querySelector("#trend-audit");
+  if (!audit) { el.textContent = "Evaluación histórica del filtro no disponible."; return; }
+  const row = (label, p) => `<tr><td>${label}</td><td>${p.count}</td><td>${fmtPct(p.r5)}</td><td>${fmtPct(p.r10)}</td><td>${fmtPct(p.mae10)}</td><td>${fmtPct(p.adverse_15pct_rate)}</td></tr>`;
+  el.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Muestra</th><th>N</th><th>R5 medio</th><th>R10 medio</th><th>MAE10 medio</th><th>MAE10 ≤−15%</th></tr></thead><tbody>${row("Original v2.0", audit.baseline)}${row("Con filtro de tendencia", audit.corrected)}</tbody></table></div>
+    <p class="muted">${audit.interpretation}</p><p class="muted">Eventos ${audit.event_period.start} a ${audit.event_period.end}. Entrada de referencia en apertura siguiente, sin costes. No es una rentabilidad de cartera.</p>`;
+}
+
 function bindEvents() {
+  document.querySelector("#show-rejected").addEventListener("change", event => {
+    state.showRejected = event.target.checked;
+    renderHistory();
+  });
   document.querySelectorAll(".filter").forEach(button => button.addEventListener("click", () => {
     state.grade = button.dataset.grade;
     document.querySelectorAll(".filter").forEach(x => x.classList.toggle("active", x === button));
@@ -428,17 +478,20 @@ function bindEvents() {
 }
 
 async function init() {
-  const [current, history, metrics] = await Promise.all([
+  const [current, history, metrics, trendMetrics] = await Promise.all([
     fetchJson("/data/current.json", null),
     fetchJson("/data/history.json", { signals: [] }),
     fetchJson("/data/metrics.json", { grade_profiles: [] }),
+    fetchJson("/data/trend_metrics.json", null),
   ]);
   state.current = current;
   state.history = history.signals || [];
   state.metrics = metrics;
+  state.trendMetrics = trendMetrics;
   const badge = document.querySelector("#run-badge");
   if (current) badge.textContent = `Datos hasta ${current.cutoff}`;
   else { badge.textContent = "Datos no disponibles"; badge.classList.add("error"); }
+  renderTrendAudit();
   renderSummary();
   renderCandidates();
   renderCurrent();

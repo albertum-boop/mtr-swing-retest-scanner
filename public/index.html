@@ -14,7 +14,7 @@
     <header class="topbar">
       <a class="brand" href="#">
         <span class="brand-mark">MTR</span>
-        <span><strong>Swing Retest</strong><small>Multitemporal v2.0</small></span>
+        <span><strong>Swing Retest</strong><small>Multitemporal v2.1</small></span>
       </a>
       <div id="run-badge" class="run-badge">Cargando datos…</div>
     </header>
@@ -23,17 +23,19 @@
       <section class="hero">
         <div>
           <p class="eyebrow">Momentum transversal · Mensual + LM2 + semanal</p>
-          <h1>Señales swing ordenadas por calidad.</h1>
-          <p class="hero-copy">El motor conserva todas las señales mensuales y añade LM2 —penúltima sesión del mes— y cruces semanales cuando obtienen A+ o A. Las B LM2 y semanales quedan fuera de entradas y alertas.</p>
+          <h1>Retest y tendencia, evaluados por separado.</h1>
+          <p class="hero-copy">A/A+ califican el patrón de retest. Una entrada requiere además precio sobre SMA50, SMA50 sobre SMA200, ambas medias ascendentes y caída desde el máximo de cierre de 20 sesiones no superior al 15%.</p>
         </div>
         <div class="method-card">
           <span>Método activo</span>
-          <strong>MTR‑Multitemporal‑v2.0</strong>
+          <strong>MTR‑Multitemporal‑v2.1</strong>
           <small>La entrada de referencia es la apertura posterior. No se envían órdenes.</small>
         </div>
       </section>
 
       <section id="summary" class="summary-grid" aria-label="Resumen"></section>
+
+      <section class="panel"><p class="eyebrow">Evaluación retrospectiva del filtro</p><h2>Menos entradas, con un coste medido</h2><div id="trend-audit"></div></section>
 
       <section class="panel candidate-panel">
         <div class="panel-header history-heading">
@@ -64,7 +66,7 @@
         <div class="panel-header">
           <div>
             <p class="eyebrow">Ciclos activos</p>
-            <h2>Señales multitemporales</h2>
+            <h2>Retests registrados y entradas elegibles</h2>
             <p id="current-subtitle" class="muted"></p>
           </div>
           <div class="legend"><span class="dot aplus"></span>A+<span class="dot a"></span>A<span class="dot b"></span>B solo mensual</div>
@@ -77,14 +79,15 @@
         <div class="panel-header history-heading">
           <div>
             <p class="eyebrow">Referencia auditada</p>
-            <h2>Histórico de señales</h2>
-            <p class="muted">Ordenado primero por calidad y, dentro de cada grado, por fecha.</p>
+            <h2>Histórico con filtro de tendencia</h2>
+            <p class="muted">Grado del retest y elegibilidad de entrada son distintos. Mostrar descartadas permite revisar todos los patrones originales.</p>
           </div>
           <div class="filters" role="group" aria-label="Filtrar histórico">
             <button class="filter active" data-grade="ALL">Todas</button>
             <button class="filter" data-grade="A+">A+</button>
             <button class="filter" data-grade="A">A</button>
             <button class="filter" data-grade="B">B</button>
+            <label><input id="show-rejected" type="checkbox" /> Mostrar descartadas</label>
             <input id="ticker-search" type="search" placeholder="Ticker" aria-label="Buscar ticker" />
           </div>
         </div>
@@ -109,12 +112,13 @@
             <li><strong>Expansión:</strong> máximo ≥ L + 0,25 ATR.</li>
             <li><strong>Retest:</strong> primer contacto en días 2–5; debe hacer hold y volumen &lt;80%.</li>
             <li><strong>Filtros LM2/semanal:</strong> se publican A+ y A; B se calcula para auditoría y se descarta.</li>
+            <li><strong>Tendencia vigente:</strong> al cierre del evento, SMA50 &gt; SMA200, ambas ascendentes en 20 sesiones, cierre &gt; SMA50 y caída desde máximo20 de cierre ≤15%. Si falta historial, se bloquea.</li>
             <li><strong>Cooldown:</strong> tras una entrada, otra señal del mismo ticker queda suprimida durante 10 sesiones.</li>
           </ol>
         </article>
         <article class="panel">
-          <p class="eyebrow">Referencia auditada · 323 eventos · 313 accionables</p>
-          <h2>Perfil histórico por grado</h2>
+          <p class="eyebrow">Filtro de tendencia aplicado a la referencia original</p>
+          <h2>Perfil filtrado por grado del retest</h2>
           <div id="grade-profile" class="profile-list"></div>
         </article>
       </section>
@@ -134,7 +138,7 @@
             <tbody id="confluence-profile"></tbody>
           </table>
         </div>
-        <p class="confluence-note">Solo eventos accionables después del cooldown. Las combinaciones exactas dividen el total sin duplicarlo. Con N=1, la “media” es el resultado de una única señal.</p>
+        <p class="confluence-note">Solo eventos que cumplen tendencia y cooldown en la evaluación retrospectiva. Las combinaciones exactas dividen el total sin duplicarlo. Con N=1, la “media” es el resultado de una única señal.</p>
       </section>
     </main>
 
@@ -145,7 +149,7 @@
     <div id="backdrop" class="backdrop" hidden></div>
 
     <footer>
-      <span>MTR Multitemporal v2.0</span>
+      <span>MTR Multitemporal v2.1</span>
       <span>Herramienta de investigación; no constituye asesoramiento financiero.</span>
     </footer>
     <script src="/app.js" defer></script>

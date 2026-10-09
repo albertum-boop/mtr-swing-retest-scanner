@@ -6,6 +6,7 @@ from typing import Self
 from urllib.error import HTTPError
 
 from mtr_scanner import alerts
+from mtr_scanner.trend import OPERATIONAL_VERSION, TREND_POLICY_VERSION
 
 
 class FakeResponse:
@@ -25,6 +26,13 @@ def _signal() -> dict[str, object]:
         "ticker": "DOCN",
         "event_date": "2026-10-01",
         "source": "weekly",
+        "operational_version": OPERATIONAL_VERSION,
+        "operational_actionable": True,
+        "trend_gate": {
+            "policy_version": TREND_POLICY_VERSION,
+            "as_of": "2026-10-01",
+            "passed": True,
+        },
     }
 
 
@@ -98,3 +106,18 @@ def test_resend_http_error_is_visible_without_leaking_key(monkeypatch) -> None:
     assert result["sent"] == 0
     assert "Resend HTTP 403" in result["detail"]
     assert "re_secret_value" not in result["detail"]
+
+
+def test_sender_blocks_missing_failed_or_stale_trend_without_provider_call(monkeypatch):
+    def unexpected_send(*args, **kwargs):
+        raise AssertionError("A blocked signal reached the email provider")
+
+    monkeypatch.setattr(alerts, "urlopen", unexpected_send)
+    failed = _signal()
+    failed["trend_gate"] = {**failed["trend_gate"], "passed": False}
+    stale = _signal()
+    stale["trend_gate"] = {**stale["trend_gate"], "as_of": "2026-09-30"}
+    unassessed = {"ticker": "ALM", "grade": "A", "event_date": "2026-10-05"}
+    assert alerts.send_signal_email([failed, stale, unassessed]) == {
+        "status": "nothing_to_send", "sent": 0
+    }

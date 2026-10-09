@@ -46,7 +46,9 @@
     "lm2_signals": 0,
     "weekly_signals": 0,
     "confluence_signals": 0,
-    "cooldown_suppressed": 0
+    "cooldown_suppressed": 0,
+    "trend_blocked": 2,
+    "operational_signals": 0
   },
   "scan_status": {
     "rejected_first_contact": 24,
@@ -540,7 +542,7 @@
       "contact_band_high": 13.458912372589111,
       "max_valid_close": 14.056737422943115,
       "max_event_volume": 5370524.0,
-      "status": "signal",
+      "status": "rejected_current_trend",
       "complete_days": 3,
       "sessions_remaining": 0,
       "expansion_seen": true,
@@ -582,11 +584,38 @@
       "event_date": "2026-10-05",
       "entry_date": "2026-10-06",
       "entry_open": 13.520000457763672,
-      "next_step": "Señal del ciclo; entrada de apertura ya registrada",
+      "next_step": "Retest registrado; entrada bloqueada por tendencia insuficiente",
       "candidate_id": "monthly:2026-09-30:ALM",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 6
+      "session_after_formation": 6,
+      "trend_gate": {
+        "policy_version": "MTR-TrendGate-v1.0",
+        "as_of": "2026-10-05",
+        "status": "rejected",
+        "passed": false,
+        "checks": {
+          "price_above_sma50": false,
+          "sma50_above_sma200": false,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": false
+        },
+        "failed_conditions": [
+          "price_above_sma50",
+          "sma50_above_sma200",
+          "sma50_rising20",
+          "drawdown20_within_limit"
+        ],
+        "close": 13.520000457763672,
+        "sma50": 14.993300106811523,
+        "sma200": 15.725050061416626,
+        "sma50_slope20": -0.016671584650990834,
+        "sma200_slope20": 0.051624746831353985,
+        "max_close20": 19.1200008392334,
+        "drawdown20": -0.2928870363843694,
+        "return20": -0.23050650582843202
+      }
     },
     {
       "ticker": "ABSI",
@@ -1447,7 +1476,7 @@
       "contact_band_high": 88.00509824752808,
       "max_valid_close": 91.81529779434204,
       "max_event_volume": 3627532.0,
-      "status": "signal",
+      "status": "rejected_current_trend",
       "complete_days": 3,
       "sessions_remaining": 0,
       "expansion_seen": true,
@@ -1489,11 +1518,37 @@
       "event_date": "2026-10-05",
       "entry_date": "2026-10-06",
       "entry_open": 91.8499984741211,
-      "next_step": "Señal del ciclo; entrada de apertura ya registrada",
+      "next_step": "Retest registrado; entrada bloqueada por tendencia insuficiente",
       "candidate_id": "monthly:2026-09-30:HUT",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 6
+      "session_after_formation": 6,
+      "trend_gate": {
+        "policy_version": "MTR-TrendGate-v1.0",
+        "as_of": "2026-10-05",
+        "status": "rejected",
+        "passed": false,
+        "checks": {
+          "price_above_sma50": false,
+          "sma50_above_sma200": true,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": false
+        },
+        "failed_conditions": [
+          "price_above_sma50",
+          "sma50_rising20",
+          "drawdown20_within_limit"
+        ],
+        "close": 89.2699966430664,
+        "sma50": 91.48729927368164,
+        "sma200": 80.5137248046875,
+        "sma50_slope20": -0.04506958213108392,
+        "sma200_slope20": 0.07178539878200696,
+        "max_close20": 106.61000061035156,
+        "drawdown20": -0.1626489435138554,
+        "return20": -0.04569994772096875
+      }
     },
     {
       "ticker": "OMER",
@@ -2878,7 +2933,40 @@
       },
       "cooldown_sessions": 10,
       "suppressed_by_cooldown": null,
-      "actionable": true
+      "actionable": true,
+      "operational_version": "MTR-Multitemporal-v2.1",
+      "trend_gate": {
+        "policy_version": "MTR-TrendGate-v1.0",
+        "as_of": "2026-10-05",
+        "status": "rejected",
+        "passed": false,
+        "checks": {
+          "price_above_sma50": false,
+          "sma50_above_sma200": false,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": false
+        },
+        "failed_conditions": [
+          "price_above_sma50",
+          "sma50_above_sma200",
+          "sma50_rising20",
+          "drawdown20_within_limit"
+        ],
+        "close": 13.520000457763672,
+        "sma50": 14.993300106811523,
+        "sma200": 15.725050061416626,
+        "sma50_slope20": -0.016671584650990834,
+        "sma200_slope20": 0.051624746831353985,
+        "max_close20": 19.1200008392334,
+        "drawdown20": -0.2928870363843694,
+        "return20": -0.23050650582843202
+      },
+      "operational_actionable": false,
+      "operational_suppressed_by_cooldown": null,
+      "operational_cooldown_gap_sessions": null,
+      "operational_reason": "trend_rejected",
+      "reference_complete": false
     },
     {
       "signal_id": "MTR-Swing-Retest-v2.0:HUT:2026-10-05",
@@ -2959,15 +3047,63 @@
       },
       "cooldown_sessions": 10,
       "suppressed_by_cooldown": null,
-      "actionable": true
+      "actionable": true,
+      "operational_version": "MTR-Multitemporal-v2.1",
+      "trend_gate": {
+        "policy_version": "MTR-TrendGate-v1.0",
+        "as_of": "2026-10-05",
+        "status": "rejected",
+        "passed": false,
+        "checks": {
+          "price_above_sma50": false,
+          "sma50_above_sma200": true,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": false
+        },
+        "failed_conditions": [
+          "price_above_sma50",
+          "sma50_rising20",
+          "drawdown20_within_limit"
+        ],
+        "close": 89.2699966430664,
+        "sma50": 91.48729927368164,
+        "sma200": 80.5137248046875,
+        "sma50_slope20": -0.04506958213108392,
+        "sma200_slope20": 0.07178539878200696,
+        "max_close20": 106.61000061035156,
+        "drawdown20": -0.1626489435138554,
+        "return20": -0.04569994772096875
+      },
+      "operational_actionable": false,
+      "operational_suppressed_by_cooldown": null,
+      "operational_cooldown_gap_sessions": null,
+      "operational_reason": "trend_rejected",
+      "reference_complete": false
     }
   ],
-  "alert_scope": "A+, A and monthly B confirmed on cutoff; actionable after global cooldown",
+  "alert_scope": "Confirmed on cutoff; trend gate passed and operational cooldown cleared",
   "weekly_b_policy": "computed_for_audit_but_never_published_or_alerted",
   "lm2_b_policy": "computed_for_audit_but_never_published_or_alerted",
   "cross_source_cooldown_sessions": 10,
   "alert_result": {
     "status": "nothing_to_send",
     "sent": 0
+  },
+  "operational_version": "MTR-Multitemporal-v2.1",
+  "trend_policy": {
+    "version": "MTR-TrendGate-v1.0",
+    "fast_sma_sessions": 50,
+    "slow_sma_sessions": 200,
+    "slope_sessions": 20,
+    "drawdown_sessions": 20,
+    "max_drawdown": 0.15,
+    "evaluated_at": "event_close"
+  },
+  "reference_contract": {
+    "unique_events": 323,
+    "source_observations": 348,
+    "actionable_after_cooldown": 313,
+    "last_complete_outcome_event": "2026-08-05"
   }
 }

@@ -1,9 +1,10 @@
 # MTR Multitemporal Swing Retest
 
-Aplicación diaria de la especificación candidata **MTR Multitemporal v2.0**. El motor une
+Aplicación diaria con contrato de patrones **MTR Multitemporal v2.0** y filtro operativo
+**v2.1 / MTR-TrendGate-v1.0**. El motor une
 la rama mensual MTR Swing Retest v2.0 con dos ramas independientes:
 LM2, formada en la penúltima sesión NYSE del mes, y la rama semanal incremental.
-Las señales operativas son:
+Los patrones admitidos para evaluación son:
 
 - todas las señales mensuales A+, A y B;
 - únicamente las señales LM2 A+ y A;
@@ -12,10 +13,67 @@ Las señales operativas son:
   ticker en la misma fecha de evento.
 
 Las B LM2 y semanales se calculan para auditar los filtros, pero no se publican como entrada
-ni generan correo. Un cooldown común de diez sesiones evita dos entradas próximas en el
+ni generan correo. Todos los patrones admitidos necesitan superar además el filtro de
+tendencia al cierre del evento. **A/A+ describe el grado del patrón; no acredita por sí solo
+una tendencia actual ni una entrada.** Un cooldown común de diez sesiones evita dos entradas próximas en el
 mismo ticker, aunque el segundo evento se conserva marcado para auditoría. La aplicación no
 envía órdenes. `R5`, `R10`, `MFE` y `MAE` describen el recorrido posterior y no constituyen
 una regla automática de salida.
+
+## Filtro de tendencia vigente v2.1
+
+La selección MOM12-1 excluye las últimas 21 sesiones. Por eso puede seleccionar acciones
+con gran subida antigua y deterioro reciente. El ATR alto mide volatilidad, no dirección.
+El grado mensual A se obtiene de la posición del cierre dentro del rango del retest y
+tampoco elimina ese problema. Se exige ahora, con cierres ajustados hasta el evento:
+
+1. cierre > SMA50;
+2. SMA50 > SMA200;
+3. SMA50 actual > SMA50 de veinte sesiones antes;
+4. SMA200 actual > SMA200 de veinte sesiones antes;
+5. caída desde el máximo de cierre de las últimas veinte sesiones no superior al 15%.
+
+Se necesitan 220 cierres válidos, incluido el del evento. Si faltan datos, la entrada queda
+bloqueada. No se utiliza ninguna cotización posterior al evento para decidir elegibilidad.
+El snapshot guarda fecha, versión, valores y resultado de cada condición. El cooldown
+operativo se recalcula después del filtro: una señal rechazada no bloquea otra posterior.
+Los identificadores, grados, resultados y campos de accionabilidad v2.0 se conservan; los
+campos `operational_*` representan la nueva política. Una revisión retrospectiva no borra
+las alertas emitidas antes de esta corrección.
+
+ALM y HUT, retests A del 5 de octubre de 2026, quedan rechazadas antes de su apertura de
+referencia. Ambas cerraron por debajo de SMA50, con SMA50 descendente y caídas desde el
+máximo de veinte sesiones del 29,29% y 16,26%, respectivamente. La SMA200 creciente que
+ambas tenían no compensaba ese deterioro.
+
+## Coste observado del filtro
+
+Se reconstruyeron los 323 eventos de referencia y sus R5/R10 con el archivo original de
+precios; la mayor diferencia frente a los retornos guardados fue inferior a 0,000001.
+Sobre la misma referencia y tras cooldown:
+
+| Medida por evento | Original v2.0 | Filtro v2.1 |
+|---|---:|---:|
+| Eventos elegibles | 313 | 160 |
+| R5 medio | 4,28% | 2,95% |
+| R10 medio | 7,07% | 4,95% |
+| MAE10 medio | −8,50% | −7,99% |
+| Eventos con MAE10 ≤−15% | 17,89% | 15,00% |
+
+El filtro corrige la definición de tendencia exigida, pero **no mejora la rentabilidad
+media en esta muestra**. Se compararon varias reglas estructurales después de inspeccionar
+los datos: es una evaluación exploratoria, no validación independiente ni fuera de muestra.
+Los recorridos no incluyen costes, cartera o ejecución real y no garantizan resultados.
+`public/data/trend_metrics.json` publica la comparación y los perfiles filtrados;
+`reference/trend_audit_v1_0.csv` conserva la decisión por evento. La interfaz muestra por
+defecto solo entradas elegibles; permite consultar también los patrones descartados.
+
+Reproducción con el archivo OHLCV original:
+
+```bash
+python scripts/audit_current_trend.py --prices-zip /ruta/prices.zip
+python -m pytest
+```
 
 ## Base matemática común
 
@@ -175,7 +233,8 @@ diez sesiones posteriores.
 sigue activa y las formaciones semanales activas. Cada candidato lleva un `candidate_id`
 único, su marco, fecha de formación, niveles congelados, última sesión evaluada y estado.
 
-Una señal confirmada en la sesión de corte es accionable para la **próxima apertura**. Las
+Una señal confirmada en la sesión de corte que supera el filtro de tendencia y el cooldown
+operativo es elegible para la **próxima apertura**. Las
 señales anteriores de los ciclos activos permanecen visibles como referencia, sin presentarse
 como entradas nuevas.
 

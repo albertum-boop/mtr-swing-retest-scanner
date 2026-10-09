@@ -8,6 +8,7 @@ from typing import Any
 
 from .alerts import GRADE_ORDER, send_weekly_report_email
 from .storage import read_json, write_json
+from .trend import is_operationally_actionable
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -37,7 +38,7 @@ def select_week_signals(
         key = (str(signal["ticker"]), event_date.isoformat())
         if (
             week_start <= event_date <= week_end
-            and signal.get("actionable", True)
+            and is_operationally_actionable(signal)
             and key not in seen
         ):
             selected.append(signal)

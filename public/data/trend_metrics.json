@@ -1,0 +1,535 @@
+{
+  "policy_version": "MTR-TrendGate-v1.0",
+  "operational_version": "MTR-Multitemporal-v2.1",
+  "parameters": {
+    "fast_sma_sessions": 50,
+    "slow_sma_sessions": 200,
+    "slope_sessions": 20,
+    "drawdown_sessions": 20,
+    "max_drawdown": 0.15,
+    "evaluated_at": "event_close"
+  },
+  "audited_on": "2026-10-08",
+  "event_period": {
+    "start": "2019-01-10",
+    "end": "2026-08-05"
+  },
+  "status": "exploratory_structure_filter_not_independent_validation",
+  "reference_coverage": 323,
+  "maximum_return_reproduction_difference": 6.112097650484011e-07,
+  "baseline": {
+    "count": 313,
+    "r5": 0.0428263238477824,
+    "mfe5": 0.1176660204412241,
+    "mae5": -0.06208230839132576,
+    "r10": 0.07073020354410019,
+    "mfe10": 0.18280448249549427,
+    "mae10": -0.08500907398233448,
+    "median_r10": 0.0384215868288764,
+    "win_rate10": 0.6517571884984026,
+    "adverse_15pct_rate": 0.17891373801916932
+  },
+  "corrected": {
+    "count": 160,
+    "r5": 0.029530678289918066,
+    "mfe5": 0.09818306302608655,
+    "mae5": -0.05954699862720919,
+    "r10": 0.049477778668768714,
+    "mfe10": 0.15212412579261322,
+    "mae10": -0.07990307222756618,
+    "median_r10": 0.0330847322678309,
+    "win_rate10": 0.63125,
+    "adverse_15pct_rate": 0.15
+  },
+  "retained_original": {
+    "count": 160,
+    "r5": 0.029530678289918066,
+    "mfe5": 0.09818306302608655,
+    "mae5": -0.05954699862720919,
+    "r10": 0.049477778668768714,
+    "mfe10": 0.15212412579261322,
+    "mae10": -0.07990307222756618,
+    "median_r10": 0.0330847322678309,
+    "win_rate10": 0.63125,
+    "adverse_15pct_rate": 0.15
+  },
+  "readmitted_after_cooldown": 0,
+  "periods": [
+    {
+      "period": "2019–2023",
+      "baseline": {
+        "count": 177,
+        "r5": 0.030559729547770642,
+        "mfe5": 0.10241364930753691,
+        "mae5": -0.06116612094420237,
+        "r10": 0.049420855379861774,
+        "mfe10": 0.15524058125072523,
+        "mae10": -0.08612247898826232,
+        "median_r10": 0.025703234857636,
+        "win_rate10": 0.5932203389830508,
+        "adverse_15pct_rate": 0.1638418079096045
+      },
+      "corrected": {
+        "count": 99,
+        "r5": 0.011585060095231981,
+        "mfe5": 0.08203583687177725,
+        "mae5": -0.06274765226024578,
+        "r10": 0.022868451412977962,
+        "mfe10": 0.12010164580085661,
+        "mae10": -0.08537694366798368,
+        "median_r10": 0.0244656206965729,
+        "win_rate10": 0.5656565656565656,
+        "adverse_15pct_rate": 0.15151515151515152
+      }
+    },
+    {
+      "period": "2024–2026",
+      "baseline": {
+        "count": 136,
+        "r5": 0.058790935547062405,
+        "mfe5": 0.137516532872567,
+        "mae5": -0.06327469940706723,
+        "r10": 0.09846369343432226,
+        "mfe10": 0.2186780892625834,
+        "mae10": -0.08356001011432544,
+        "median_r10": 0.061218861006054046,
+        "win_rate10": 0.7279411764705882,
+        "adverse_15pct_rate": 0.19852941176470587
+      },
+      "corrected": {
+        "count": 61,
+        "r5": 0.05865553404850696,
+        "mfe5": 0.12438921694865408,
+        "mae5": -0.05435249518998583,
+        "r10": 0.0926634081494783,
+        "mfe10": 0.2040950359431691,
+        "mae10": -0.07101924808656071,
+        "median_r10": 0.0503053835629661,
+        "win_rate10": 0.7377049180327869,
+        "adverse_15pct_rate": 0.14754098360655737
+      }
+    }
+  ],
+  "grade_profiles": [
+    {
+      "grade": "A+",
+      "count": 60,
+      "r5": 0.05880240201391915,
+      "mfe5": 0.11242426673941681,
+      "mae5": -0.0350537084193037,
+      "r10": 0.10072970544283484,
+      "mfe10": 0.1801010681858579,
+      "mae10": -0.047501441259177504,
+      "median_r10": 0.08060339147895375,
+      "win_rate10": 0.8,
+      "adverse_15pct_rate": 0.05
+    },
+    {
+      "grade": "A",
+      "count": 91,
+      "r5": 0.01637637149268559,
+      "mfe5": 0.09417174431868248,
+      "mae5": -0.06993193184648894,
+      "r10": 0.0267823273828332,
+      "mfe10": 0.14399336251691136,
+      "mae10": -0.09545386900458368,
+      "median_r10": 0.0179640253506037,
+      "win_rate10": 0.5604395604395604,
+      "adverse_15pct_rate": 0.18681318681318682
+    },
+    {
+      "grade": "B",
+      "count": 9,
+      "r5": -0.03260948892029415,
+      "mfe5": 0.04380059408985896,
+      "mae5": -0.11783238635163928,
+      "r10": -0.06272550348943526,
+      "mfe10": 0.04782222740307898,
+      "mae10": -0.13867811127142476,
+      "median_r10": -0.0970812604330818,
+      "win_rate10": 0.2222222222222222,
+      "adverse_15pct_rate": 0.4444444444444444
+    }
+  ],
+  "confluence_profiles": {
+    "overall": {
+      "count": 13,
+      "r5": 0.05653618267057763,
+      "mfe5": 0.14039203601888256,
+      "mae5": -0.05519099234445682,
+      "r10": 0.16248822528834925,
+      "mfe10": 0.24769707772465563,
+      "mae10": -0.07376280930873144,
+      "median_r10": 0.0608350878922676,
+      "win_rate10": 0.7692307692307693,
+      "adverse_15pct_rate": 0.15384615384615385,
+      "grade_counts": {
+        "A+": 8,
+        "A": 5,
+        "B": 0
+      },
+      "grade_profiles": [
+        {
+          "grade": "A+",
+          "count": 8,
+          "r5": 0.10454840167920837,
+          "mfe5": 0.17232715531430756,
+          "mae5": -0.037630329529539513,
+          "r10": 0.22874315173756435,
+          "mfe10": 0.29410072175602375,
+          "mae10": -0.058273701234133876,
+          "median_r10": 0.061733314968660497,
+          "win_rate10": 0.875,
+          "adverse_15pct_rate": 0.125
+        },
+        {
+          "grade": "A",
+          "count": 5,
+          "r5": -0.020283367743231535,
+          "mfe5": 0.08929584514620251,
+          "mae5": -0.0832880528483245,
+          "r10": 0.056480342969605114,
+          "mfe10": 0.1734512472744667,
+          "mae10": -0.09854538222808751,
+          "median_r10": 0.0608350878922676,
+          "win_rate10": 0.6,
+          "adverse_15pct_rate": 0.2
+        },
+        {
+          "grade": "B",
+          "count": 0,
+          "r5": null,
+          "mfe5": null,
+          "mae5": null,
+          "r10": null,
+          "mfe10": null,
+          "mae10": null,
+          "median_r10": null,
+          "win_rate10": null,
+          "adverse_15pct_rate": null
+        }
+      ]
+    },
+    "combinations": [
+      {
+        "source_key": "monthly+lm2",
+        "sources": [
+          "monthly",
+          "lm2"
+        ],
+        "count": 4,
+        "r5": 0.08304367508646993,
+        "mfe5": 0.19485328290688872,
+        "mae5": -0.08591051195325825,
+        "r10": 0.3365634082534851,
+        "mfe10": 0.4884578884546202,
+        "mae10": -0.10528191929879524,
+        "median_r10": 0.06180510624785015,
+        "win_rate10": 0.5,
+        "adverse_15pct_rate": 0.5,
+        "grade_counts": {
+          "A+": 2,
+          "A": 2,
+          "B": 0
+        },
+        "grade_profiles": [
+          {
+            "grade": "A+",
+            "count": 2,
+            "r5": 0.21797126702495287,
+            "mfe5": 0.34627735747247596,
+            "mae5": -0.05778684345797365,
+            "r10": 0.61132171025912,
+            "mfe10": 0.7500694987941534,
+            "mae10": -0.09652965814904765,
+            "median_r10": 0.61132171025912,
+            "win_rate10": 0.5,
+            "adverse_15pct_rate": 0.5
+          },
+          {
+            "grade": "A",
+            "count": 2,
+            "r5": -0.05188391685201299,
+            "mfe5": 0.04342920834130145,
+            "mae5": -0.11403418044854285,
+            "r10": 0.06180510624785015,
+            "mfe10": 0.22684627811508695,
+            "mae10": -0.11403418044854285,
+            "median_r10": 0.06180510624785015,
+            "win_rate10": 0.5,
+            "adverse_15pct_rate": 0.5
+          },
+          {
+            "grade": "B",
+            "count": 0,
+            "r5": null,
+            "mfe5": null,
+            "mae5": null,
+            "r10": null,
+            "mfe10": null,
+            "mae10": null,
+            "median_r10": null,
+            "win_rate10": null,
+            "adverse_15pct_rate": null
+          }
+        ]
+      },
+      {
+        "source_key": "monthly+weekly",
+        "sources": [
+          "monthly",
+          "weekly"
+        ],
+        "count": 6,
+        "r5": 0.031142160725303975,
+        "mfe5": 0.1172519624381219,
+        "mae5": -0.05386075328145238,
+        "r10": 0.07407948579142036,
+        "mfe10": 0.14420051378529464,
+        "mae10": -0.07961072269971642,
+        "median_r10": 0.05144383021762585,
+        "win_rate10": 0.8333333333333334,
+        "adverse_15pct_rate": 0.0,
+        "grade_counts": {
+          "A+": 4,
+          "A": 2,
+          "B": 0
+        },
+        "grade_profiles": [
+          {
+            "grade": "A+",
+            "count": 4,
+            "r5": 0.08755406376956032,
+            "mfe5": 0.13282988861187733,
+            "mae5": -0.033698154086044374,
+            "r10": 0.12707850554743091,
+            "mfe10": 0.17325271563263644,
+            "mae10": -0.053251446488736656,
+            "median_r10": 0.0790094010958252,
+            "win_rate10": 1.0,
+            "adverse_15pct_rate": 0.0
+          },
+          {
+            "grade": "A",
+            "count": 2,
+            "r5": -0.0816816453632087,
+            "mfe5": 0.086096110090611,
+            "mae5": -0.0941859516722684,
+            "r10": -0.03191855372060075,
+            "mfe10": 0.086096110090611,
+            "mae10": -0.13232927512167594,
+            "median_r10": -0.03191855372060075,
+            "win_rate10": 0.5,
+            "adverse_15pct_rate": 0.0
+          },
+          {
+            "grade": "B",
+            "count": 0,
+            "r5": null,
+            "mfe5": null,
+            "mae5": null,
+            "r10": null,
+            "mfe10": null,
+            "mae10": null,
+            "median_r10": null,
+            "win_rate10": null,
+            "adverse_15pct_rate": null
+          }
+        ]
+      },
+      {
+        "source_key": "lm2+weekly",
+        "sources": [
+          "lm2",
+          "weekly"
+        ],
+        "count": 2,
+        "r5": 0.07529863652117665,
+        "mfe5": 0.1175239172606055,
+        "mae5": -0.02239224763694275,
+        "r10": 0.12010116179587045,
+        "mfe10": 0.1469518232111496,
+        "mae10": -0.02711633495886165,
+        "median_r10": 0.12010116179587045,
+        "win_rate10": 1.0,
+        "adverse_15pct_rate": 0.0,
+        "grade_counts": {
+          "A+": 1,
+          "A": 1,
+          "B": 0
+        },
+        "grade_profiles": [
+          {
+            "grade": "A+",
+            "count": 1,
+            "r5": -0.0151170126719324,
+            "mfe5": 0.0476192456540234,
+            "mae5": -0.0447844952738855,
+            "r10": 0.0175737137982141,
+            "mfe10": 0.0525321864613617,
+            "mae10": -0.0542326699177233,
+            "median_r10": 0.0175737137982141,
+            "win_rate10": 1.0,
+            "adverse_15pct_rate": 0.0
+          },
+          {
+            "grade": "A",
+            "count": 1,
+            "r5": 0.1657142857142857,
+            "mfe5": 0.1874285888671876,
+            "mae5": 0.0,
+            "r10": 0.2226286097935268,
+            "mfe10": 0.2413714599609375,
+            "mae10": 0.0,
+            "median_r10": 0.2226286097935268,
+            "win_rate10": 1.0,
+            "adverse_15pct_rate": 0.0
+          },
+          {
+            "grade": "B",
+            "count": 0,
+            "r5": null,
+            "mfe5": null,
+            "mae5": null,
+            "r10": null,
+            "mfe10": null,
+            "mae10": null,
+            "median_r10": null,
+            "win_rate10": null,
+            "adverse_15pct_rate": null
+          }
+        ]
+      },
+      {
+        "source_key": "monthly+lm2+weekly",
+        "sources": [
+          "monthly",
+          "lm2",
+          "weekly"
+        ],
+        "count": 1,
+        "r5": 0.0653454369774522,
+        "mfe5": 0.1071237274679757,
+        "mae5": -0.0058918377023058,
+        "r10": 0.0814140573943369,
+        "mfe10": 0.1071237274679757,
+        "mae10": -0.0058918377023058,
+        "median_r10": 0.0814140573943369,
+        "win_rate10": 1.0,
+        "adverse_15pct_rate": 0.0,
+        "grade_counts": {
+          "A+": 1,
+          "A": 0,
+          "B": 0
+        },
+        "grade_profiles": [
+          {
+            "grade": "A+",
+            "count": 1,
+            "r5": 0.0653454369774522,
+            "mfe5": 0.1071237274679757,
+            "mae5": -0.0058918377023058,
+            "r10": 0.0814140573943369,
+            "mfe10": 0.1071237274679757,
+            "mae10": -0.0058918377023058,
+            "median_r10": 0.0814140573943369,
+            "win_rate10": 1.0,
+            "adverse_15pct_rate": 0.0
+          },
+          {
+            "grade": "A",
+            "count": 0,
+            "r5": null,
+            "mfe5": null,
+            "mae5": null,
+            "r10": null,
+            "mfe10": null,
+            "mae10": null,
+            "median_r10": null,
+            "win_rate10": null,
+            "adverse_15pct_rate": null
+          },
+          {
+            "grade": "B",
+            "count": 0,
+            "r5": null,
+            "mfe5": null,
+            "mae5": null,
+            "r10": null,
+            "mfe10": null,
+            "mae10": null,
+            "median_r10": null,
+            "win_rate10": null,
+            "adverse_15pct_rate": null
+          }
+        ]
+      }
+    ]
+  },
+  "interpretation": "Filtro de estructura: reduce entradas y retorno medio; no prueba una mejora de rentabilidad ni elimina pérdidas. Los periodos son descriptivos, no validación independiente.",
+  "examples": [
+    {
+      "ticker": "ALM",
+      "event_date": "2026-10-05",
+      "base_grade": "A",
+      "trend_gate": {
+        "policy_version": "MTR-TrendGate-v1.0",
+        "as_of": "2026-10-05",
+        "status": "rejected",
+        "passed": false,
+        "checks": {
+          "price_above_sma50": false,
+          "sma50_above_sma200": false,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": false
+        },
+        "failed_conditions": [
+          "price_above_sma50",
+          "sma50_above_sma200",
+          "sma50_rising20",
+          "drawdown20_within_limit"
+        ],
+        "close": 13.520000457763672,
+        "sma50": 14.993300106811523,
+        "sma200": 15.725050061416626,
+        "sma50_slope20": -0.016671584650990834,
+        "sma200_slope20": 0.051624746831353985,
+        "max_close20": 19.1200008392334,
+        "drawdown20": -0.2928870363843694,
+        "return20": -0.23050650582843202
+      }
+    },
+    {
+      "ticker": "HUT",
+      "event_date": "2026-10-05",
+      "base_grade": "A",
+      "trend_gate": {
+        "policy_version": "MTR-TrendGate-v1.0",
+        "as_of": "2026-10-05",
+        "status": "rejected",
+        "passed": false,
+        "checks": {
+          "price_above_sma50": false,
+          "sma50_above_sma200": true,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": false
+        },
+        "failed_conditions": [
+          "price_above_sma50",
+          "sma50_rising20",
+          "drawdown20_within_limit"
+        ],
+        "close": 89.2699966430664,
+        "sma50": 91.48729927368164,
+        "sma200": 80.5137248046875,
+        "sma50_slope20": -0.04506958213108392,
+        "sma200_slope20": 0.07178539878200696,
+        "max_close20": 106.61000061035156,
+        "drawdown20": -0.1626489435138554,
+        "return20": -0.04569994772096875
+      }
+    }
+  ]
+}

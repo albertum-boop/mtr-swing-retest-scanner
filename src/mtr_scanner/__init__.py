@@ -1,7 +1,7 @@
 """MTR Multitemporal Swing Retest Scanner.
 
-The monthly v1.0 contract remains available while v1.2 unites it with the
-frozen LM2 and weekly crossing branches.
+The frozen v2.0 pattern contract remains available for audit. Operational
+v2.1 additionally requires an intact current trend at the event close.
 """
 
 from .config import StrategyConfig
@@ -19,4 +19,4 @@ __all__ = [
     "build_ranked_candidates",
     "scan_candidate",
 ]
-__version__ = "1.2.0"
+__version__ = "2.1.0"

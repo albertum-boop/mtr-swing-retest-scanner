@@ -197,3 +197,8 @@ footer { max-width: 1240px; margin: 0 auto; padding: 28px 24px 42px; border-top:
   .drawer { padding: 24px 18px; }
   footer { flex-direction: column; padding-inline: 14px; }
 }
+
+.signal-card.blocked { border-color: #c7776c; background: #fff6f3; }
+.grade-blocked { background: #e7e2df; color: #635954; }
+.filters label { font-size: .8rem; display: flex; align-items: center; gap: .4rem; }
+.filters input[type="checkbox"] { width: auto; }

@@ -11,6 +11,8 @@ from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
+from .trend import is_operationally_actionable
+
 GRADE_ORDER = {"A+": 0, "A": 1, "B": 2}
 
 
@@ -36,7 +38,7 @@ def build_email(signals: Iterable[dict[str, Any]]) -> tuple[str, str, str]:
         key=lambda row: (GRADE_ORDER.get(row.get("grade", "B"), 9), row.get("event_date", ""), row.get("ticker", "")),
     )
     subject = f"MTR: {len(ordered)} señal{'es' if len(ordered) != 1 else ''} nueva{'s' if len(ordered) != 1 else ''}"
-    plain_lines = [subject, "", "Entrada de referencia: apertura ajustada de la próxima sesión.", ""]
+    plain_lines = [subject, "", "Retest confirmado y filtro de tendencia vigente superado. Entrada de referencia: apertura ajustada de la próxima sesión.", ""]
     rows = []
     for signal in ordered:
         plain_lines.append(
@@ -60,12 +62,12 @@ def build_email(signals: Iterable[dict[str, Any]]) -> tuple[str, str, str]:
     body_html = f"""
     <html><body style="font-family:Arial,sans-serif;color:#182432">
       <h2>{html.escape(subject)}</h2>
-      <p>La configuración mensual, LM2 o semanal se confirmó al cierre. La entrada es la apertura ajustada de la próxima sesión; no es una orden automática. Las señales B de LM2 y semanales están excluidas, y el cooldown común evita entradas duplicadas.</p>
+      <p>El patrón de retest y el filtro de tendencia vigente se confirmaron al cierre. La entrada es la apertura ajustada de la próxima sesión; no es una orden automática. Las señales B de LM2 y semanales están excluidas, y el cooldown común evita entradas duplicadas.</p>
       <table cellpadding="7" cellspacing="0" border="1" style="border-collapse:collapse;border-color:#ccd6e0">
         <thead><tr style="background:#173f5f;color:white"><th>Grado</th><th>Ticker</th><th>Marco</th><th>Fecha</th><th>Swing</th><th>Cierre/rango</th><th>Volumen</th><th>Pullback</th></tr></thead>
         <tbody>{''.join(rows)}</tbody>
       </table>
-      <p style="color:#667587;font-size:12px">MTR Multitemporal v2.0 · señal de investigación, no recomendación financiera.</p>
+      <p style="color:#667587;font-size:12px">MTR Multitemporal v2.1 · señal de investigación, no recomendación financiera.</p>
     </body></html>
     """
     return subject, "\n".join(plain_lines), body_html
@@ -161,7 +163,7 @@ def build_weekly_email(
         <tbody>{table_body}</tbody>
       </table>
       <p><a href="{html.escape(app_url)}">Abrir MTR Swing Retest Scanner</a></p>
-      <p style="color:#667587;font-size:12px">MTR Multitemporal v2.0 · informe de
+      <p style="color:#667587;font-size:12px">MTR Multitemporal v2.1 · informe de
       investigación, no recomendación financiera.</p>
     </body></html>
     """
@@ -210,7 +212,7 @@ def _send_email(
             "Authorization": f"Bearer {config['RESEND_API_KEY']}",
             "Content-Type": "application/json",
             "Idempotency-Key": f"mtr-{digest}",
-            "User-Agent": "mtr-swing-retest-scanner/2.0",
+            "User-Agent": "mtr-swing-retest-scanner/2.1",
         },
     )
     try:
@@ -235,6 +237,7 @@ def _send_email(
 
 
 def send_signal_email(signals: list[dict[str, Any]]) -> dict[str, Any]:
+    signals = [signal for signal in signals if is_operationally_actionable(signal)]
     if not signals:
         return {"status": "nothing_to_send", "sent": 0}
     subject, plain, body_html = build_email(signals)
@@ -253,6 +256,8 @@ def send_weekly_report_email(
     week_end: date,
 ) -> dict[str, Any]:
     """Send a weekly report even when the week contains no signals."""
+
+    signals = [signal for signal in signals if is_operationally_actionable(signal)]
 
     subject, plain, body_html = build_weekly_email(
         signals,
