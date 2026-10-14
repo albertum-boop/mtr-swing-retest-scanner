@@ -2,7 +2,7 @@
   "method_version": "MTR-Multitemporal-v2.0",
   "operational_version": "MTR-Multitemporal-v2.1",
   "reference_signals": 323,
-  "updated_at": "2026-10-13T03:41:31+00:00",
+  "updated_at": "2026-10-14T02:01:26+00:00",
   "signals": [
     {
       "signal_id": "MTR-Weekly-Cross-v2.0:QNST:2019-01-17",
@@ -33938,9 +33938,9 @@
         "failed_conditions": [],
         "close": 541.739990234375,
         "sma50": 486.49260192871094,
-        "sma200": 290.46670597076417,
+        "sma200": 290.46670600891116,
         "sma50_slope20": 0.11769593686937574,
-        "sma200_slope20": 0.16704538888422782,
+        "sma200_slope20": 0.1670453895741082,
         "max_close20": 588.4000244140625,
         "drawdown20": -0.07929985085597546,
         "return20": 0.10065009508066813
