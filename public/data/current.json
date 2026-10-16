@@ -21,15 +21,15 @@
     "lm2": "MTR-LM2-v2.0",
     "weekly": "MTR-Weekly-Cross-v2.0"
   },
-  "generated_at": "2026-10-15T01:36:58+00:00",
-  "cutoff": "2026-10-14",
+  "generated_at": "2026-10-16T01:32:28+00:00",
+  "cutoff": "2026-10-15",
   "formation_date": "2026-09-30",
   "monthly_formation_date": "2026-09-30",
   "lm2_formation_date": null,
   "weekly_formation_dates": [
     "2026-10-09"
   ],
-  "session_after_formation": 10,
+  "session_after_formation": 11,
   "cycle_phase": "retest_window_closed",
   "formation_stats": {
     "observed": 2240,
@@ -153,7 +153,7 @@
       "candidate_id": "monthly:2026-09-30:BFLY",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "ALMS",
@@ -211,7 +211,7 @@
       "candidate_id": "monthly:2026-09-30:ALMS",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "LITE",
@@ -269,7 +269,7 @@
       "candidate_id": "monthly:2026-09-30:LITE",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "SNDK",
@@ -337,7 +337,7 @@
       "candidate_id": "monthly:2026-09-30:SNDK",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "MRNA",
@@ -404,7 +404,7 @@
       "candidate_id": "monthly:2026-09-30:MRNA",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "DELL",
@@ -470,7 +470,7 @@
       "candidate_id": "monthly:2026-09-30:DELL",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "TWST",
@@ -538,7 +538,7 @@
       "candidate_id": "monthly:2026-09-30:TWST",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "ALM",
@@ -629,7 +629,7 @@
       "candidate_id": "monthly:2026-09-30:ALM",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "ABSI",
@@ -696,7 +696,7 @@
       "candidate_id": "monthly:2026-09-30:ABSI",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "AAOI",
@@ -754,7 +754,7 @@
       "candidate_id": "monthly:2026-09-30:AAOI",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "HYMC",
@@ -821,7 +821,7 @@
       "candidate_id": "monthly:2026-09-30:HYMC",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "DOCN",
@@ -888,7 +888,7 @@
       "candidate_id": "monthly:2026-09-30:DOCN",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "MXL",
@@ -946,7 +946,7 @@
       "candidate_id": "monthly:2026-09-30:MXL",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "IBRX",
@@ -1013,7 +1013,7 @@
       "candidate_id": "monthly:2026-09-30:IBRX",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "IOVA",
@@ -1080,7 +1080,7 @@
       "candidate_id": "monthly:2026-09-30:IOVA",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "BAND",
@@ -1146,7 +1146,7 @@
       "candidate_id": "monthly:2026-09-30:BAND",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "PLSE",
@@ -1213,7 +1213,7 @@
       "candidate_id": "monthly:2026-09-30:PLSE",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "FSLY",
@@ -1279,7 +1279,7 @@
       "candidate_id": "monthly:2026-09-30:FSLY",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "KOD",
@@ -1347,7 +1347,7 @@
       "candidate_id": "monthly:2026-09-30:KOD",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "ACRS",
@@ -1405,7 +1405,7 @@
       "candidate_id": "monthly:2026-09-30:ACRS",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "ERAS",
@@ -1472,7 +1472,7 @@
       "candidate_id": "monthly:2026-09-30:ERAS",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "HUT",
@@ -1562,7 +1562,7 @@
       "candidate_id": "monthly:2026-09-30:HUT",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "OMER",
@@ -1620,7 +1620,7 @@
       "candidate_id": "monthly:2026-09-30:OMER",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "STX",
@@ -1678,7 +1678,7 @@
       "candidate_id": "monthly:2026-09-30:STX",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "WDC",
@@ -1736,7 +1736,7 @@
       "candidate_id": "monthly:2026-09-30:WDC",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "TXG",
@@ -1802,7 +1802,7 @@
       "candidate_id": "monthly:2026-09-30:TXG",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "ATEX",
@@ -1860,7 +1860,7 @@
       "candidate_id": "monthly:2026-09-30:ATEX",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "CMPS",
@@ -1918,7 +1918,7 @@
       "candidate_id": "monthly:2026-09-30:CMPS",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "INTC",
@@ -1986,7 +1986,7 @@
       "candidate_id": "monthly:2026-09-30:INTC",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "BE",
@@ -2044,7 +2044,7 @@
       "candidate_id": "monthly:2026-09-30:BE",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "SLS",
@@ -2102,7 +2102,7 @@
       "candidate_id": "monthly:2026-09-30:SLS",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "VSAT",
@@ -2169,7 +2169,7 @@
       "candidate_id": "monthly:2026-09-30:VSAT",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "TNGX",
@@ -2237,7 +2237,7 @@
       "candidate_id": "monthly:2026-09-30:TNGX",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "LBRX",
@@ -2295,7 +2295,7 @@
       "candidate_id": "monthly:2026-09-30:LBRX",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "REPL",
@@ -2362,7 +2362,7 @@
       "candidate_id": "monthly:2026-09-30:REPL",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "FCEL",
@@ -2420,7 +2420,7 @@
       "candidate_id": "monthly:2026-09-30:FCEL",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "DMRA",
@@ -2478,7 +2478,7 @@
       "candidate_id": "monthly:2026-09-30:DMRA",
       "source": "monthly",
       "formation_frequency": "monthly",
-      "session_after_formation": 10
+      "session_after_formation": 11
     },
     {
       "ticker": "AGL",
@@ -2544,7 +2544,7 @@
       "candidate_id": "weekly:2026-10-09:AGL",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "COHR",
@@ -2563,31 +2563,31 @@
       "max_valid_close": 328.55036544799805,
       "max_event_volume": 5669960.0,
       "status": "waiting_expansion",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-14",
-        "day": 3,
-        "open": 281.1300048828125,
-        "high": 285.0,
-        "low": 261.8999938964844,
-        "close": 263.32000732421875,
-        "volume": 6764100.0,
-        "close_location": 0.061472426516729836,
-        "close_vs_level_atr": -2.321037745947068,
-        "volume_ratio": 0.9543771031894405,
+        "date": "2026-10-15",
+        "day": 4,
+        "open": 249.83999633789062,
+        "high": 252.27999877929688,
+        "low": 235.5500030517578,
+        "close": 250.60000610351562,
+        "volume": 9917100.0,
+        "close_location": 0.8995820021032144,
+        "close_vs_level_atr": -2.9198939380769056,
+        "volume_ratio": 1.399247966475954,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
         "checks": {
           "contact": false,
           "hold": false,
-          "strong_close": false,
+          "strong_close": true,
           "not_extended": true,
           "volume_contraction": false
         }
@@ -2602,7 +2602,7 @@
       "candidate_id": "weekly:2026-10-09:COHR",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "LBRX",
@@ -2660,7 +2660,7 @@
       "candidate_id": "weekly:2026-10-09:LBRX",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "PRAX",
@@ -2718,7 +2718,7 @@
       "candidate_id": "weekly:2026-10-09:PRAX",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "BE",
@@ -2751,10 +2751,10 @@
         "high": 258.5199890136719,
         "low": 235.6999969482422,
         "close": 239.33999633789062,
-        "volume": 18230400.0,
+        "volume": 18437900.0,
         "close_location": 0.15950923116939736,
         "close_vs_level_atr": -2.111093858637755,
-        "volume_ratio": 1.1064724181536396,
+        "volume_ratio": 1.1190663835502783,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
@@ -2776,7 +2776,7 @@
       "candidate_id": "weekly:2026-10-09:BE",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "CDNA",
@@ -2843,7 +2843,7 @@
       "candidate_id": "weekly:2026-10-09:CDNA",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "DFTX",
@@ -2901,7 +2901,7 @@
       "candidate_id": "weekly:2026-10-09:DFTX",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "CIEN",
@@ -2920,31 +2920,31 @@
       "max_valid_close": 467.7733661651611,
       "max_event_volume": 2370724.0,
       "status": "waiting_expansion",
-      "complete_days": 3,
-      "sessions_remaining": 2,
+      "complete_days": 4,
+      "sessions_remaining": 1,
       "expansion_seen": false,
       "expansion_date": null,
       "expansion_peak": null,
       "expansion_peak_atr": null,
       "first_contact_date": null,
       "latest_session": {
-        "date": "2026-10-14",
-        "day": 3,
-        "open": 393.8800048828125,
-        "high": 393.8800048828125,
-        "low": 356.7799987792969,
-        "close": 359.6000061035156,
-        "volume": 3312400.0,
-        "close_location": 0.07601096658449132,
-        "close_vs_level_atr": -3.7563778514201136,
-        "volume_ratio": 1.117768242950255,
+        "date": "2026-10-15",
+        "day": 4,
+        "open": 342.5,
+        "high": 357.8299865722656,
+        "low": 333.1499938964844,
+        "close": 356.5199890136719,
+        "volume": 3483800.0,
+        "close_location": 0.9469206666386386,
+        "close_vs_level_atr": -3.884687823373999,
+        "volume_ratio": 1.1756071141136633,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
         "checks": {
           "contact": false,
           "hold": false,
-          "strong_close": false,
+          "strong_close": true,
           "not_extended": true,
           "volume_contraction": false
         }
@@ -2959,7 +2959,7 @@
       "candidate_id": "weekly:2026-10-09:CIEN",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     },
     {
       "ticker": "NBIS",
@@ -2992,10 +2992,10 @@
         "high": 198.60000610351562,
         "low": 183.11000061035156,
         "close": 186.00999450683594,
-        "volume": 33182000.0,
+        "volume": 34041200.0,
         "close_location": 0.18721709929439206,
         "close_vs_level_atr": -2.2589776249241194,
-        "volume_ratio": 2.0687741786657274,
+        "volume_ratio": 2.122342100259049,
         "expansion_seen_before": false,
         "expansion_reached_today": false,
         "eligible_retest_day": false,
@@ -3017,7 +3017,7 @@
       "candidate_id": "weekly:2026-10-09:NBIS",
       "source": "weekly",
       "formation_frequency": "weekly",
-      "session_after_formation": 3
+      "session_after_formation": 4
     }
   ],
   "signals": [
