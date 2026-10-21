@@ -2,7 +2,7 @@
   "method_version": "MTR-Multitemporal-v2.0",
   "operational_version": "MTR-Multitemporal-v2.1",
   "reference_signals": 323,
-  "updated_at": "2026-10-20T02:00:16+00:00",
+  "updated_at": "2026-10-21T01:46:08+00:00",
   "signals": [
     {
       "signal_id": "MTR-Weekly-Cross-v2.0:QNST:2019-01-17",
@@ -33240,9 +33240,9 @@
         ],
         "close": 245.05645751953125,
         "sma50": 230.68699279785156,
-        "sma200": 147.18027477264405,
+        "sma200": 147.18027473449706,
         "sma50_slope20": -0.03415003935507421,
-        "sma200_slope20": 0.09851907230009438,
+        "sma200_slope20": 0.09851907232814461,
         "max_close20": 250.9551544189453,
         "drawdown20": -0.023504984040163435,
         "return20": 0.5000612259594706
@@ -33936,14 +33936,14 @@
           "drawdown20_within_limit": true
         },
         "failed_conditions": [],
-        "close": 541.739990234375,
-        "sma50": 486.49260192871094,
-        "sma200": 290.466706161499,
-        "sma50_slope20": 0.11769593686937574,
-        "sma200_slope20": 0.16704538947169723,
-        "max_close20": 588.4000244140625,
-        "drawdown20": -0.07929985085597546,
-        "return20": 0.10065009508066813
+        "close": 540.9906005859375,
+        "sma50": 485.8196368408203,
+        "sma200": 290.0649022293091,
+        "sma50_slope20": 0.1176959413046601,
+        "sma200_slope20": 0.16704539110280225,
+        "max_close20": 587.5860595703125,
+        "drawdown20": -0.07929980336573872,
+        "return20": 0.10065013259883715
       },
       "operational_actionable": true,
       "operational_suppressed_by_cooldown": null,
@@ -34196,9 +34196,9 @@
         ],
         "close": 945.5700073242188,
         "sma50": 855.4062841796875,
-        "sma200": 646.9053262329102,
+        "sma200": 646.9053268432617,
         "sma50_slope20": -0.00562898938822376,
-        "sma200_slope20": 0.10264672526143359,
+        "sma200_slope20": 0.10264672572821043,
         "max_close20": 945.5700073242188,
         "drawdown20": 0.0,
         "return20": 0.17041586799176933
@@ -34425,6 +34425,138 @@
           "close_vs_level_atr": 0.41598847120697663,
           "close_location": 0.7813299536301915,
           "event_volume_ratio": 0.7671331362480055
+        }
+      },
+      "cooldown_sessions": 10,
+      "suppressed_by_cooldown": null,
+      "actionable": true,
+      "operational_actionable": false,
+      "operational_suppressed_by_cooldown": null,
+      "operational_cooldown_gap_sessions": null,
+      "operational_reason": "trend_rejected",
+      "reference_complete": false
+    },
+    {
+      "signal_id": "MTR-Weekly-Cross-v2.0:LQDA:2026-10-20",
+      "method_version": "MTR-Multitemporal-v2.0",
+      "grade": "A",
+      "ticker": "LQDA",
+      "formation_date": "2026-10-16",
+      "event_date": "2026-10-20",
+      "event_day": 2,
+      "formation_close": 34.349998474121094,
+      "atr_abs20": 5.739000034332276,
+      "adv20": 215441174.56429482,
+      "universe_momentum_percentile": 0.9808126410835214,
+      "swing_score": 0.7059925093632958,
+      "swing_rank_percentile": 0.8595505617977528,
+      "momentum_percentile_d10": 0.8089887640449438,
+      "atr_percentile_d10": 1.0,
+      "return_volume_percentile_d10": 0.3089887640449438,
+      "sma200_slope_percentile_d10": 0.0449438202247191,
+      "expansion_peak_atr": 0.43038877956558613,
+      "pullback_from_peak_atr": -0.08189601287531774,
+      "close_vs_level_atr": 0.3484927666902684,
+      "close_location": 0.8231701076489361,
+      "event_volume_ratio": 0.5939856277966712,
+      "event_volume_change": -0.4060143722033288,
+      "event_body_atr": 0.4269031074378171,
+      "event_body_return": 0.07227129315530822,
+      "event_open": 33.900001525878906,
+      "event_high": 36.93000030517578,
+      "event_low": 33.650001525878906,
+      "event_close": 36.349998474121094,
+      "entry_rule": "Apertura ajustada de la siguiente sesión",
+      "entry_date": null,
+      "entry_open": null,
+      "r5": null,
+      "mfe5": null,
+      "mae5": null,
+      "r10": null,
+      "mfe10": null,
+      "mae10": null,
+      "base_retest_grade": "A",
+      "weekly_grade": "A",
+      "weekly_quality_points": 2,
+      "weekly_quality_checks": {
+        "momentum": true,
+        "controlled_atr": false,
+        "swing_rank": false,
+        "retest_extension": true
+      },
+      "weekly_formation_volume_confirmation": true,
+      "formation_relative_volume5_20": 0.3379609557373917,
+      "operational_version": "MTR-Multitemporal-v2.1",
+      "trend_gate": {
+        "policy_version": "MTR-TrendGate-v1.0",
+        "as_of": "2026-10-20",
+        "status": "rejected",
+        "passed": false,
+        "checks": {
+          "price_above_sma50": false,
+          "sma50_above_sma200": true,
+          "sma50_rising20": false,
+          "sma200_rising20": true,
+          "drawdown20_within_limit": false
+        },
+        "failed_conditions": [
+          "price_above_sma50",
+          "sma50_rising20",
+          "drawdown20_within_limit"
+        ],
+        "close": 36.349998474121094,
+        "sma50": 58.30399990081787,
+        "sma200": 53.94790012359619,
+        "sma50_slope20": -0.23367296695789996,
+        "sma200_slope20": 0.01103656315112822,
+        "max_close20": 73.66999816894531,
+        "drawdown20": -0.506583420963841,
+        "return20": -0.4704254254465652
+      },
+      "source": "weekly",
+      "signal_sources": [
+        "weekly"
+      ],
+      "is_confluence": false,
+      "monthly_grade": null,
+      "lm2_grade": null,
+      "source_grades": {
+        "weekly": "A"
+      },
+      "formation_dates": {
+        "weekly": "2026-10-16"
+      },
+      "source_method_versions": {
+        "weekly": "MTR-Weekly-Cross-v2.0"
+      },
+      "source_signal_ids": {
+        "weekly": "MTR-Weekly-Cross-v2.0:LQDA:2026-10-20"
+      },
+      "source_details": {
+        "weekly": {
+          "formation_date": "2026-10-16",
+          "formation_close": 34.349998474121094,
+          "atr_abs20": 5.739000034332276,
+          "adv20": 215441174.56429482,
+          "universe_momentum_percentile": 0.9808126410835214,
+          "swing_score": 0.7059925093632958,
+          "swing_rank_percentile": 0.8595505617977528,
+          "momentum_percentile_d10": 0.8089887640449438,
+          "atr_percentile_d10": 1.0,
+          "return_volume_percentile_d10": 0.3089887640449438,
+          "sma200_slope_percentile_d10": 0.0449438202247191,
+          "formation_relative_volume5_20": 0.3379609557373917,
+          "weekly_quality_points": 2,
+          "weekly_quality_checks": {
+            "momentum": true,
+            "controlled_atr": false,
+            "swing_rank": false,
+            "retest_extension": true
+          },
+          "weekly_formation_volume_confirmation": true,
+          "close_vs_level_atr": 0.3484927666902684,
+          "close_location": 0.8231701076489361,
+          "event_volume_ratio": 0.5939856277966712
         }
       },
       "cooldown_sessions": 10,

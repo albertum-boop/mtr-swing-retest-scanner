@@ -1,23 +1,23 @@
 {
   "status": "ok",
-  "generated_at": "2026-10-20T02:00:16+00:00",
-  "cutoff": "2026-10-19",
+  "generated_at": "2026-10-21T01:46:08+00:00",
+  "cutoff": "2026-10-20",
   "monthly_formation_date": "2026-09-30",
   "lm2_formation_date": null,
   "weekly_formation_dates": [
     "2026-10-16"
   ],
-  "signals": 2,
+  "signals": 3,
   "source_counts": {
     "monthly_candidates": 37,
     "weekly_crossing_candidates": 5,
     "lm2_candidates": 0,
     "monthly_signals": 2,
     "lm2_signals": 0,
-    "weekly_signals": 0,
+    "weekly_signals": 1,
     "confluence_signals": 0,
     "cooldown_suppressed": 0,
-    "trend_blocked": 2,
+    "trend_blocked": 3,
     "operational_signals": 0
   },
   "pending_alerts": 0,
