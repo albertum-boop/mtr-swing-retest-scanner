@@ -2,7 +2,7 @@
   "method_version": "MTR-Multitemporal-v2.0",
   "operational_version": "MTR-Multitemporal-v2.1",
   "reference_signals": 323,
-  "updated_at": "2026-11-04T03:04:44+00:00",
+  "updated_at": "2026-11-05T03:35:16+00:00",
   "signals": [
     {
       "signal_id": "MTR-Weekly-Cross-v2.0:QNST:2019-01-17",
@@ -12211,8 +12211,8 @@
       "event_low": 205.1300048828125,
       "event_close": 213.77000427246094,
       "entry_rule": "Apertura ajustada de la siguiente sesión",
-      "entry_date": null,
-      "entry_open": null,
+      "entry_date": "2026-11-04",
+      "entry_open": 210.1199951171875,
       "r5": null,
       "mfe5": null,
       "mae5": null,
@@ -32964,10 +32964,10 @@
           "price_above_sma50"
         ],
         "close": 892.529541015625,
-        "sma50": 969.1665795898438,
-        "sma200": 524.5716921234131,
-        "sma50_slope20": 0.1128347797199134,
-        "sma200_slope20": 0.1602807611680086,
+        "sma50": 969.1665673828124,
+        "sma200": 524.5716873931884,
+        "sma50_slope20": 0.11283478442110151,
+        "sma200_slope20": 0.16028076186596651,
         "max_close20": 991.4839477539062,
         "drawdown20": -0.09980434576117059,
         "return20": -0.04871162169604615
@@ -34308,9 +34308,9 @@
         ],
         "close": 945.5700073242188,
         "sma50": 855.4062841796875,
-        "sma200": 646.905326385498,
+        "sma200": 646.905327911377,
         "sma50_slope20": -0.00562898938822376,
-        "sma200_slope20": 0.10264672523473672,
+        "sma200_slope20": 0.10264672511115891,
         "max_close20": 945.5700073242188,
         "drawdown20": 0.0,
         "return20": 0.17041586799176933
